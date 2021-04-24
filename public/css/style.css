@@ -19,12 +19,26 @@ body a {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 a:hover {
     text-decoration: none;
+    color: #ff4e00;
+    border-radius: 0px;
 }
-
+.hover-nut {
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #9c9b9b;
+    font-weight:500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.hover-nut:hover{
+    text-decoration: none;
+    color: #ff4e00;
+    border-radius: 0px;
+}
 input[type="button"],
 input[type="submit"],
 input[type="text"],

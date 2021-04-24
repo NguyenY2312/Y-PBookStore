@@ -12,36 +12,36 @@
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active" style="background-image: url(images/banner.jpg);">
 						<div class="carousel-caption text-center">
-							<h3>Hot Deals
-								<span>Sale 50% off</span>
+							<h3>Ưu Đãi Lớn
+								<span>Giảm Giá 50% Tất Cả Các Loại Sách</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 						</div>
 					</div>
 					<div class="carousel-item item2" style="background-image: url(images/banner-4.jpg);">
 						<div class="carousel-caption text-center">
-							<h3>With Y&P
-								<span>Knowledge Is Infinite</span>
+							<h3>Với Y&P
+								<span>Kiến Thức Là Vô Tận</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 
 						</div>
 					</div>
 					<div class="carousel-item item3" style="background-image: url(images/banner-5.jpg);">
 						<div class="carousel-caption text-center">
-							<h3>Come To Y&P
-								<span>We Will Give You The Best Service </span>
+							<h3>Đến Với Y&P
+								<span>Chúng Tôi Sẽ Cho Bạn Dịch Vụ Tốt Nhất</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 
 						</div>
 					</div>
 					<div class="carousel-item item4" style="background-image: url(images/banner-9.jpg);">
 						<div class="carousel-caption text-center">
-							<h3>Accompany With Y&P
-								<span>Back To School</span>
+							<h3>Đồng Hành Cùng Y&P
+								<span>Trở Lại Trường Sau Mùa Hè</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container-fluid">
 			<div class="inner-sec-shop px-lg-4 px-3">
-				<h3 class="tittle-w3layouts my-lg-4 my-4">New Books For You </h3>
+				<h3 class="tittle-w3layouts my-lg-4 my-4">Sách Mới Cho Bạn </h3>
 				<div class="row">
 					<!-- Sách mới -->
 					<div class="col-md-3">
@@ -72,10 +72,10 @@
 									<img src="images/Book/SuMenhKhoiNghiep/HinhDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -115,10 +115,10 @@
 									<img src="images/Book/Siêu Cò – How To Be A Power Connector/DD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -156,10 +156,10 @@
 									<img src="images/Book/How Money Works - Hiểu Hết Về Tiền/DD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -197,10 +197,10 @@
 									<img src="images/Book/Nhà Đầu Tư Thông Minh (Tái Bản 2020)/HDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -238,10 +238,10 @@
 									<img src="images/Book/Phương pháp VPA - Kỹ thuật nhận diện Dòng/HDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -279,10 +279,10 @@
 									<img src="images/Book/Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng/HDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -320,10 +320,10 @@
 									<img src="images/Book/Storytelling With Data - Kể Chuyện Thông Qua Dữ Liệu (Cuốn Cẩm Nang Hướng Dẫn Trực Quan Hóa Dữ Liệu)/HinhDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -361,10 +361,10 @@
 									<img src="images/Book/Nghệ Thuật đầu tư Dhandho - The Dhandho/HDD.png" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">See Details</a>
+											<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top" style="background-color: green;">New</span>
+									<span class="product-new-top" style="background-color: green;">Mới</span>
 								</div>
 								<div class="item-info-product">
 									<div class="info-product-price">
@@ -408,7 +408,7 @@
 				</div>
 				<!--//Banner trang web-->
 				<div class="inner-sec-shop px-lg-4 px-3">
-					<h3 class="tittle-w3layouts my-lg-4 my-4">Bestselling Books </h3>
+					<h3 class="tittle-w3layouts my-lg-4 my-4">Sách Bán Chạy Nhất </h3>
 					<div class="row">
 						<!-- Sách bán chạy -->
 						<div class="col-md-3">
@@ -418,7 +418,7 @@
 										<img src="images/Book/SuMenhKhoiNghiep/HinhDD.png" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">See Details</a>
+												<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 											</div>
 										</div>
 										<span class="product-new-top">Hot</span>
@@ -459,7 +459,7 @@
 										<img src="images/Book/Siêu Cò – How To Be A Power Connector/DD.png" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">See Details</a>
+												<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 											</div>
 										</div>
 										<span class="product-new-top">Hot</span>
@@ -500,7 +500,7 @@
 										<img src="images/Book/How Money Works - Hiểu Hết Về Tiền/DD.png" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">See Details</a>
+												<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 											</div>
 										</div>
 										<span class="product-new-top">Hot</span>
@@ -541,7 +541,7 @@
 										<img src="images/Book/Nhà Đầu Tư Thông Minh (Tái Bản 2020)/HDD.png" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">See Details</a>
+												<a href="single.html" class="link-product-add-cart">Xem Chi Tiết</a>
 											</div>
 										</div>
 										<span class="product-new-top">Hot</span>
