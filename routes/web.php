@@ -34,3 +34,4 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("cart","UserController@Cart")->name("user.cart");
 
 });
+Route::resource('admin/dashboard',admin\DashboardController::class);
