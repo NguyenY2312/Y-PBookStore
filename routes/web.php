@@ -13,14 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('FrontEnd/index');
 });
 Route::get('/VeChungToi', function () {
     return view('FrontEnd/about');
-});
+}); */
 Route::get('/DangNhap', function () {
     return view('Login/Login');
+});
+Route::get('/NguoiDung', function () {
+    return view('user/pages/usermanagement');
 });
 Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/","UserController@Index")->name("user.index");
