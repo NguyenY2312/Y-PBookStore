@@ -35,3 +35,5 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
 
 });
 Route::resource('admin/dashboard',admin\DashboardController::class);
+Route::resource('admin/quan-ly-sach',admin\BookController::class);
+Route::resource('admin/quan-ly-tai-khoan',admin\AccountController::class);
