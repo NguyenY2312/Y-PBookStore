@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 class BookController extends Controller
 {
     /**
@@ -14,7 +13,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return View('admin.pages.book');
+        return View('admin.pages.Book.book');
     }
 
     /**
@@ -25,6 +24,7 @@ class BookController extends Controller
     public function create()
     {
         //
+        return View('admin.pages.Book.create');
     }
 
     /**
@@ -58,8 +58,8 @@ class BookController extends Controller
     public function edit($id)
     {
         //
+        return View('admin.pages.Book.edit');
     }
-
     /**
      * Update the specified resource in storage.
      *

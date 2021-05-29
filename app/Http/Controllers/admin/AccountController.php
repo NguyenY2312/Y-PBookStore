@@ -15,7 +15,7 @@ class AccountController extends Controller
     public function index()
     {
         //
-        return View('admin.pages.account');
+        return View('admin.pages.Account.account');
     }
 
     /**
@@ -26,6 +26,7 @@ class AccountController extends Controller
     public function create()
     {
         //
+        return View('admin.pages.Account.create');
     }
 
     /**
@@ -48,6 +49,7 @@ class AccountController extends Controller
     public function show($id)
     {
         //
+        
     }
 
     /**
@@ -59,6 +61,7 @@ class AccountController extends Controller
     public function edit($id)
     {
         //
+        return View('admin.pages.Account.edit');
     }
 
     /**
