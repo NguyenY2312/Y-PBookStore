@@ -35,6 +35,7 @@
                     <label for="exampleInputTopic">Ảnh bìa</label>
                     <div class="custom-file">
                         <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" id="hinh_anh" placeholder="Chọn ảnh" name="hinh_anh" />
+                        <img src="{!! asset('user\images\Book\SACH_KY_NANG_SONG\Tư Duy Sâu\DD.png')!!}" style="width:100px; height:100px; border-radius:0%; padding-top:5px;">
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -44,7 +45,7 @@
                     </select>
                   </div>
                 </div> 
-                <div class="row">
+                <div class="row" style="margin-top:30px">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Tác giả</label>
                     <input class="form-control" type="text" id="exampleInputTitle" placeholder="Tác giả">
@@ -84,6 +85,42 @@
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Trạng thái</label>
                     <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" type="checkbox" id="exampleInputTitle">
+                  </div>
+                </div>
+                <div class="row" style="margin-top:30px">
+                  <div class="col-lg-12">
+                    <h5 class="font-weight-bold">ẢNH SÁCH</h5><br/>
+                    <a class="btn btn-primary" href="#" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                    <table id="book" class="table table-hover table-bordered" style="margin-top:10px">
+                        <thead>
+                        <tr>
+                        <th>Hình ảnh</th>
+                        <th>Ảnh trình chiếu</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td><img src="{!! asset('user\images\Book\SACH_KY_NANG_SONG\Tư Duy Sâu\DD.png')!!}" style="width:100px; height:100px; border-radius:0%"></td>
+                        <td><input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" checked="" disabled="" type="checkbox" id="exampleInputTitle"></td>
+                        <td><input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" checked="" disabled="" type="checkbox" id="exampleInputTitle"></td>
+                        <td>
+                            <a href="#" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                            <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><img src="{!! asset('user\images\Book\SACH_KY_NANG_SONG\Tư Duy Sâu\DD.png')!!}" style="width:100px; height:100px; border-radius:0%"></td>
+                        <td><input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" value="false" disabled="" type="checkbox" id="exampleInputTitle"></td>
+                        <td><input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" checked="" disabled="" type="checkbox" id="exampleInputTitle"></td>
+                        <td>
+                            <a href="#" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                            <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        </td>
+                        </tr>
+                        </tbody>
+                </table>
                   </div>
                 </div>
                 <div class="row" style="float:right">

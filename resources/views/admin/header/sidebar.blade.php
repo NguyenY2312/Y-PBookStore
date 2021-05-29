@@ -19,26 +19,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" href="/admin/quan-ly-don-hang">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Quản lý đơn hàng</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+            <a class="nav-link" href="/admin/quan-ly-binh-luan">
               <i class="fas fa-comments menu-icon"></i>
               <span class="menu-title">Quản lý bình luận</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-              <i class="fas fa-warehouse menu-icon"></i>
+            <a class="nav-link" href="/admin/quan-ly-nha-cung-cap">
+              <i class="fas fa-building menu-icon"></i>
               <span class="menu-title">Nhà xuất bản</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
+            <a class="nav-link" href="/admin/quan-ly-chi-tiet-hoa-don">
+              <i class="fas fa-warehouse menu-icon"></i>
               <span class="menu-title">Quản lý kho</span>
             </a>
           </li>

@@ -30,7 +30,7 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-6">
-                    <label for="exampleInputTopic">Hình ảnh</label>
+                    <label for="exampleInputTopic">Ảnh đại diện</label>
                     <div class="custom-file">
                         <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" id="hinh_anh" placeholder="Chọn ảnh" name="hinh_anh" />
                     </div>
