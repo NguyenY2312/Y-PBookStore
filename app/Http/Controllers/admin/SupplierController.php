@@ -15,7 +15,7 @@ class SupplierController extends Controller
     public function index()
     {
         //
-        return view('admin.pages.supplier');
+        return view('admin.pages.Supplier.supplier');
     }
 
     /**
@@ -26,6 +26,7 @@ class SupplierController extends Controller
     public function create()
     {
         //
+        return view('admin.pages.Supplier.create');
     }
 
     /**
@@ -59,6 +60,7 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.pages.Supplier.edit');
     }
 
     /**
