@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use App\Models\Order;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class OrderController extends Controller
     public function index()
     {
         //
-        return view('admin.pages.ordermanagement');
+        $don_hang=Order::paginate(10);
+        return view('admin.pages.ordermanagement',['don_hang'=>$don_hang]);
     }
 
     /**
