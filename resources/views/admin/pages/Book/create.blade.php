@@ -73,6 +73,10 @@
                     <label for="exampleInputTopic">Giá tiền</label>
                     <input class="form-control" type="text" id="exampleInputTitle" placeholder="Giá tiền">
                   </div>
+                  <div class="col-lg-6">
+                    <label for="exampleInputTopic">Số lượng</label>
+                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Số lượng">
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">

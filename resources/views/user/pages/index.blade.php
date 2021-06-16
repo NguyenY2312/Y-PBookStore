@@ -1,5 +1,18 @@
 @extends('user.layout')
 @section('content')
+<style>
+.without_ampm::-webkit-datetime-edit-ampm-field {
+   display: none;
+ }
+ input[type=time]::-webkit-clear-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   -o-appearance: none;
+   -ms-appearance:none;
+   appearance: none;
+   margin: -10px; 
+ }
+</style>
 		<!-- Slider Banner trang web -->
 		<div class="banner">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -398,12 +411,28 @@
 				</div>
 				<!--//Sách mới-->
 				<!--/Banner middle trang web-->
-				<div class="row">
-					<div class="col-md-12 middle-slider my-4">
-						<div class="middle-text-info" style="background-image: url(user/images/banner-middle.jpg);">
-							<!-- Bộ đếm ngược -->
-							<!-- <div class="simply-countdown-custom" id="simply-countdown-custom"></div> -->
-						</div>
+				<div class="row" style="padding-top:30px;">
+					<div class="col-lg-12">
+					<video
+						id="my-player"
+						class="vjs-matrix video-js"
+						controls
+						preload="auto"
+						poster="//vjs.zencdn.net/v/oceans.png"
+					>
+						<p class="vjs-no-js">
+							To view this video please enable JavaScript, and consider upgrading to a
+							web browser that
+							<a href="https://videojs.com/html5-video-support/" target="_blank">
+							supports HTML5 video
+							</a>
+						</p>
+					</video>
+					</div>
+					<div class="col-lg-12" style="padding-top:10px">
+						<input id="hour" style="width:30px" placeholder="hour"> : <input id="min" style="width:30px" placeholder="min"> : <input id="sec" style="width:30px" placeholder="sec">
+						<button class="btn btn-success" id="getTime" onclick="Play()" style="margin-left:10px">Play From</button>
+						<div style="float:right; padding-right:250px">Time Play <input id="showTime" class=""/><div>
 					</div>
 				</div>
 				<!--//Banner trang web-->

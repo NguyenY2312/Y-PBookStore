@@ -1,3 +1,9 @@
+<style>
+	.time-dialog{
+		width:60px;
+		height:30px
+	}
+</style>
 <!--jQuery-->
 <script src="{{ asset('user/js/jquery-2.2.3.min.js') }}"></script>
 	<script>
@@ -6,7 +12,6 @@
 		});
 	</script>
 	<!-- // modal -->
-
 	<!--search jQuery-->
 	<script src="{{ asset('user/js/modernizr-2.6.2.min.js') }}"></script>
 	<script src="{{ asset('user/js/classie-search.js') }}"></script>
@@ -14,6 +19,10 @@
 	<!--//search jQuery-->
 	<!-- cart-js -->
 	<script src="{{ asset('user/js/minicart.js') }}"></script>
+	<script src="{{ asset('user/js/Youtube.min.js') }}"></script>
+	<script src="{{ asset('user/js/Youtube.js') }}"></script>
+	<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+	<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 	<script>
 		googles.render();
 
@@ -26,6 +35,40 @@
 				for (i = 0, len = items.length; i < len; i++) {}
 			}
 		});
+	</script>
+	<!-- Setup video.js -->
+	<script>
+		var myPlayer = videojs('my-player');
+		myPlayer.src({type: 'video/mp4', src: '//vjs.zencdn.net/v/oceans.mp4'});
+		myPlayer.dimensions(1200, 500);
+		function setTime() {
+			var time = myPlayer.currentTime();
+			var itime = parseInt(time);
+			alert(itime);
+		}
+		/* myPlayer.setTimeout(setTime, 11000);
+		myPlayer.setTimeout(setTime, 21000); */
+		myPlayer.on('play', function() {
+			var time = myPlayer.currentTime();
+			var hour = parseInt(time/3600);
+			var minute = parseInt((time%3600)/60);
+			var sec = parseInt(time-minute*60-hour*3600);
+			var itime = hour + "h:" + minute + "m:" + sec + "s";
+			var showTime = document.getElementById('showTime');
+			showTime.value = itime;
+		});
+		function Play(){
+			myPlayer.pause();
+			var hour = document.getElementById('hour').value;
+			var min = document.getElementById('min').value;
+			var sec = document.getElementById('sec').value;
+			if(hour === "" ) hour = 0;
+			if(min === "" ) min = 0;
+			if(sec === "" ) sec = 0;
+			var timePlay = parseInt(hour)*3600 + parseInt(min)*60 + parseInt(sec);
+			myPlayer.currentTime(timePlay);
+			myPlayer.play();
+		}
 	</script>
 	<!-- //cart-js -->
 	<script>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use DB;
+use App\Models\Book;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class BookController extends Controller
@@ -13,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return View('admin.pages.Book.book');
+        $sach = Book::paginate(10); // Phân trang
+        return View('admin.pages.Book.book',['sach'=>$sach]);
     }
 
     /**

@@ -24,39 +24,29 @@
                     <th>Nhà xuất bản</th>
                     <th>Phiên bản</th>
                     <th>Giá tiền</th>
+                    <th>Số lượng</th>
                     <th>Trạng thái</th>
                     <th></th>
                   </tr>
                   </thead>
                   <tbody>
+                  @foreach($sach as $book)
                   <tr>
-                    <td><img src="{!! asset('user\images\Book\SACH_KY_NANG_SONG\Tư Duy Sâu\DD.png')!!}" style="width:50px; height:50px; border-radius:0%"></td>
-                    <td>Tư duy sâu</td>
-                    <td>Sách kỹ năng sống</td>
-                    <td>Diệp Tu</td>
-                    <td>SkyBook</td>
-                    <td>Thường</td>
-                    <td>79.000 VNĐ</td>
-                    <td>Còn hàng</td>
+                    <td><img src="{{$book->Anh_Bia}}" style="width:50px; height:50px; border-radius:0%"></td>
+                    <td>{{$book->Ten_Sach}}</td>
+                    <td>{{$book->The_Loai}}</td>
+                    <td>{{$book->Tac_Gia}}</td>
+                    <td>{{$book->Nha_Xuat_Ban}}</td>
+                    <td>{{$book->Phien_Ban}}</td>
+                    <td>{{$book->Gia_Tien}}</td>
+                    <td>{{$book->So_Luong}}</td>
+                    <td>{{$book->Trang_Thai}}</td>
                     <td>
                         <a href="/admin/book/1/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                         <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td><img src="{!! asset('user\images\Book\SACH_KY_NANG_SONG\Tư Duy Sâu\DD.png')!!}" style="width:50px; height:50px; border-radius:0%"></td>
-                    <td>Tư duy sâu</td>
-                    <td>Sách kỹ năng sống</td>
-                    <td>Diệp Tu</td>
-                    <td>SkyBook</td>
-                    <td>Thường</td>
-                    <td>79.000 VNĐ</td>
-                    <td>Còn hàng</td>
-                    <td>
-                        <a href="/admin/book/2/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
-                    </td>
-                  </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>
