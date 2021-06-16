@@ -108,7 +108,7 @@
 									<label class="control-label">Số Lượng: </label>
                             <div class="form-group quantity-box ">
                                 
-                                <input class="form-control col-sm-3" value="0" min="0" max="20" type="number">
+                                <input class="form-control col-sm-3" value="1" min="1" max="20" type="number">
                             </div>
 							<br>
                        

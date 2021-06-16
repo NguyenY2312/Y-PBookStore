@@ -15,7 +15,7 @@ class CommentController extends Controller
     public function index()
     {
         //
-        return view('admin.pages.comment');
+        return view('admin.pages.Comment.comment');
     }
 
     /**
@@ -26,6 +26,7 @@ class CommentController extends Controller
     public function create()
     {
         //
+        return View('admin.pages.Comment.create');
     }
 
     /**
@@ -59,6 +60,7 @@ class CommentController extends Controller
     public function edit($id)
     {
         //
+        return View('admin.pages.Comment.edit');
     }
 
     /**
