@@ -21,7 +21,7 @@
 					<ul class="cart-inner-info">
 						<!-- Đăng nhập -->
 						<li>
-								<span class="fa fa-user" aria-hidden="true" style="color: rgb(35, 175, 156);"></span><a href="/DangNhap" class="hover-nut"> Đăng Nhập </a>
+								<span class="fa fa-user" aria-hidden="true" style="color: rgb(35, 175, 156);"></span><a href="/dang-nhap" class="hover-nut"> Đăng Nhập </a>
 						</li>
 						<!-- Giỏ hàng -->
 						<li>

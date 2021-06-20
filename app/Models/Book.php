@@ -24,4 +24,10 @@ class Book extends Model
         'Trang_Thai',
         'So_Luong'
     ];
+    public function NhaXuatBan(){
+        return $this->belongsTo('', 'Nha_Xuat_Ban', 'Id');
+    }
+    public function TheLoai(){
+        return $this->belongsTo('App\Models\Category', 'The_Loai', 'Id');
+    }
 }

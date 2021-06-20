@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Models\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,8 @@ class AccountController extends Controller
     public function index()
     {
         //
-        return View('admin.pages.Account.account');
+        $tai_khoan = Account::all();
+        return View('admin.pages.Account.account', ['tai_khoan'=>$tai_khoan]);
     }
 
     /**

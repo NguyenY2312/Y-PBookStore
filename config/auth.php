@@ -46,6 +46,14 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'tai_khoan' => [
+            'driver' => 'session',
+            'provider' => 'tai_khoans',
+        ],
+        'tai_khoan-api' => [
+            'driver' => 'token',
+            'provider' => 'tai_khoans',
+        ],
     ],
 
     /*
@@ -75,6 +83,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'tai_khoans' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Account::class,
+        ],
     ],
 
     /*

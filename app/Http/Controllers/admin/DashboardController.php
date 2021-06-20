@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use Cookie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

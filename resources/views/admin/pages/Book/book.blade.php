@@ -23,6 +23,7 @@
                     <th>Tác giả</th>
                     <th>Nhà xuất bản</th>
                     <th>Phiên bản</th>
+                    <th>Loại bìa</th>
                     <th>Giá tiền</th>
                     <th>Số lượng</th>
                     <th>Trạng thái</th>
@@ -34,13 +35,28 @@
                   <tr>
                     <td><img src="{{$book->Anh_Bia}}" style="width:50px; height:50px; border-radius:0%"></td>
                     <td>{{$book->Ten_Sach}}</td>
-                    <td>{{$book->The_Loai}}</td>
+                    <td>{{$book->TheLoai->The_Loai}}</td>
                     <td>{{$book->Tac_Gia}}</td>
                     <td>{{$book->Nha_Xuat_Ban}}</td>
-                    <td>{{$book->Phien_Ban}}</td>
-                    <td>{{$book->Gia_Tien}}</td>
+                    <td>
+                    @if($book->Phien_Ban == 0) {{"Bản thường"}}
+                    @else {{"Bản đặc biệt"}}
+                    @endif
+                    </td>
+                    <td>
+                    @if($book->Loai_Bia == 0) {{"Bìa cứng"}}
+                    @elseif (($book->Loai_Bia == 1)) {{"Massmarket Paperback"}}
+                    @else {{"Bìa mềm"}}
+                    @endif
+                    </td>
+                    <td>{{$book->Gia_Tien}} VNĐ</td>
                     <td>{{$book->So_Luong}}</td>
-                    <td>{{$book->Trang_Thai}}</td>
+                    <td> 
+                    @if($book->Trang_Thai == 0) {{"Ngừng bán"}}
+                    @elseif (($book->Trang_Thai == 1)) {{"Tạm hết hàng"}}
+                    @else {{"Còn hàng"}}
+                    @endif
+                    </td>
                     <td>
                         <a href="/admin/book/1/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                         <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>

@@ -32,34 +32,34 @@
                   </tr>
                   </thead>
                   <tbody>
+                  @foreach($tai_khoan as $account)
                   <tr>
-                    <td>ngophong030700@gmail.com</td>
-                    <td class="hidetext">123456</td>
-                    <td>Ngô Phong</td>
-                    <td>Nam</td>
-                    <td>0933809731</td>
-                    <td>107 Nguyễn Văn Linh, Tân Phú, Quận 7</td>
-                    <td>Admin</td>
+                    <td>{{$account->Email}}</td>
+                    <td class="hidetext">{{$account->Mat_Khau}}</td>
+                    <td>{{$account->Ho_Ten}}</td>
+                    <td>
+                    @if($account->Gioi_Tinh == 0) {{"Nam"}}
+                    @else {{"Nữ"}}
+                    @endif
+                    </td>
+                    <td>{{$account->So_Dien_Thoai}}</td>
+                    <td>{{$account->Dia_Chi}}</td>
+                    <td>
+                    @if($account->Loai_TK == 0) {{"Admin"}}
+                    @else {{"Khách hàng"}}
+                    @endif
+                    </td>
+                    @if($account->Trang_Thai == 0)
                     <td style="text-align:center"><input type="checkbox" disabled="disabled" checked/></td>
+                    @else
+                    <td style="text-align:center"><input type="checkbox" disabled="disabled"/></td>
+                    @endif
                     <td>
                         <a href="/admin/account/1/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                         <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>ngophong030700@gmail.com</td>
-                    <td class="hidetext">123456</td>
-                    <td>Ngô Phong</td>
-                    <td>Nam</td>
-                    <td>0933809731</td>
-                    <td>107 Nguyễn Văn Linh, Tân Phú, Quận 7</td>
-                    <td>Khách hàng</td>
-                    <td style="text-align:center"><input type="checkbox" disabled="disabled"/></td>
-                    <td>
-                        <a href="/admin/account/2/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
-                    </td>
-                  </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>

@@ -67,7 +67,7 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Trạng thái</label>
-                    <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" type="checkbox" id="exampleInputTitle">
+                    <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" name="Trang_Thai" type="checkbox" id="exampleInputTitle">
                   </div>
                 </div>
                 <div class="row" style="float:right">

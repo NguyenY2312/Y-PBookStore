@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
+            <a class="nav-link" href=" {{route('logoutAd') }}">
               <i class="fas fa-sign-out-alt menu-icon"></i>
               <span class="menu-title">Đăng xuất</span>
             </a>
