@@ -9,8 +9,14 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">QUẢN LÝ SÁCH</h3>
                 </div>
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:50px">
-                  <a class="btn btn-primary" href="{{ route('book.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:40px"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                <div class="col-12" style="padding-top:10px;">
+                    <ul class="breadcrumb" style="border: none">
+                      <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+                      <li>Quản lý sách</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:20px;">
+                  <a class="btn btn-primary" href="{{ route('book.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:30px; margin-bottom: 5px"><i class='fas fa-plus' style='font-size:15px'></i></a>
                   <!-- /.card-header -->
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <div class="card-body">
@@ -33,11 +39,11 @@
                   <tbody>
                   @foreach($sach as $book)
                   <tr>
-                    <td><img src="{{$book->Anh_Bia}}" style="width:50px; height:50px; border-radius:0%"></td>
+                    <td><img src="{{$book->Anh_Bia}}" style="width:80px; height:80px; border-radius:0%"></td>
                     <td>{{$book->Ten_Sach}}</td>
                     <td>{{$book->TheLoai->The_Loai}}</td>
                     <td>{{$book->Tac_Gia}}</td>
-                    <td>{{$book->Nha_Xuat_Ban}}</td>
+                    <td>{{$book->NhaXuatBan->Ten_NXB}}</td>
                     <td>
                     @if($book->Phien_Ban == 0) {{"Bản thường"}}
                     @else {{"Bản đặc biệt"}}
@@ -58,8 +64,8 @@
                     @endif
                     </td>
                     <td>
-                        <a href="/admin/book/1/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('book.edit', [$book->Id]) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a href="{{ route('book.delete', [$book->Id]) }}" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach

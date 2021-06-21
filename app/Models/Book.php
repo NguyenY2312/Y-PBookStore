@@ -9,6 +9,7 @@ class Book extends Model
 {
     use HasFactory;
     protected $table='sach';
+    protected $primaryKey = 'Id';
     protected $fillable =[
         'Ten_Sach',
         'Nha_Xuat_Ban',
@@ -22,10 +23,11 @@ class Book extends Model
         'Mo_Ta',
         'The_Loai',
         'Trang_Thai',
-        'So_Luong'
+        'So_Luong',
+        'is_deleted'
     ];
     public function NhaXuatBan(){
-        return $this->belongsTo('', 'Nha_Xuat_Ban', 'Id');
+        return $this->belongsTo('App\Models\PublishingCompany', 'Nha_Xuat_Ban', 'Id');
     }
     public function TheLoai(){
         return $this->belongsTo('App\Models\Category', 'The_Loai', 'Id');

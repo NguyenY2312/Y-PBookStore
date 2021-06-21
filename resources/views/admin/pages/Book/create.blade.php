@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action=" {{route('book.store')}} " method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                   <div class="col-lg-6">
@@ -42,7 +42,9 @@
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Nhà xuất bản</label>
                     <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Nha_Xuat_Ban" class="form-control" id="exampleInputTitle" placeholder="Title">
-                        <option>SkyBook</option>
+                    @foreach($nha_xuat_ban as $publishingcompany)
+                        <option value="{{$publishingcompany->Id}}">{{$publishingcompany->Ten_NXB}}</option>
+                    @endforeach
                     </select>
                   </div>
                 </div> 
@@ -92,7 +94,7 @@
                 <div class="row">
                   <div class="col-lg-5">
                     <label for="exampleInputTopic">SKU</label>
-                    <input class="form-control" type="text" id="SKU" name="SKU" placeholder="SKU" style="margin-right:50px" disabled>
+                    <input class="form-control" type="text" id="SKU" name="SKU" placeholder="SKU" style="margin-right:50px" readonly>
                   </div>
                   <div class="col-lg-1" style="padding-top:30px; margin-left:-10px">
                   <button type="button" onclick="makeSKU(10)" class="btn btn-primary"><i class="fas fa-sync-alt"></i></button> &nbsp;

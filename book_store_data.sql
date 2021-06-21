@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 20, 2021 at 01:49 PM
+-- Generation Time: Jun 21, 2021 at 11:26 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -146,7 +146,15 @@ CREATE TABLE IF NOT EXISTS `nha_xuat_ban` (
   `Email` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Trang_Thai` tinyint(1) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nha_xuat_ban`
+--
+
+INSERT INTO `nha_xuat_ban` (`Id`, `Ten_NXB`, `Dia_Chi`, `So_Dien_Thoai`, `Email`, `Trang_Thai`) VALUES
+(1, 'SkyBook', '10A Trường Chinh, Phường 18, Quận Tân Phú', '0287222322', 'SkyBookTC@gmail.com', 0),
+(2, 'NXB Kim Đồng', '15/8C Nguyễn Đình Chiểu, Phường 6, Quận 3', '0913353344', 'NXBKimDong@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -170,16 +178,21 @@ CREATE TABLE IF NOT EXISTS `sach` (
   `The_Loai` int(11) NOT NULL,
   `Trang_Thai` int(11) NOT NULL,
   `So_Luong` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `is_deleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`Id`),
-  KEY `Id_NXB` (`Nha_Xuat_Ban`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `Nha_Xuat_Ban` (`Nha_Xuat_Ban`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sach`
 --
 
-INSERT INTO `sach` (`Id`, `Ten_Sach`, `Tac_Gia`, `Anh_Bia`, `Nha_Xuat_Ban`, `Phien_Ban`, `Loai_Bia`, `So_Trang`, `SKU`, `Gia_Tien`, `Mo_Ta`, `The_Loai`, `Trang_Thai`, `So_Luong`) VALUES
-(1, 'ABC', 'ABC', '/Images/AnhBia.png', 1, 0, 2, 98, 'OdQgBqwdwY', 90000, 'AAAAAAAA', 1, 2, 20);
+INSERT INTO `sach` (`Id`, `Ten_Sach`, `Tac_Gia`, `Anh_Bia`, `Nha_Xuat_Ban`, `Phien_Ban`, `Loai_Bia`, `So_Trang`, `SKU`, `Gia_Tien`, `Mo_Ta`, `The_Loai`, `Trang_Thai`, `So_Luong`, `updated_at`, `created_at`, `is_deleted`) VALUES
+(2, 'Tư Duy Sâu', 'Diệp Tu', '/user/images/Book/DD.png', 2, 0, 2, 75, 'xkzMQdSXJK', 89000, 'Sách \"Tư Duy Sâu\" của nhà văn Diệp Tu', 3, 2, 20, '2021-06-21 10:42:48', '2021-06-21 07:53:21', 0),
+(5, 'Đừng Để Mất Bò', 'Trần Thanh Phong', '/user/images/book/dung_de_mat_bo.png', 1, 1, 0, 66, 'R99Gss9EWm', 95000, 'Mô tả sách \"Đừng để mất bò\".', 4, 2, 15, '2021-06-21 17:52:48', '2021-06-21 08:18:46', 0),
+(6, '10 Vạn Câu Hỏi Vì Sao?', 'Nguyễn Đồng', '/user/images/book/10-van-cau-hoi-vi-sao.png', 2, 0, 1, 83, 'hhRbOfu32l', 125000, 'Trọn bộ 5 cuốn 10 vạn câu hỏi vì sao?', 2, 2, 12, '2021-06-21 11:25:08', '2021-06-21 08:46:54', 0);
 
 -- --------------------------------------------------------
 
@@ -245,8 +258,8 @@ CREATE TABLE IF NOT EXISTS `tai_khoan` (
 
 INSERT INTO `tai_khoan` (`Id`, `Ho_Ten`, `Gioi_Tinh`, `Mat_Khau`, `Email`, `So_Dien_Thoai`, `Dia_Chi`, `Loai_TK`, `Anh_Dai_Dien`, `Trang_Thai`, `updated_at`, `created_at`) VALUES
 (1, 'Ngô Phong', 0, 'Phong147', 'ngophong030700@gmail.com', '0933809731', '800 Nguyễn Văn Linh, Phường Tân Phú, Quận 7', 0, '/images/avt.png', 0, '2021-06-19 18:07:21', '0000-00-00 00:00:00'),
-(2, 'Ly Lê', 1, 'LyLe1608', 'lyle160801@gmail.com', '0933811315', '70A Lê Văn Lương, Phường Tân Kiểng, Quận 7', 1, '/images/avt.png', 0, '2021-06-19 18:07:21', '0000-00-00 00:00:00'),
-(3, NULL, NULL, '123', 'phong.ngo@naansolution.com', NULL, NULL, 1, NULL, 1, '2021-06-19 11:09:54', '2021-06-19 11:09:54');
+(2, 'Ly Lê', 1, 'LyLe1608', 'lyle160801@gmail.com', '0933811315', '70A Lê Văn Lương, Phường Tân Kiểng, Quận 7', 1, '/images/avt.png', 1, '2021-06-19 18:07:21', '0000-00-00 00:00:00'),
+(3, NULL, NULL, '123', 'phong.ngo@naansolution.com', NULL, NULL, 1, NULL, 0, '2021-06-19 11:09:54', '2021-06-19 11:09:54');
 
 -- --------------------------------------------------------
 
@@ -259,14 +272,17 @@ CREATE TABLE IF NOT EXISTS `the_loai` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `The_Loai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `the_loai`
 --
 
 INSERT INTO `the_loai` (`Id`, `The_Loai`) VALUES
-(1, 'Truyện Tranh');
+(1, 'Truyện Tranh'),
+(2, 'Sách Thiếu Nhi'),
+(3, 'Sách Kỹ Năng Sống'),
+(4, 'Sách Kinh Tế');
 
 --
 -- Constraints for dumped tables
@@ -300,10 +316,10 @@ ALTER TABLE `gio_hang`
   ADD CONSTRAINT `gio_hang_ibfk_2` FOREIGN KEY (`Id_TK`) REFERENCES `tai_khoan` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `nha_xuat_ban`
+-- Constraints for table `sach`
 --
-ALTER TABLE `nha_xuat_ban`
-  ADD CONSTRAINT `nha_xuat_ban_ibfk_1` FOREIGN KEY (`Id`) REFERENCES `sach` (`Nha_Xuat_Ban`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `sach`
+  ADD CONSTRAINT `sach_ibfk_1` FOREIGN KEY (`Nha_Xuat_Ban`) REFERENCES `nha_xuat_ban` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sach_khuyen_mai`

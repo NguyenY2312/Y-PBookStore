@@ -20,8 +20,22 @@
 				<div class="col-md-3 text-right mt-lg-4">
 					<ul class="cart-inner-info">
 						<!-- Đăng nhập -->
-						<li>
-								<span class="fa fa-user" aria-hidden="true" style="color: rgb(35, 175, 156);"></span><a href="/dang-nhap" class="hover-nut"> Đăng Nhập </a>
+						<li class="dropdown">
+						@if (Cookie::get('UserEmail') == null)
+							<span class="fa fa-user" aria-hidden="true" style="color: rgb(35, 175, 156);"></span><a href="/dang-nhap" class="hover-nut"> Đăng Nhập </a>
+						@else
+						<span class="fa fa-user" aria-hidden="true" style="color: rgb(35, 175, 156);"><a class="hover-nut dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown"> Tài Khoản </a>
+						<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown" style="margin-top:-2px; margin-left: -20px;">
+							<a class="dropdown-item hover-nut" href="/quan-ly-tai-khoan" style="text-transform:none;font-size: 1rem;letter-spacing: 3px;color: #9c9b9b;cursor: pointer">
+								<i class="fas fa-address-card" style="color: rgb(35, 175, 156);"></i>
+								Quản Lý
+							</a>
+							<a class="dropdown-item hover-nut" href="{{ route('logoutUser')}} " style="text-transform: none;font-size: 1rem;letter-spacing: 3px;color: #9c9b9b;cursor: pointer">
+								<i class="fas fa-sign-out-alt" style="color: rgb(35, 175, 156);"></i>
+								Đăng Xuất
+							</a>
+						</div>
+						@endif
 						</li>
 						<!-- Giỏ hàng -->
 						<li>

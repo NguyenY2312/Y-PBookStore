@@ -94,4 +94,9 @@ class LoginController extends Controller
         Cookie::queue(Cookie::forget('AdminEmail'));
         return redirect()->route('loginview');
     }
+
+    public function logoutUser(Request $request){
+        Cookie::queue(Cookie::forget('UserEmail'));
+        return redirect()->route('loginview');
+    }
 }

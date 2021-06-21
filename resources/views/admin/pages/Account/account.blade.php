@@ -13,7 +13,7 @@
                   <h3 class="font-weight-bold">QUẢN LÝ TÀI KHOẢN</h3>
                 </div>
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:50px">
-                  <a class="btn btn-primary" href="{{ route('account.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:40px"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                  <a class="btn btn-primary" href="{{ route('account.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:30px"><i class='fas fa-plus' style='font-size:15px'></i></a>
                   <!-- /.card-header -->
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <div class="card-body">

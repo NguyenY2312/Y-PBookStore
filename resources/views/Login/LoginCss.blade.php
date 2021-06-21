@@ -1,5 +1,6 @@
 <head>
 <title> Đăng Nhập </title>
+<link href="{!! asset('user/css/fontawesome-all.css') !!}" rel='stylesheet' type='text/css' />
 <style>
 body{
     padding-top:100px;

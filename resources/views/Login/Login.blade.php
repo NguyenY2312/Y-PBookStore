@@ -31,7 +31,10 @@
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
-					<a href="#forgot">Quên mật khẩu?</a>
+					<a href="#forgot" style="color:white;">Quên mật khẩu?</a>
+				</div>
+				<div class="foot-lnk" style="margin-top:25px">
+					<a href="/" style="color:white;"><i class="fas fa-home"></i> Trang chủ</a>
 				</div>
 			</form>
 			<form class="sign-up-htm" style="padding-top:30px" action="{{ route('register') }}" method="post" onsubmit="return checkRegister();">
@@ -49,11 +52,11 @@
 					<input id="repass" type="password" class="input" data-type="password">
 				</div>
 				<div class="group">
-					<button onclick="checkPass()" type="submit" class="button">Đăng Kí</button>
+					<button onclick="checkPass()" style="margin-top:25px" type="submit" class="button">Đăng Kí</button>
 				</div>
 				<div class="hr"></div>
 				<div class="foot-lnk">
-					<label for="tab-1">Bạn đã có tài khoản? Đăng nhập.</a>
+					<label for="tab-1" style="color:white; cursor: pointer">Bạn đã có tài khoản? Đăng nhập.</label>
 				</div>
 			</form>
 		</div>
