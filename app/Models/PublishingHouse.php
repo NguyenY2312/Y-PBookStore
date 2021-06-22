@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PublishingCompany extends Model
+class PublishingHouse extends Model
 {
     use HasFactory;
     protected $table='nha_xuat_ban';
     protected $fillable =[
+        'Id',
         'Ten_NXB',
         'Dia_Chi',
         'So_Dien_Thoai',

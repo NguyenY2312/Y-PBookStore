@@ -39,6 +39,6 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/account',admin\AccountController::class);
     Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
-    Route::resource('admin/quan-ly-nha-cung-cap',admin\SupplierController::class);
+    Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);
     Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
 });

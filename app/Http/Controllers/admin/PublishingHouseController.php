@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Models\PublishingHouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class PublishingHouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class SupplierController extends Controller
     public function index()
     {
         //
-        return view('admin.pages.Supplier.supplier');
+        $nha_xuat_ban=PublishingHouse::paginate(10);
+        return view('admin.pages.PublishingHouse.publishinghouse',['nha_xuat_ban'=>$nha_xuat_ban]);
     }
 
     /**
@@ -26,7 +27,7 @@ class SupplierController extends Controller
     public function create()
     {
         //
-        return view('admin.pages.Supplier.create');
+        return view('admin.pages.PublishingHouse.create');
     }
 
     /**
@@ -60,7 +61,6 @@ class SupplierController extends Controller
     public function edit($id)
     {
         //
-        return view('admin.pages.Supplier.edit');
     }
 
     /**
