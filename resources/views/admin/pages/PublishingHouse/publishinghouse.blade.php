@@ -46,7 +46,11 @@
                     <td>{{$publish->Dia_Chi}}</td>
                     <td>{{$publish->So_Dien_Thoai}}</td>
                     <td>{{$publish->Email}}</td>
-                    <td>{{$publish->Trang_Thai}}</td>
+                    <td> 
+                    @if($publish->Trang_Thai == 0) {{"Ngừng hoạt động"}}
+                    @else {{"Hoạt động"}}
+                    @endif
+                    </td>
                     <td>
                         <a href="\admin\quan-ly-nha-xuat-ban\1\edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                         <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>

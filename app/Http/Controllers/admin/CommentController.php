@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+use App\Models\Comment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CommentController extends Controller
     public function index()
     {
         //
-        return view('admin.pages.Comment.comment');
+        $binh_luan=Comment::paginate(10);
+        return view('admin.pages.Comment.comment',['binh_luan'=>$binh_luan]);
     }
 
     /**

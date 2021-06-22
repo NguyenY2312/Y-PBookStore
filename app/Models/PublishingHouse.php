@@ -10,7 +10,6 @@ class PublishingHouse extends Model
     use HasFactory;
     protected $table='nha_xuat_ban';
     protected $fillable =[
-        'Id',
         'Ten_NXB',
         'Dia_Chi',
         'So_Dien_Thoai',
