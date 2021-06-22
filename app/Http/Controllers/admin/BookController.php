@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 use DB;
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\PublishingCompany;
+use App\Models\PublishingHouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 class BookController extends Controller
@@ -29,7 +29,7 @@ class BookController extends Controller
     {
         //
         $the_loai = Category::all();
-        $nha_xuat_ban = PublishingCompany::all(); 
+        $nha_xuat_ban = PublishingHouse::all(); 
         return View('admin.pages.Book.create', ['the_loai'=>$the_loai], ['nha_xuat_ban'=>$nha_xuat_ban]);
     }
 
@@ -85,7 +85,7 @@ class BookController extends Controller
         //
         $sach = Book::find($id);
         $the_loai = Category::all();
-        $nha_xuat_ban = PublishingCompany::all(); 
+        $nha_xuat_ban = PublishingHouse::all(); 
         return View('admin.pages.Book.edit', $sach, ['the_loai'=>$the_loai,'nha_xuat_ban'=>$nha_xuat_ban]);
     }
     /**

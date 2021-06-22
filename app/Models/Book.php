@@ -27,7 +27,7 @@ class Book extends Model
         'is_deleted'
     ];
     public function NhaXuatBan(){
-        return $this->belongsTo('App\Models\PublishingCompany', 'Nha_Xuat_Ban', 'Id');
+        return $this->belongsTo('App\Models\PublishingHouse', 'Nha_Xuat_Ban', 'Id');
     }
     public function TheLoai(){
         return $this->belongsTo('App\Models\Category', 'The_Loai', 'Id');

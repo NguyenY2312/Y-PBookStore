@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/quan-ly-nha-cung-cap">
+            <a class="nav-link" href="/admin/quan-ly-nha-xuat-ban">
               <i class="fas fa-building menu-icon"></i>
               <span class="menu-title">Nhà xuất bản</span>
             </a>
