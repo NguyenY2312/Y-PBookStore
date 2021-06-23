@@ -46,20 +46,21 @@ class PublishingHouseController extends Controller
     public function store(Request $request)
     {
         //
+
         $nha_xuat_ban= new PublishingHouse();
         $this->validate($request, [
             'Ten_NXB'=>'required',
             'Dia_Chi'=>'required',
             'So_Dien_Thoai'=>'required',
             'Email'=>'required',
-            'TrangThai' => 'required',
+            'Trang_Thai' => 'required',
            
         ]);
         $nha_xuat_ban->Ten_NXB=$request->Ten_NXB;
         $nha_xuat_ban->Dia_Chi=$request->Dia_Chi;
         $nha_xuat_ban->So_Dien_Thoai=$request->So_Dien_Thoai;
         $nha_xuat_ban->Email=$request->Email;
-        $nha_xuat_ban->TrangThai=$request->TrangThai;
+        $nha_xuat_ban->Trang_Thai=$request->Trang_Thai;
         
         //if(Category::create($request->all()))
         if($nha_xuat_ban->save())
@@ -91,6 +92,8 @@ class PublishingHouseController extends Controller
     public function edit($id)
     {
         //
+        $nha_xuat_ban= PublishingHouse::find($id);//publishinghouse tên model
+        return view($this->viewprefix.'edit')->with('nha_xuat_ban', $nha_xuat_ban);
     }
 
     /**
@@ -103,6 +106,31 @@ class PublishingHouseController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $nha_xuat_ban = PublishingHouse::find($id);
+        $data= $request->validate([
+            'Ten_NXB'=>'required',
+            'Dia_Chi'=>'required',
+            'So_Dien_Thoai'=>'required',
+            'Email'=>'required',
+            'Trang_Thai' => 'required',
+           
+        ]);
+        /*$nha_xuat_ban->Ten_NXB=$request['Ten_NXB'];
+        $nha_xuat_ban->Dia_Chi=$request['Dia_Chi'];
+        $nha_xuat_ban->So_Dien_Thoai=$request['So_Dien_Thoai'];
+        $nha_xuat_ban->Email=$request['Email'];
+        $nha_xuat_ban->Trang_Thai=$request['Trang_Thai'];
+        $nha_xuat_ban->save();
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
+       */
+        if($nha_xuat_ban->update($data))
+        {
+            Session::flash('message', 'successfully!');
+        }
+        else
+            Session::flash('message', 'Failure!');
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
 
     /**

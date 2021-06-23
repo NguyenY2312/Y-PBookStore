@@ -27,18 +27,6 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Nhà Xuất Bản Đà Nẵng</td>
-                    <td>Đà Nẵng</td>
-                    <td>085697521</td>
-                    <td>support@gmail.com</td>
-                    <td>Hoạt động</td>
-                    <td>
-                        <a href="\admin\quan-ly-nha-xuat-ban\1\edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
-                    </td>
-                  </tr>
                   @foreach($nha_xuat_ban as $publish)
                   <tr>
                     <td>{{$publish->Id}}</td>
@@ -52,7 +40,7 @@
                     @endif
                     </td>
                     <td>
-                        <a href="\admin\quan-ly-nha-xuat-ban\1\edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a href="{{route('quan-ly-nha-xuat-ban.edit',$publish->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                         <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>

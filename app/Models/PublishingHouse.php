@@ -9,6 +9,7 @@ class PublishingHouse extends Model
 {
     use HasFactory;
     protected $table='nha_xuat_ban';
+    protected $primaryKey='Id';
     protected $fillable =[
         'Ten_NXB',
         'Dia_Chi',
@@ -16,4 +17,5 @@ class PublishingHouse extends Model
         'Email',
         'Trang_Thai'
     ];
+    public $timestamps = false;
 }
