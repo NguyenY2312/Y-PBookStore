@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
         //
         $don_hang=Order::paginate(10);
-        return view('admin.pages.ordermanagement',['don_hang'=>$don_hang]);
+        return view('admin.pages.OrderManagement.ordermanagement',['don_hang'=>$don_hang]);
     }
 
     /**

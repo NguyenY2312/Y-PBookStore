@@ -16,38 +16,44 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{route('quan-ly-nha-xuat-ban.update',$nha_xuat_ban->Id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
-               
+               @method('PUT')
                 <div class="row">
                   <div class="col-lg-6">
-                    <label for="exampleInputTopic">ID</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="ID" value="1">
+                    <label for="exampleInputTopic">Tên Nhà Xuất Bản</label>
+                    <input class="form-control" type="text" name="Ten_NXB" placeholder="Tên Nhà Cung Cấp" value="{{$nha_xuat_ban->Ten_NXB}}">
                   </div>
                   <div class="col-lg-6">
-                    <label for="exampleInputTopic">Tên Nhà Cung Cấp</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Tên Nhà Cung Cấp" value="Nhà Xuất Bản Đà Nẵng">
+                    <label for="exampleInputTitle">Địa Chỉ</label>
+                    <input class="form-control" type="text" name="Dia_Chi" placeholder="Địa Chỉ" value="{{$nha_xuat_ban->Dia_Chi}}">
                   </div>
                 </div> 
                 <div class="row">
-                  <div class="col-lg-6">
-                    <label for="exampleInputTitle">Địa Chỉ</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Địa Chỉ" value="Đà Nẵng">
-                  </div>
+                  
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Số Điện Thoại</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Số Điện Thoại" value="085697521">
+                    <input class="form-control" type="text" name="So_Dien_Thoai" placeholder="Số Điện Thoại" value="{{$nha_xuat_ban->So_Dien_Thoai}}">
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="exampleInputTitle">Email</label>
+                    <input class="form-control" type="text" name="Email" placeholder="Email" value="{{$nha_xuat_ban->Email}}">
                   </div>
                 </div>
   
                 <div class="row">
-                <div class="col-lg-6">
-                    <label for="exampleInputTitle">Email</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Email" value="support@gmail.com">
-                  </div>
+                
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Trạng thái</label>
-                    <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" type="checkbox" id="exampleInputTitle">
+                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" class="form-control" name="Trang_Thai"  placeholder="Status">
+                        @if($nha_xuat_ban->Trang_Thai==0)
+                        <option value="0" selected>Ngừng hoạt động</option>
+                        <option value="1">Hoạt động</option>
+                        @elseif($nha_xuat_ban->Trang_Thai==1)
+                        <option value="0" >Ngừng hoạt động</option>
+                        <option value="1" selected>Hoạt động</option>
+                        @endif
+                    </select>
                   </div>
                   
                 </div>

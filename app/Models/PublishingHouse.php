@@ -9,12 +9,13 @@ class PublishingHouse extends Model
 {
     use HasFactory;
     protected $table='nha_xuat_ban';
+    protected $primaryKey='Id';
     protected $fillable =[
-        'Id',
         'Ten_NXB',
         'Dia_Chi',
         'So_Dien_Thoai',
         'Email',
         'Trang_Thai'
     ];
+    public $timestamps = false;
 }
