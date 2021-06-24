@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 use DB;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\ImageBook;
 use App\Models\PublishingHouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\ServiceProvider;
 class BookController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $sach = Book::paginate(10)->where('is_deleted', 0); // Phân trang
+        $sach = Book::where('is_deleted', 0)->paginate(5); // Phân trang
         return View('admin.pages.Book.book', ['sach'=>$sach]);
     }
 
@@ -41,8 +43,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $pathimg = '/user/images/book/'.$request->file('Anh_Bia')->getClientOriginalName();
-        
+        if ($request->file('Anh_Bia') != null) $pathimg = '/user/images/book/'.$request->file('Anh_Bia')->getClientOriginalName();
+        else $pathimg = '/user/images/book/';
         $sach=Book::create([
             'Ten_Sach'=>$request['Ten_Sach'],
             'The_Loai'=>$request['The_Loai'],
@@ -85,8 +87,10 @@ class BookController extends Controller
         //
         $sach = Book::find($id);
         $the_loai = Category::all();
-        $nha_xuat_ban = PublishingHouse::all(); 
-        return View('admin.pages.Book.edit', $sach, ['the_loai'=>$the_loai,'nha_xuat_ban'=>$nha_xuat_ban]);
+        $nha_xuat_ban = PublishingHouse::all();
+        $anh_sach = ImageBook::where('Id_Sach', $id)->get();
+        //return dd($anh_sach);
+        return View('admin.pages.Book.edit', $sach, ['the_loai'=>$the_loai,'nha_xuat_ban'=>$nha_xuat_ban, 'anh_sach'=>$anh_sach]);
     }
     /**
      * Update the specified resource in storage.
@@ -135,5 +139,61 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $sach = Book::where([ ['Ten_Sach','like','%'.$request->bookName.'%'],['is_deleted', '=', '0'] ])
+                    ->orwhere([ ['Tac_Gia','like','%'.$request->bookName.'%'],['is_deleted', '=', '0'] ])
+                    ->paginate(5);
+        return View('admin.pages.Book.book', ['sach'=>$sach]);
+    }
+
+    public function addimage(Request $request)
+    {
+        if ($request->file('Anh_Sach') != null) $pathimg = '/user/images/book/'.$request->file('Anh_Sach')->getClientOriginalName();
+        else $pathimg = '/user/images/book/';
+        $anh_sach=ImageBook::create([
+            'Anh_Sach'=>$pathimg,
+            'Id_Sach'=>$request['Id_Sach'],
+            'Loai_Anh'=>$request['Loai_Anh'],
+            'Trang_Thai'=>$request['Trang_Thai'],
+        ]);
+        //return dd($sach);
+        return redirect()->back();
+    }
+
+    public function editimage(Request $request)
+    {
+        $id = $request['Id_Anh'];
+        $anh_sach=ImageBook::find($id);
+        $anh_sach->Loai_Anh = $request['Loai_Anh'];
+        $anh_sach->Trang_Thai = $request['Trang_Thai'];
+        $anh_sach->save();
+        //return dd($anh_sach);
+        return redirect()->back();
+    }
+
+    public function deleteimage($id)
+    {
+        $anh_sach=ImageBook::find($id);
+        $anh_sach->delete();
+        return redirect()->back();
+    }
+
+    public function checkimage($id)
+    {
+        $anh_sach=ImageBook::find($id);
+        $anh_sach->Trang_Thai = 0;
+        $anh_sach->save();
+        return redirect()->back();
+    }
+
+    public function uncheckimage($id)
+    {
+        $anh_sach=ImageBook::find($id);
+        $anh_sach->Trang_Thai = 1;
+        $anh_sach->save();
+        return redirect()->back();
     }
 }

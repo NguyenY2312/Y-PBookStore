@@ -8,74 +8,126 @@
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-left: 80px; padding-right:70px">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">THÊM TÀI KHOẢN</h3>
+                  <h3 class="font-weight-bold">CẬP NHẬT TÀI KHOẢN</h3>
+                </div>
+                <div class="col-12" style="padding-top:10px;">
+                    <ul class="breadcrumb" style="border: none">
+                      <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+                      <li><a href="{{route('account.index')}}">Quản lý tài khoản</a></li>
+                      <li>Cập nhật tài khoản</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('account.update', $Id) }}" method="POST" enctype="multipart/form-data" onsubmit="return CheckInput();">
                 @csrf
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Email</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Email">
+                    <input class="form-control" type="text" value="{{ $Email }}" name="Email" id="Email" placeholder="Email" readonly>
                   </div>
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Mật khẩu</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Mật khẩu">
+                    <input class="form-control" type="text" name="Mat_Khau" value="{{ $Mat_Khau }}" id="Mat_Khau" placeholder="Mật khẩu">
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Ảnh đại diện</label>
                     <div class="custom-file">
-                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" id="hinh_anh" placeholder="Chọn ảnh" name="hinh_anh" />
+                        <input accept="*.png|*.jpg|*.jpeg" type="file" name="Anh_Dai_Dien" value="{{ $Anh_Dai_Dien }}" class="form-control" id="Anh_Dai_Dien" placeholder="Chọn ảnh" name="hinh_anh" />
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Họ tên</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Họ tên">
+                    <input class="form-control" type="text" name="Ho_Ten" value="{{ $Ho_Ten }}" id="Ho_Ten" placeholder="Họ tên">
                   </div>
                 </div> 
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Số điện thoại</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Tác giả">
+                    <input class="form-control" type="text" name="So_Dien_Thoai" value="{{ $So_Dien_Thoai }}" id="So_Dien_Thoai" placeholder="Số điện thoại">
                   </div>
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Giới tính</label>
-                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" class="form-control" id="exampleInputTitle" placeholder="Title">
-                        <option>Nam</option>
+                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Gioi_Tinh" class="form-control" id="Gioi_Tinh" placeholder="Title">
+                        @if ($Gioi_Tinh == 0)
+                        <option value="0" selected>Nam</option>
+                        <option value="1">Nữ</option>
+                        @else 
+                        <option value="0">Nam</option>
+                        <option value="1" selected>Nữ</option>
+                        @endif
                     </select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Địa chỉ</label>
-                    <input class="form-control" type="text" id="exampleInputTitle" placeholder="Địa chỉ">
+                    <input class="form-control" type="text" name="Dia_Chi" value="{{ $Dia_Chi }}" id="Dia_Chi" placeholder="Địa chỉ">
                   </div>
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Loại tài khoản</label>
-                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" class="form-control" id="exampleInputTitle" placeholder="Title">
-                        <option>Admin</option>
+                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Loai_TK" class="form-control" id="Loai_TK" placeholder="Title">
+                        @if ($Loai_TK == 0)
+                        <option value="0" selected>Admin</option>
+                        <option value="1">Khách hàng</option>
+                        @else 
+                        <option value="0">Admin</option>
+                        <option value="1" selected>Khách hàng</option>
+                        @endif
                     </select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Trạng thái</label>
-                    <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" type="checkbox" id="exampleInputTitle">
+                    <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Trang_Thai" class="form-control" id="Trang_Thai" placeholder="Title">
+                        @if ($Trang_Thai == 0)
+                        <option value="0" selected>Đang hoạt động</option>
+                        <option value="1">Chưa kích hoạt</option>
+                        @else 
+                        <option value="0">Đang hoạt động</option>
+                        <option value="1" selected>Chưa kích hoạt</option>
+                        @endif
+                    </select>
                   </div>
                 </div>
                 <div class="row" style="float:right">
                   <button type="submit" class="btn btn-success"><i class="fas fa-save"></i></button> &nbsp;
-                  <button type="cancel" class="btn btn-secondary" style="margin-left: 15px;margin-right: 30px; color:white"><i class="fas fa-window-close"></i></button>
+                  <a class="btn btn-secondary" href="{{route('account.index')}}" style="margin-left: 15px;margin-right: 30px; color:white"><i class="fas fa-window-close"></i></a>
                 </div>
               </form>
         </div>
     </div>
 </div>
+<script>
+    function Active(){
+      var element = document.getElementById("active_account");
+      element.classList.add("active");
+    }
+    window.onload = Active();
+    function CheckInput(){
+      var Email = document.getElementById('Email').value;
+      var Pass = document.getElementById('Mat_Khau').value;
+      var Name = document.getElementById('Ho_Ten').value;
+      var Phone = document.getElementById('So_Dien_Thoai').value;
+      var Address = document.getElementById('Dia_Chi').value;
+      var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+      if(Email === "" || Pass === "" || Name === "" || Phone === "" || Address === "")
+      {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return false;
+      }
+      else if (vnf_regex.test(Phone) === false || Phone.length > 10) {
+        alert("Số điện thoại không hợp lệ!");
+            return false;
+      }
+      return true;
+    }
+</script>
 @stop

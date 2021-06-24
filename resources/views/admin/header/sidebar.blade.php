@@ -6,19 +6,13 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/quan-ly-chi-tiet-hoa-don">
-              <i class="fas fa-palette menu-icon"></i>
-              <span class="menu-title">Giao diện người dùng</span>
-            </a>
-          </li>
-          <li class="nav-item">
+          <li class="nav-item" id="active_book">
             <a class="nav-link" href="{{ route('book.index')}}">
               <i class="icon-book menu-icon"></i>
               <span class="menu-title">Quản lý sách</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="active_account">
             <a class="nav-link" href="{{ route('account.index')}}">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Quản lý tài khoản</span>
@@ -40,6 +34,18 @@
             <a class="nav-link" href="/admin/quan-ly-nha-xuat-ban">
               <i class="fas fa-building menu-icon"></i>
               <span class="menu-title">Nhà xuất bản</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-gifts menu-icon"></i>
+              <span class="menu-title">Khuyến mãi</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-palette menu-icon"></i>
+              <span class="menu-title">Giao diện trang chủ</span>
             </a>
           </li>
           <li class="nav-item">

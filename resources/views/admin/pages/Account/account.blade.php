@@ -12,12 +12,28 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">QUẢN LÝ TÀI KHOẢN</h3>
                 </div>
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:50px">
-                  <a class="btn btn-primary" href="{{ route('account.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:30px"><i class='fas fa-plus' style='font-size:15px'></i></a>
-                  <!-- /.card-header -->
+                <div class="col-12" style="padding-top:10px;">
+                    <ul class="breadcrumb" style="border: none">
+                      <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+                      <li>Quản lý tài khoản</li>
+                    </ul>
+                </div>
+                <div class="col-lg-12" style="padding-top:20px; display: flex; margin-bottom: 10px">
+                  <div class="col-lg-6">
+                  <a class="btn btn-primary" href="{{ route('account.create')}}" style="padding: 0.7rem 1.5rem; border-radius: 10px; margin-left:10px;"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                  </div>
+                  <div class="col-lg-6">
+                  <form id="" method="POST" action="{{ route('account.search')}}" style="float:right">
+                  @csrf
+                      <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" name="inputAccount" placeholder="Nhập email, tên hoặc sđt" >                     
+                      <button id="btnsearch" type="submit" class="btn-search" style="padding: 0.5rem 1.5rem; border-radius: 10px;background:#a3a4a5c2"><i class='fas fa-search' style='font-size:15px'></i></button>
+                  </form>
+                  </div>
+                </div>
+                <!-- table -->
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <div class="card-body">
-                    <table id="book" class="table">
+                    <table id="account" class="table">
                   <thead>
                   <tr>
                     <th>Email</th>
@@ -55,13 +71,17 @@
                     <td style="text-align:center"><input type="checkbox" disabled="disabled"/></td>
                     @endif
                     <td>
-                        <a href="/admin/account/1/edit" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('account.edit', [$account->Id]) }}" class="btn btn-warning" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a onclick="return ComfirmDelete();" href="{{ route('account.delete', [$account->Id]) }}" class="btn btn-danger" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach
                   </tbody>
                 </table>
+              </div>
+              <div class="row">
+                <div class="col-lg-8"></div>
+                <div class="col-lg-4">{{$tai_khoan->links("pagination::bootstrap-4")}}</div>
               </div>
               </div>
               <!-- /.card-body -->
@@ -71,4 +91,13 @@
         </div>
     </div>
 </div>
+<script>
+  function ComfirmDelete() {
+  var txt;
+  if (confirm("Bạn có muốn xóa tài khoản đã chọn?")) {
+    return true;
+  }
+  return false;
+}
+</script>
 @stop

@@ -13,6 +13,7 @@ class Account extends Authenticatable
     use Notifiable;
     use HasFactory;
     protected $table='tai_khoan';
+    protected $primaryKey = 'Id';
     protected $fillable =[
         'Ho_Ten',
         'Gioi_Tinh',
@@ -22,6 +23,7 @@ class Account extends Authenticatable
         'Dia_Chi',
         'Loai_TK',
         'Anh_Dai_Dien',
-        'Trang_Thai'
+        'Trang_Thai',
+        'is_deleted'
     ];
 }

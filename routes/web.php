@@ -34,9 +34,18 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
 Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/dashboard',admin\DashboardController::class);
     Route::resource('admin/book',admin\BookController::class);
+        Route::post('/admin/book/create','admin\BookController@store')->name('book.store');
+        Route::post('/admin/book/addimage','admin\BookController@addimage')->name('book.addimage');
         Route::post('/admin/book/{id}/update','admin\BookController@update')->name('book.update');
+        Route::post('/admin/book/editimage','admin\BookController@editimage')->name('book.editimage');
+        Route::post('/admin/book','admin\BookController@search')->name('book.search');
         Route::get('/admin/book/{id}/delete','admin\BookController@delete')->name('book.delete');
+        Route::get('/admin/book/{id}/deleteimage','admin\BookController@deleteimage')->name('book.deleteimage');
     Route::resource('admin/account',admin\AccountController::class);
+        Route::post('/admin/account/create','admin\AccountController@store')->name('account.store');
+        Route::post('/admin/account/{id}/update','admin\AccountController@update')->name('account.update');
+        Route::post('/admin/account','admin\AccountController@search')->name('account.search');
+        Route::get('/admin/account/{id}/delete','admin\AccountController@delete')->name('account.delete');
     Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
     Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);

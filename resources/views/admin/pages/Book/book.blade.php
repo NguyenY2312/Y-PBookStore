@@ -15,8 +15,18 @@
                       <li>Quản lý sách</li>
                     </ul>
                 </div>
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:20px;">
-                  <a class="btn btn-primary" href="{{ route('book.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:30px; margin-bottom: 5px"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                <div class="col-lg-12" style="padding-top:20px; display: flex; margin-bottom: 10px">
+                  <div class="col-lg-6">
+                  <a class="btn btn-primary" href="{{ route('book.create')}}" style="padding: 0.7rem 1.5rem; border-radius: 10px; margin-left:10px;"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                  </div>
+                  <div class="col-lg-6">
+                  <form id="" method="POST" action="{{ route('book.search')}}" style="float:right">
+                  @csrf
+                      <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" name="bookName" placeholder="Nhập tên sách hoặc tác giả" >                     
+                      <button id="btnsearch" class="btn-search" type="submit" style="padding: 0.5rem 1.5rem; border-radius: 10px;background:#a3a4a5c2"><i class='fas fa-search' style='font-size:15px'></i></button>
+                  </form>
+                  </div>
+                </div>
                   <!-- /.card-header -->
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <div class="card-body">
@@ -40,7 +50,7 @@
                   @foreach($sach as $book)
                   <tr>
                     <td><img src="{{$book->Anh_Bia}}" style="width:80px; height:80px; border-radius:0%"></td>
-                    <td>{{$book->Ten_Sach}}</td>
+                    <td style="max-width: 180px; text-overflow: ellipsis; overflow: hidden">{{$book->Ten_Sach}}</td>
                     <td>{{$book->TheLoai->The_Loai}}</td>
                     <td>{{$book->Tac_Gia}}</td>
                     <td>{{$book->NhaXuatBan->Ten_NXB}}</td>
@@ -51,7 +61,7 @@
                     </td>
                     <td>
                     @if($book->Loai_Bia == 0) {{"Bìa cứng"}}
-                    @elseif (($book->Loai_Bia == 1)) {{"Massmarket Paperback"}}
+                    @elseif (($book->Loai_Bia == 1)) {{"M-market Paperback"}}
                     @else {{"Bìa mềm"}}
                     @endif
                     </td>
@@ -64,13 +74,17 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('book.edit', [$book->Id]) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="{{ route('book.delete', [$book->Id]) }}" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('book.edit', [$book->Id]) }}" class="btn btn-warning" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a onclick="return ComfirmDelete();" href="{{ route('book.delete', [$book->Id]) }}" class="btn btn-danger" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach
                   </tbody>
                 </table>
+              </div>
+              <div class="row">
+                <div class="col-lg-8"></div>
+                <div class="col-lg-4">{{$sach->links("pagination::bootstrap-4")}}</div>
               </div>
               </div>
               <!-- /.card-body -->
@@ -80,4 +94,13 @@
         </div>
     </div>
 </div>
+<script>
+  function ComfirmDelete() {
+  var txt;
+  if (confirm("Bạn có muốn xóa sách đã chọn?")) {
+    return true;
+  }
+  return false;
+}
+</script>
 @stop

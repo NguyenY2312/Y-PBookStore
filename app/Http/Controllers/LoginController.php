@@ -30,8 +30,9 @@ class LoginController extends Controller
                 $tk = $item->Email;
                 $loaitk = $item->Loai_TK;
                 $tt = $item->Trang_Thai;
+                $is_deleted = $item->is_deleted;
             }
-            if ( $pass == $mk && $loaitk == 0)
+            if ( $pass == $mk && $loaitk == 0 && $is_deleted == 0)
             {
                 if ($tt != 0)
                 {
@@ -43,7 +44,7 @@ class LoginController extends Controller
                     return redirect()->route('dashboard.index');
                 }
             }
-            else if ( $pass == $mk && $loaitk == 1)
+            else if ( $pass == $mk && $loaitk == 1 && $is_deleted == 0)
             {
                 if ($tt != 0)
                 {
@@ -58,13 +59,13 @@ class LoginController extends Controller
             }
             else 
             {
-                $errors = new MessageBag(['login' => ["Mật khẩu không đúng!"]]);
+                $errors = new MessageBag(['login' => ["Tài khoản hoặc mật khẩu không đúng!"]]);
                 return redirect()->route('loginview')->withErrors($errors);
             }
         }
         else 
         {
-            $errors = new MessageBag(['login' => ["Tài khoản không tồn tại!"]]);
+            $errors = new MessageBag(['login' => ["Tài khoản hoặc mật khẩu không đúng!"]]);
             return redirect()->route('loginview')->withErrors($errors);
         }
     }
