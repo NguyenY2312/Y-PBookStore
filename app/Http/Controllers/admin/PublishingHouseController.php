@@ -116,14 +116,7 @@ class PublishingHouseController extends Controller
             'Trang_Thai' => 'required',
            
         ]);
-        /*$nha_xuat_ban->Ten_NXB=$request['Ten_NXB'];
-        $nha_xuat_ban->Dia_Chi=$request['Dia_Chi'];
-        $nha_xuat_ban->So_Dien_Thoai=$request['So_Dien_Thoai'];
-        $nha_xuat_ban->Email=$request['Email'];
-        $nha_xuat_ban->Trang_Thai=$request['Trang_Thai'];
-        $nha_xuat_ban->save();
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
-       */
+       
         if($nha_xuat_ban->update($data))
         {
             Session::flash('message', 'successfully!');
@@ -142,5 +135,17 @@ class PublishingHouseController extends Controller
     public function destroy($id)
     {
         //
+        $nha_xuat_ban=PublishingHouse::find($id);
+        if( $nha_xuat_ban->Trang_Thai==0){
+            $nha_xuat_ban->Trang_Thai=1;
+        }else {
+            $nha_xuat_ban->Trang_Thai=0;
+        }
+    
+        if($nha_xuat_ban->update())
+            Session::flash('message', 'successfully!');
+        else
+            Session::flash('message', 'Failure!');
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
 }

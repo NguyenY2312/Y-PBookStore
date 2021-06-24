@@ -40,8 +40,16 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{route('quan-ly-nha-xuat-ban.edit',$publish->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        
+                        <form action="{{ route('quan-ly-nha-xuat-ban.destroy',$publish->Id) }}" method="POST">
+   
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('quan-ly-nha-xuat-ban.edit',$publish->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+
+                        </form>
+                        
                     </td>
                   </tr>
                   @endforeach
