@@ -22,9 +22,9 @@
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>ID Khách Hàng</th>
-                    <th>ID Nhân Viên</th>
-                    <th>Ngày lập</th>
+                    <th>Họ Tên</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Ngày Lập</th>
                     <th>Địa chỉ giao hàng</th>
                     <th>Tổng tiền</th>
                     <th>Trạng thái</th>
@@ -32,37 +32,36 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>29/5/2021</td>
-                    <td>1113 Huỳnh Tấn Phát</td>
-                    <td>79.000 VNĐ</td>
-                    <td>Còn hàng</td>
-                    <td>
-                        <a href="#" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
-                    </td>
-                  </tr>
-                  </tbody>
                   @foreach($don_hang as $order)
-                  <tbody>
+                
                   <tr>
                     <td>{{$order->Id}}</td>
-                    <td>{{$order->Id_KH}}</td>
-                    <td>{{$order->Id_NV}}</td>
+                    <td>{{$order->Ho_Ten}}</td>
+                    <td>{{$order->So_Dien_Thoai}}</td>
                     <td>{{$order->Ngay_Lap}}</td>
                     <td>{{$order->Dia_Chi_Giao_Hang}}</td>
                     <td>{{$order->Tong_Tien}}</td>
-                    <td>{{$order->Trang_Thai}}</td>
                     <td>
-                        <a href="#" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                      @if($order->Trang_Thai == 0) {{"Chưa hoàn thành"}}
+                      @else {{"Đã hoàn thành"}}
+                      @endif
+                    </td>
+                    <td>
+                        
+                        <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
+   
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+
+                        </form>
+                        
                     </td>
                   </tr>
-                  </tbody>
+                 
                   @endforeach
+                  </tbody>
                 </table>
               </div>
               </div>
