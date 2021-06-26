@@ -36,8 +36,8 @@
                 
                   <tr>
                     <td>{{$order->Id}}</td>
-                    <td>{{$order->Ho_Ten}}</td>
-                    <td>{{$order->So_Dien_Thoai}}</td>
+                    <td>{{$order->Account->Ho_Ten}}</td>
+                    <td>{{$order->Account->So_Dien_Thoai}}</td>
                     <td>{{$order->Ngay_Lap}}</td>
                     <td>{{$order->Dia_Chi_Giao_Hang}}</td>
                     <td>{{$order->Tong_Tien}}</td>

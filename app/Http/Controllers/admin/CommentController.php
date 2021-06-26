@@ -5,7 +5,7 @@ use App\Models\Comment;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Session;
 class CommentController extends Controller
 {
     /**
@@ -13,11 +13,16 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->viewprefix='admin.pages.Comment.';
+        $this->viewnamespace='admin/pages/Comment';
+    }
     public function index()
     {
         //
         $binh_luan=Comment::paginate(10);
-        return view('admin.pages.Comment.comment',['binh_luan'=>$binh_luan]);
+        return view($this->viewprefix.'comment',compact('binh_luan'));
     }
 
     /**
@@ -28,7 +33,7 @@ class CommentController extends Controller
     public function create()
     {
         //
-        return View('admin.pages.Comment.create');
+        return View($this->viewprefix.'create');
     }
 
     /**
@@ -62,7 +67,8 @@ class CommentController extends Controller
     public function edit($id)
     {
         //
-        return View('admin.pages.Comment.edit');
+        $binh_luan= Comment::find($id);
+        return View($this->viewprefix.'edit')->with('binh_luan',$binh_luan);
     }
 
     /**
@@ -75,6 +81,19 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $binh_luan = Comment::find($id);
+        $data= $request->validate([
+            'Noi_Dung' => 'required',
+            'Trang_Thai' => 'required',
+        ]);
+       
+        if($binh_luan->update($data))
+        {
+            Session::flash('message', 'successfully!');
+        }
+        else
+            Session::flash('message', 'Failure!');
+        return redirect()->route('quan-ly-binh-luan.index');
     }
 
     /**
@@ -86,5 +105,8 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+        $binh_luan=Comment::find($id);
+        $binh_luan->delete();
+        return redirect()->route('quan-ly-binh-luan.index');
     }
 }

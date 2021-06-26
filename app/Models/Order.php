@@ -15,9 +15,7 @@ class Order extends Model
         'Ngay_Lap',
         'Dia_Chi_Giao_Hang',
         'Tong_Tien',
-        'Trang_Thai',
-        'Ho_Ten',
-        'So_Dien_Thoai'
+        'Trang_Thai'
 
 
     ];
