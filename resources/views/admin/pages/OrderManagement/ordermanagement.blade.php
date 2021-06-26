@@ -10,9 +10,10 @@
                   <h3 class="font-weight-bold" >QUẢN LÝ ĐƠN HÀNG</h3>
                 </div>
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:20px">
-                  <form id="product-search" action-method="GET">
-                      <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" placeholder="Tìm kiếm" >                     
-                      <button style="padding: 0.5rem 1.5rem; border-radius: 10px;background:white"><i class='fas fa-search' style='font-size:15px'></i></button>
+                <form id="" method="POST" action="{{ route('order.search')}}">
+                @csrf
+                      <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" name="NhapTimKiem" placeholder="Tìm kiếm" >                     
+                      <button id="btnsearch" style="padding: 0.5rem 1.5rem; border-radius: 10px;background:#a3a4a5c2"><i class='fas fa-search' style='font-size:15px'></i></button>
                   </form>
                   
                   <!-- /.card-header -->

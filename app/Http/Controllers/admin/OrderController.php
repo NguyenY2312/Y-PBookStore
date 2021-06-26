@@ -108,4 +108,9 @@ class OrderController extends Controller
        
         
     }
+    public function search(Request $request)
+    {
+        $don_hang = Order::where('Dia_Chi_Giao_Hang','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        return View($this->viewprefix.'ordermanagement', ['don_hang'=>$don_hang]);
+    }
 }

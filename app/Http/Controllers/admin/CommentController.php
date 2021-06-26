@@ -95,7 +95,11 @@ class CommentController extends Controller
             Session::flash('message', 'Failure!');
         return redirect()->route('quan-ly-binh-luan.index');
     }
-
+    public function search(Request $request)
+    {
+        $binh_luan = Comment::where('Noi_Dung','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        return View($this->viewprefix.'comment', ['binh_luan'=>$binh_luan]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -109,4 +113,5 @@ class CommentController extends Controller
         $binh_luan->delete();
         return redirect()->route('quan-ly-binh-luan.index');
     }
+  
 }

@@ -47,6 +47,10 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/account','admin\AccountController@search')->name('account.search');
         Route::get('/admin/account/{id}/delete','admin\AccountController@delete')->name('account.delete');
     Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
+        Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
+        Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
     Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);
+        Route::post('/admin/quan-ly-nha-xuat-ban','admin\PublishingHouseController@search')->name('publish.search');
+        
 });

@@ -148,4 +148,9 @@ class PublishingHouseController extends Controller
             Session::flash('message', 'Failure!');
         return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
+    public function search(Request $request)
+    {
+        $nha_xuat_ban = PublishingHouse::where('Ten_NXB','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        return View($this->viewprefix.'publishinghouse', ['nha_xuat_ban'=>$nha_xuat_ban]);
+    }
 }
