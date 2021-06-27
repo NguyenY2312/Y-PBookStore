@@ -9,10 +9,9 @@ class Order extends Model
 {
     use HasFactory;
     protected $table='don_hang';
+    protected $primaryKey='Id';
     protected $fillable=[
-        'Id',
         'Id_KH',
-        'Id_NV',
         'Ngay_Lap',
         'Dia_Chi_Giao_Hang',
         'Tong_Tien',
@@ -20,4 +19,9 @@ class Order extends Model
 
 
     ];
+    public function Account(){
+        return $this->belongsTo('App\Models\Account', 'Id_KH', 'Id');
+    }
+    
+    public $timestamps = false;
 }

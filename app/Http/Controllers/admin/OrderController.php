@@ -5,7 +5,7 @@ use App\Models\Order;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Session;
 class OrderController extends Controller
 {
     /**
@@ -13,11 +13,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->viewprefix='admin.pages.OrderManagement.';
+        $this->viewnamespace='admin/pages/OrderManagement';
+    }
     public function index()
     {
         //
-        $don_hang=Order::paginate(10);
-        return view('admin.pages.OrderManagement.ordermanagement',['don_hang'=>$don_hang]);
+        $don_hang=Order::all();
+        return view($this->viewprefix.'ordermanagement',compact('don_hang'));
     }
 
     /**
@@ -61,6 +66,8 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $don_hang= Order::find($id);//publishinghouse tên model
+        return view($this->viewprefix.'edit')->with('don_hang', $don_hang);
     }
 
     /**
@@ -72,7 +79,18 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $don_hang = Order::find($id);
+        $data= $request->validate([
+            'Trang_Thai' => 'required',
+        ]);
+       
+        if($don_hang->update($data))
+        {
+            Session::flash('message', 'successfully!');
+        }
+        else
+            Session::flash('message', 'Failure!');
+        return redirect()->route('quan-ly-don-hang.index');
     }
 
     /**
@@ -84,5 +102,15 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+        $order=Order::find($id);
+        $order->delete();
+        return redirect()->route('quan-ly-don-hang.index');
+       
+        
+    }
+    public function search(Request $request)
+    {
+        $don_hang = Order::where('Dia_Chi_Giao_Hang','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        return View($this->viewprefix.'ordermanagement', ['don_hang'=>$don_hang]);
     }
 }

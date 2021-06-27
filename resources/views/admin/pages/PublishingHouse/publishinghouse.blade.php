@@ -9,9 +9,18 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">QUẢN LÝ NHÀ XUẤT BẢN</h3>
                 </div>
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:50px">
-                  <a class="btn btn-primary" href="{{ route('quan-ly-nha-xuat-ban.create')}}" style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:40px"><i class='fas fa-plus' style='font-size:15px'></i></a>
-                  <!-- /.card-header -->
+                <div class="col-lg-12" style="padding-top:20px; display: flex; margin-bottom: 10px">
+                  <div class="col-lg-6">
+                  <a class="btn btn-primary" href="{{ route('quan-ly-nha-xuat-ban.create')}}" style="padding: 0.7rem 1.5rem; border-radius: 10px; margin-left:10px;"><i class='fas fa-plus' style='font-size:15px'></i></a>
+                  </div>
+                  <div class="col-lg-6">
+                  <form id="" method="POST" action="{{ route('publish.search')}}" style="float:right">
+                  @csrf
+                      <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" name="NhapTimKiem" placeholder="Tìm Kiếm" >                     
+                      <button id="btnsearch" class="btn-search" type="submit" style="padding: 0.5rem 1.5rem; border-radius: 10px;background:#a3a4a5c2"><i class='fas fa-search' style='font-size:15px'></i></button>
+                  </form>
+                  </div>
+                </div>
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                     <div class="card-body">
                     <table id="publish" class="table">
@@ -40,8 +49,16 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{route('quan-ly-nha-xuat-ban.edit',$publish->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a href="#" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        
+                        <form action="{{ route('quan-ly-nha-xuat-ban.destroy',$publish->Id) }}" method="POST">
+   
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{route('quan-ly-nha-xuat-ban.edit',$publish->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+
+                        </form>
+                        
                     </td>
                   </tr>
                   @endforeach

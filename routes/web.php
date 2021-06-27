@@ -47,8 +47,11 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/account','admin\AccountController@search')->name('account.search');
         Route::get('/admin/account/{id}/delete','admin\AccountController@delete')->name('account.delete');
     Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
+        Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
+        Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
     Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);
+        Route::post('/admin/quan-ly-nha-xuat-ban','admin\PublishingHouseController@search')->name('publish.search'); 
     Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
     Route::resource('admin/promotion',admin\PromotionController::class);
         Route::post('/admin/promotion/create','admin\PromotionController@store')->name('promotion.store');
@@ -57,5 +60,5 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::get('/admin/promotion/{id}/delete','admin\PromotionController@delete')->name('promotion.delete');
         Route::post('/admin/promotion/addpromotiondetail','admin\PromotionController@addpromotiondetail')->name('promotion.addpromotiondetail');
         Route::post('/admin/promotion/editpromotiondetail','admin\PromotionController@editpromotiondetail')->name('promotion.editpromotiondetail');
-        Route::get('/admin/promotion/{id}/delpromotiondetail','admin\PromotionController@delpromotiondetail')->name('promotion.delpromotiondetail');
-    });
+        Route::get('/admin/promotion/{id}/delpromotiondetail','admin\PromotionController@delpromotiondetail')->name('promotion.delpromotiondetail');      
+});
