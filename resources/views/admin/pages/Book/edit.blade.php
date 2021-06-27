@@ -264,16 +264,9 @@
       @csrf
       <div class="modal-body" style="margin-top:-25px">
           <div class="row">
-              <!-- <div class="col-lg-12">
-                <label for="exampleInputTopic">Chọn ảnh</label>
-                <div class="custom-file">
-                    <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" name="Anh_Sach" id="Anh_Bia" placeholder="Chọn ảnh" />
-                    <input type="text" value="{{ $image->Id }}" class="form-control" id="Id_Anh" name="Id_Anh" hidden>
-               </div>
-              </div> -->
               <div class="col-lg-6 select_type" style="margin-top:20px">
                 <label for="exampleInputTopic">Loại ảnh</label>
-                <input type="text" value="{{ $image->Id }}" class="form-control" id="Id_Anh" name="Id_Anh" hidden>
+                <input type="text" class="form-control" id="Id_Anh" name="Id_Anh" hidden>
                 <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Loai_Anh" class="form-control" id="Loai_Bia" placeholder="Title">
                     <option value="0">Ảnh thumbnail</option>
                     <option value="1">Ảnh hover</option>

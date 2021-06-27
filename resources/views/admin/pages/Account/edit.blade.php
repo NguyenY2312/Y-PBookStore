@@ -16,7 +16,7 @@
                     <ul class="breadcrumb" style="border: none">
                       <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
                       <li><a href="{{route('account.index')}}">Quản lý tài khoản</a></li>
-                      <li>Cập nhật tài khoản</li>
+                      <li>{{ $Email }}</li>
                     </ul>
                 </div>
             </div>

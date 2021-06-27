@@ -50,4 +50,12 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
     Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);
     Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
-});
+    Route::resource('admin/promotion',admin\PromotionController::class);
+        Route::post('/admin/promotion/create','admin\PromotionController@store')->name('promotion.store');
+        Route::post('/admin/promotion/{id}/update','admin\PromotionController@update')->name('promotion.update');
+        Route::post('/admin/promotion','admin\PromotionController@search')->name('promotion.search');
+        Route::get('/admin/promotion/{id}/delete','admin\PromotionController@delete')->name('promotion.delete');
+        Route::post('/admin/promotion/addpromotiondetail','admin\PromotionController@addpromotiondetail')->name('promotion.addpromotiondetail');
+        Route::post('/admin/promotion/editpromotiondetail','admin\PromotionController@editpromotiondetail')->name('promotion.editpromotiondetail');
+        Route::get('/admin/promotion/{id}/delpromotiondetail','admin\PromotionController@delpromotiondetail')->name('promotion.delpromotiondetail');
+    });

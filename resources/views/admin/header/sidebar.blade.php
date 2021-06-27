@@ -36,8 +36,8 @@
               <span class="menu-title">Nhà xuất bản</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item" id="active_promotion"> 
+            <a class="nav-link" href="{{ route('promotion.index') }}">
               <i class="fas fa-gifts menu-icon"></i>
               <span class="menu-title">Khuyến mãi</span>
             </a>
