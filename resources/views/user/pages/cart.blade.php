@@ -27,9 +27,6 @@
 			<div class="inner-sec-shop px-lg-4 px-3">
 				<h3 class="tittle-w3layouts my-lg-4 mt-3">Giỏ hàng </h3>
 				<div class="checkout-right">
-					<h4>Giỏ hàng của bạn bao gồm:
-						<span>3 sản phẩm</span>
-					</h4>
 					<table class="timetable_sub">
 						<thead>
 							<tr>
@@ -64,9 +61,9 @@
 
 								<td class="invert">73.700 ₫</td>
 								<td class="invert">
-									<div class="rem">
-										<div class="close1"> </div>
-									</div>
+									<a href="#">
+										<i class='fas fa-trash-alt' style='font-size:15px; color:black'></i>
+									</a>
 
 								</td>
 							</tr>
@@ -92,9 +89,9 @@
 
 								<td class="invert">223.700 ₫</td>
 								<td class="invert">
-									<div class="rem">
-										<div class="close2"> </div>
-									</div>
+									<a href="#">
+											<i class='fas fa-trash-alt' style='font-size:15px;color:black'></i>
+									</a>
 
 								</td>
 							</tr>
@@ -120,21 +117,32 @@
 
 								<td class="invert">334.200 ₫</td>
 								<td class="invert">
-									<div class="rem">
-										<div class="close3"> </div>
-									</div>
+									<a href="#">
+											<i class='fas fa-trash-alt' style='font-size:15px;color:black'></i>
+									</a>
 
 								</td>
 							</tr>
 
 						</tbody>
 					</table>
-				</div>
 		
-				
-						<div class="checkout-right-basket">
-							<a href="payment.html">Đặt hàng </a>
-						</div>
+					<div class="col-md-4 checkout-right-basket">
+						<ul>
+						
+							<li>Tổng tiền:
+					
+								<span>631.600 ₫</span>
+							</li>
+							<li>Tổng thanh toán:
+							
+								<span>631.600 ₫</span>
+							</li>
+
+						</ul>
+						<a href="payment.html" class="btn">THANH TOÁN</a>
+						<a href="#" class="btn">TIẾP TỤC MUA SẮM</a>
+					</div>
 					<div class="clearfix"> </div>
 
 				</div>
