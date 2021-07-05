@@ -62,7 +62,6 @@ class PublishingHouseController extends Controller
         $nha_xuat_ban->Email=$request->Email;
         $nha_xuat_ban->Trang_Thai=$request->Trang_Thai;
         
-        //if(Category::create($request->all()))
         if($nha_xuat_ban->save())
         {
             Session::flash('message', 'successfully!');

@@ -53,6 +53,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
         Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
     Route::resource('admin/publish',admin\PublishingHouseController::class);
+        Route::post('/admin/publish/create','admin\PublishingHouseController@store')->name('publish.store');
         Route::post('/admin/publish','admin\PublishingHouseController@search')->name('publish.search'); 
     Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
     Route::resource('admin/promotion',admin\PromotionController::class);
