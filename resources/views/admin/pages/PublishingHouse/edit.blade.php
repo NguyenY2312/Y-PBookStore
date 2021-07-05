@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="{{route('quan-ly-nha-xuat-ban.update',$nha_xuat_ban->Id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('publish.update',$nha_xuat_ban->Id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                @method('PUT')
                 <div class="row">

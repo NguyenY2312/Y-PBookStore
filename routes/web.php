@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/quan-ly-tai-khoan', function () {
     return view('user/pages/usermanagement');
 });
+
+
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");
 Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");
@@ -25,7 +27,7 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/","UserController@Index")->name("user.index");
     Route::get("shop","UserController@Shop")->name("user.shop");
     Route::get("contact","UserController@Contact")->name("user.contact");
-    Route::get("single","UserController@Single")->name("user.single");
+    Route::get("/single/{Id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
     Route::get("cart","UserController@Cart")->name("user.cart");
 
@@ -50,8 +52,8 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
         Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
-    Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingHouseController::class);
-        Route::post('/admin/quan-ly-nha-xuat-ban','admin\PublishingHouseController@search')->name('publish.search'); 
+    Route::resource('admin/publish',admin\PublishingHouseController::class);
+        Route::post('/admin/publish','admin\PublishingHouseController@search')->name('publish.search'); 
     Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
     Route::resource('admin/promotion',admin\PromotionController::class);
         Route::post('/admin/promotion/create','admin\PromotionController@store')->name('promotion.store');

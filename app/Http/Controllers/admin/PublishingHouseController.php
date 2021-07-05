@@ -69,7 +69,7 @@ class PublishingHouseController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
 
     /**
@@ -123,7 +123,7 @@ class PublishingHouseController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
 
     /**
@@ -146,7 +146,7 @@ class PublishingHouseController extends Controller
             Session::flash('message', 'successfully!');
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
     public function search(Request $request)
     {
