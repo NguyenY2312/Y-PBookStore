@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function Shop(){
-        $book = Book::where('Trang_Thai',2)->get();
+        $book = Book::where('Trang_Thai',2)->paginate(12);
         return view($this->viewprefix.'shop',compact('book'));
         //return view($this->user."shop");
     }

@@ -605,6 +605,7 @@ ul.stars li a i:hover {
 .product-googles-info {
 	padding: 15px;
 	border: 1px solid #e4e4e4;
+	margin-top: 1rem !important;
 }
 
 /*-- //effect on products --*/
@@ -905,6 +906,15 @@ input.checked {
 .product_price h4 a {
 	color: #959596;
     font-size: 0.8em;
+	white-space: nowrap;
+}
+h4.hidden {
+	color: #959596;
+	width: 190px; 
+	overflow: hidden;
+	text-overflow: ellipsis; 
+
+
 }
 
 /*-- //customer --*/

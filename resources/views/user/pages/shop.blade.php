@@ -199,11 +199,11 @@
 							<div class="wrapper_top_shop">
 								<div class="row">
 										<div class="col-md-6 shop_left">
-												<img src="{!! asset('user\images\Book\SACH_KINH_TE\banner_Sach_kinh_te1.png') !!}" alt="">
+												<img src="{!! asset('user\images\banner-sach-kinh-te.png') !!}" alt="">
 												
 										</div>
 										<div class="col-md-6 shop_right">
-												<img src="{!! asset('user\images\Book\SACH_KINH_TE\banner_Sach_kinh_te1.png') !!}" alt="">
+												<img src="{!! asset('user\images\banner-sach-kinh-te.png') !!}" alt="">
 									
 											</div>
 						
@@ -228,7 +228,7 @@
 													<div class="info-product-price">
 														<div class="grid_meta">
 															<div class="product_price">
-																<h4>
+																<h4 class= "hidden"> 
 																	<a href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
 																</h4>
 																<div class="grid-price mt-2">
@@ -284,6 +284,8 @@
 									@endforeach
 								
 								</div>
+								<br>
+								{!! $book->links() !!}
 								
 						
 								
