@@ -23,20 +23,21 @@
 		<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 			<div class="container">
 				<div class="inner-sec-shop pt-lg-4 pt-3">
+				@foreach($books as $book)
 					<div class="row">
 							<div class="col-lg-4 single-right-left ">
 									<div class="grid images_3_of_2">
 										<div class="flexslider1">
 					
 											<ul class="slides">
-												<li data-thumb="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\HDD.png')!!}">
-													<div class="thumb-image"> <img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\HDD.png')!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{!! asset($book->Anh_Bia)!!}">
+													<div class="thumb-image"> <img src="{!! asset($book->Anh_Bia)!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\ct1.png')!!}">
-													<div class="thumb-image"> <img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\ct1.png')!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{!! asset($book->Anh_Bia)!!}">
+													<div class="thumb-image"> <img src="{!! asset($book->Anh_Bia)!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\ct2.png')!!}">
-													<div class="thumb-image"> <img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\ct2.png')!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{!! asset($book->Anh_Bia)!!}">
+													<div class="thumb-image"> <img src="{!! asset($book->Anh_Bia)!!}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
 											</ul>
 											<div class="clearfix"></div>
@@ -44,7 +45,7 @@
 									</div>
 								</div>
 								<div class="col-lg-8 single-right-left simpleCart_shelfItem">
-									<h3>Đừng Để Mất Bò - 7 Bước Bước Quản Lý Cửa Hàng Hiệu Quả Và Chống Thất Thoát </h3>
+									<h3>{{$book->Ten_Sach}} </h3>
 									<br>
 									<div class="row">
   										<div class="col-6">
@@ -53,7 +54,7 @@
 										  </div>
   										<div class="col-6">
 										  <span>Tác giả:</span>
-										  <span>Trần Thanh Phong</span>
+										  <span>{{$book->Tac_Gia}}</span>
 										</div>
 									</div>
 									<div class="row">
@@ -67,7 +68,7 @@
 										</div>
 									</div>
 
-									<p><span class="item_price">149.000 ₫</span>
+									<p><span class="item_price">{{$book->Gia_Tien}}</span>
 										<del>169.000 ₫</del>
 									</p>
 									<div class="rating1">
@@ -151,15 +152,15 @@
 									</tr>
 									<tr>
 										<td>Dịch Giả</td>
-										<td>Trần Thanh Phong</td>
+										<td>{{$book->Tac_Gia}}</td>
 									</tr>
 									<tr>
 										<td>Số trang</td>
-										<td>272</td>
+										<td>{{$book->So_Trang}}</td>
 									</tr>
 									<tr>
 										<td>SKU</td>
-										<td>8255109328384</td>
+										<td>{{$book->SKU}}</td>
 									</tr>
 									<tr>
 										<td>Nhà xuất bản</td>
@@ -180,28 +181,12 @@
 					
 					<div class="single_page">
 					<h5>MÔ TẢ SẢN PHẨM</h5>
-					<p>Trần Thanh Phong là tác giả của 3 quyển sách, chủ 2 doanh nghiệp và là một vận động viên ba môn phối hợp Ironman.
-					Anh được mọi người nhắc đến như là một tác giả Việt đầu tiên viết về chủ đề Khởi Nghiệp Kinh Doanh Thực Chiến.
-					Anh không phải là diễn giả hay học giả mà là một người làm nghề thực sự. Sau 15 năm khởi nghiệp, từng quản lý nhiều
-					công việc kinh doanh, trong đó có chuỗi thời trang nhượng quyền lên đến 65 cửa hàng trên toàn quốc, anh đã đúc kết 
-					nhiều kinh nghiệm hết sức thực tế và gói gọn trong tập sách này. Bạn đang quản lý hay làm chủ một cửa hàng nhưng công
-					việc kinh doanh lại không được suôn sẻ. Bạn luôn phải đau đầu vì những vấn đề như: Tháng nào cũng có một lượng ngân quỹ
-					“không cánh mà bay”. Khó tuyển người, nhân viên “đến rồi đi” mà không ai gắn bó. Nhân viên đi làm trễ, vi phạm nội quy,
-					nói hoài cũng không thay đổi. Hay dạy mãi nhưng nhân viên vẫn không làm được việc. Đừng đi tìm cách gỡ rối ở đâu xa xôi,
-					quyển sách này sẽ giúp bạn giải quyết TẤT CẢ những vấn đề trên theo một cách khoa học và hiệu quả nhất. Quyển sách mang
-					đến cho bạn:3 bước tuyển chọn và huấn luyện để có được đội ngũ nhân viên xuất sắc. Cách thức tổ chức bộ máy, phân chia
-					công việc, hướng đến tự động hóa hoạt động kinh doanh.2 phương pháp để đôn đốc nhân viên làm việc chăm chỉ, nghiêm túc
-					mà không cảm thấy ức chế.Đặc biệt là danh sách hơn 20 chiêu trò gian lận, trộm cắp phổ biến, vẫn đang âm thầm diễn ra và
-					lấy đi hàng tỷ đồng mỗi năm tại các cửa hàng. Quyển sách này dành cho: Người đang kinh doanh cửa hàng, nhà hàng, cà phê
-					hoặc mô hình chuỗi. Những ai gặp khó khăn trong việc tự động hóa doanh nghiệp. Những ai đang đau đầu trong công tác kiểm
-					soát hoạt động của nhân viên.Hay bất kỳ ai yêu thích kinh doanh và ấp ủ giấc mơ làm giàu từ một doanh nghiệp vững bền. 
-					Hãy mua ngay quyển sách này để có trong tay những giải pháp tuyệt vời cho cửa hàng của bạn! Giá sản phẩm trên Tiki đã
-					bao gồm thuế theo luật hiện hành. Tuy nhiên tuỳ vào từng loại sản phẩm hoặc phương thức, địa chỉ giao hàng mà có thể
-					phát sinh thêm chi phí khác như phí vận chuyển, phụ phí hàng cồng kềnh, ...
+					<p>{{$book->Mo_Ta}}
 					</p>
 						
 					</div>
 				</div>
+				@endforeach
 											<!--//tab_one-->
 											<div class="tab2">
 					

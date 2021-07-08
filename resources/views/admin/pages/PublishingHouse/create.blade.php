@@ -16,9 +16,9 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="{{route('quan-ly-nha-xuat-ban.store')}}" method="POST" >
+                <form action="{{route('publish.store')}}" method="POST" >
                 @csrf
-               
+                @method('POST')
                 <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Tên Nhà Xuất Bản</label>

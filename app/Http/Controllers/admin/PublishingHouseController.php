@@ -62,14 +62,13 @@ class PublishingHouseController extends Controller
         $nha_xuat_ban->Email=$request->Email;
         $nha_xuat_ban->Trang_Thai=$request->Trang_Thai;
         
-        //if(Category::create($request->all()))
         if($nha_xuat_ban->save())
         {
             Session::flash('message', 'successfully!');
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
 
     /**
@@ -123,7 +122,7 @@ class PublishingHouseController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
 
     /**
@@ -146,7 +145,7 @@ class PublishingHouseController extends Controller
             Session::flash('message', 'successfully!');
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publish.index');
     }
     public function search(Request $request)
     {

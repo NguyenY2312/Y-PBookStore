@@ -14,23 +14,27 @@ class UserController extends Controller
     public function __construct()
     {
         $this->viewprefix='user.pages.';
-        $this->user='user/pages/';
+        $this->viewnamespace='user/';
     }
     public function Index(){
         $sach_moi = Book::orderBy('Id', 'desc')->take(8)->get();
         //return dd($sach);
         $sach_ban_chay = Book::orderBy('Id', 'desc')->take(4)->get();
-        return view($this->user."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
+        return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
 
     public function Shop(){
-        return view($this->user."shop");
+        $book = Book::where('Trang_Thai',2)->paginate(12);
+        return view($this->viewprefix.'shop',compact('book'));
+        //return view($this->user."shop");
     }
     public function Contact(){
         return view($this->user."contact");
     }
-    public function Single(){
-        return view($this->user."single");
+    public function Single($Id){
+        $books = Book::where('Id',$Id)->where('Trang_Thai',2)->get();
+        return view($this->viewprefix.'single',compact('books'));
+        //return view($this->user."single");
     }
     public function About(){
         return view($this->user."about");
