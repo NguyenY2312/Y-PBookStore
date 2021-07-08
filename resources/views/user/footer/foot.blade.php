@@ -84,7 +84,7 @@
 			open = false;
 		});
 	</script>
-	>
+	
 	<!--quantity-->
 	<script>
 		$('.value-plus').on('click', function () {
