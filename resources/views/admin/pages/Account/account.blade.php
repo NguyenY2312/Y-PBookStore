@@ -40,6 +40,7 @@
                     <th>Mật khẩu</th>
                     <th>Họ tên</th>
                     <th>Giới tính</th>
+                    <th>Ngày sinh</th>
                     <th>Số điện thoại</th>
                     <th>Địa chỉ</th>
                     <th>Loại tài khoản</th>
@@ -58,6 +59,7 @@
                     @else {{"Nữ"}}
                     @endif
                     </td>
+                    <td>{{$account->Ngay_Sinh}}</td>
                     <td>{{$account->So_Dien_Thoai}}</td>
                     <td>{{$account->Dia_Chi}}</td>
                     <td>

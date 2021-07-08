@@ -27,7 +27,7 @@
                                 <hr width="100%">
 								<br>
                                 <div style="padding-bottom:10px; text-align:center">
-                                <img src="{!! asset('user/images/user.jpg')!!}" alt="" style="width:150px; height:150px; border-radius:50%">
+                                <img src="/{{ $Anh_Dai_Dien }}" alt="" style="width:150px; height:150px; border-radius:50%">
                                 </div>
                                 <br>
                                 <h6 style="font-weight:700; padding-bottom:10px">THÔNG TIN CÁ NHÂN</h6>
@@ -35,23 +35,31 @@
 								<tbody>
 									<tr>
 										<td>Họ và tên:</td>
-										<td>Ngô Hoài Phong</td>
+										<td>{{ $Ho_Ten }}</td>
 									</tr>
 									<tr>
+										<td>Giới tính:</td>
+										<td>
+                                        @if($Gioi_Tinh == 0) {{"Nam"}}
+                                        @else {{"Nữ"}}
+                                        @endif
+                                        </td>
+									</tr>
+                                    <tr>
 										<td>Ngày sinh:</td>
-										<td>07-2000</td>
+										<td>{{ $Ngay_Sinh }}</td>
 									</tr>
 									<tr>
 										<td>Số điện thoại:</td>
-										<td>0933809731</td>
+										<td>{{ $So_Dien_Thoai }}</td>
 									</tr>
                                     <tr>
 										<td>Email:</td>
-										<td>ngophong030700@gmail.com</td>
+										<td>{{ $Email }}</td>
 									</tr>
 									<tr>
 										<td>Địa chỉ:</td>
-										<td>800 Nguyễn Văn Linh, Phường Tân Phú, Quận 7, TP HCM</td>
+										<td>{{ $Dia_Chi }}</td>
 									</tr>
                                     <tr>
                                         <td><button class="btn btn-success" style="font-size:90%">CẬP NHẬT</button><td>

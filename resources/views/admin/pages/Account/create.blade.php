@@ -71,14 +71,18 @@
                     <input class="form-control" type="text" name="Dia_Chi" id="Dia_Chi" placeholder="Địa chỉ">
                   </div>
                   <div class="col-lg-6">
+                    <label for="exampleInputTopic">Ngày sinh</label>
+                    <input class="form-control" type="date" name="Ngay_Sinh" id="Ngay_Sinh" placeholder="Ngày sinh">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
                     <label for="exampleInputTitle">Loại tài khoản</label>
                     <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Loai_TK" class="form-control" id="Loai_TK" placeholder="Title">
                         <option value="0">Admin</option>
                         <option value="1">Khách hàng</option>
                     </select>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-lg-6">
                     <label for="exampleInputTitle">Trạng thái</label>
                     <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Trang_Thai" class="form-control" id="Trang_Thai" placeholder="Title">
@@ -104,13 +108,15 @@
     function CheckInput(){
       var Email = document.getElementById('Email').value;
       var Pass = document.getElementById('Mat_Khau').value;
+      var Birth = document.getElementById('Ngay_Sinh').value;
       var Name = document.getElementById('Ho_Ten').value;
       var Phone = document.getElementById('So_Dien_Thoai').value;
       var Address = document.getElementById('Dia_Chi').value;
       var atposition = Email.indexOf("@");
       var dotposition = Email.lastIndexOf(".");
       var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-      if(Email === "" || Pass === "" || Name === "" || Phone === "" || Address === "")
+      var today = new Date();
+      if(Email === "" || Pass === "" || Name === "" || Phone === "" || Address === "" || Birth === "")
       {
         alert("Vui lòng nhập đầy đủ thông tin!");
         return false;
@@ -124,6 +130,11 @@
         alert("Số điện thoại không hợp lệ!");
             return false;
       }
+      else if (Birth - today < 3650)
+      {
+        alert("Ngày sinh không hợp lệ!");
+            return false;
+      }     
       return true;
     }
 </script>

@@ -43,6 +43,11 @@ class AccountController extends Controller
     {
         
         //
+        if($request->file('Anh_Dai_Dien')!= null){
+            $name = $request->file('Anh_Dai_Dien')->getClientOriginalName();     
+            $anh_dai_dien = $request->file('Anh_Dai_Dien')->move('images', $name);
+        } 
+        else $anh_dai_dien='/images/noimage.png';
         $account = Account::where('Email', $request['Email'])->get();
         foreach ($account as $item)
         {
@@ -53,7 +58,8 @@ class AccountController extends Controller
                 'Email'=>$request['Email'],
                 'Mat_Khau'=>$request['Mat_Khau'],
                 'Ho_Ten'=>$request['Ho_Ten'],
-                'Anh_Dai_Dien'=>$request['Anh_Dai_Dien'],
+                'Anh_Dai_Dien'=>$anh_dai_dien,
+                'Ngay_Sinh'=>$request['Ngay_Sinh'],
                 'So_Dien_Thoai'=>$request['So_Dien_Thoai'],
                 'Dia_Chi'=>$request['Dia_Chi'],
                 'Loai_TK'=>$request['Loai_TK'],
@@ -105,10 +111,17 @@ class AccountController extends Controller
     {
         //
         $tai_khoan = Account::find($id);
+        if($request->file('Anh_Dai_Dien')!= null){
+            $name = $request->file('Anh_Dai_Dien')->getClientOriginalName();     
+            $anh_dai_dien = $request->file('Anh_Dai_Dien')->move('images', $name);
+        } 
+        else $anh_dai_dien=$tai_khoan->Anh_Dai_Dien;
+      
         $tai_khoan->Email=$request['Email'];
         $tai_khoan->Mat_Khau=$request['Mat_Khau'];
         $tai_khoan->Ho_Ten=$request['Ho_Ten'];
-        $tai_khoan->Anh_Dai_Dien=$request['Anh_Dai_Dien'];
+        $tai_khoan->Ngay_Sinh=$request['Ngay_Sinh'];
+        $tai_khoan->Anh_Dai_Dien=$anh_dai_dien;
         $tai_khoan->So_Dien_Thoai=$request['So_Dien_Thoai'];
         $tai_khoan->Dia_Chi=$request['Dia_Chi'];
         $tai_khoan->Loai_TK=$request['Loai_TK'];

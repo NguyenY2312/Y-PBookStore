@@ -45,7 +45,7 @@
                   @foreach ($khuyen_mai as $promotion)
                   <tr>
                     <td>{{$promotion->Ten_CTKM}}</td>
-                    <td><img src="{{$promotion->Banner}}" style="width:80px; height:20px; border-radius:0%"></td>
+                    <td><img src="\{{$promotion->Banner}}" style="width:80px; height:20px; border-radius:0%"></td>
                     <td>{{$promotion->Tg_Bat_Dau}}</td>
                     <td>{{$promotion->Tg_Ket_Thuc}}</td>
                     <td style="max-width:250px; text-overflow: ellipsis; overflow: hidden">{{$promotion->Noi_Dung}}</td>

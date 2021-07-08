@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/quan-ly-tai-khoan', function () {
-    return view('user/pages/usermanagement');
-});
+Route::resource('/quan-ly-tai-khoan',user\AccountController::class);
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");
 Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");

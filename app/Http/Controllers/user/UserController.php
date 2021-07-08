@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\user;
-
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\ImageBook;
+use App\Models\PublishingHouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,10 @@ class UserController extends Controller
         $this->user='user/pages/';
     }
     public function Index(){
-        return view($this->user."index");
+        $sach_moi = Book::orderBy('Id', 'desc')->take(8)->get();
+        //return dd($sach);
+        $sach_ban_chay = Book::orderBy('Id', 'desc')->take(4)->get();
+        return view($this->user."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
 
     public function Shop(){

@@ -92,7 +92,7 @@
                         <tr>
                         <td>{{$detailpromotion->TheLoai->The_Loai}}</td>
                         <td>
-                            <img src="{{$detailpromotion->Banner}}" style="width:80px; height:20px; border-radius:0%">
+                            <img src="\{{$detailpromotion->Banner}}" style="width:80px; height:20px; border-radius:0%">
                         </td>
                         <td>{{$detailpromotion->Gia_Tri_Khuyen_Mai}}%</td>
                         <td>
@@ -188,7 +188,7 @@
                 </select>
               </div>             
               <div class="col-lg-6" id="gia-tri">
-                <label for="exampleInputTopic">Giá trị khuyến mãi</label>
+                <label for="exampleInputTopic">Giá trị khuyến mãi (%)</label>
                 <input type="text" class="form-control" name="Gia_Tri" id="GTKM">
               </div>
               <div class="col-lg-6" style="margin-top:20px">
