@@ -24,8 +24,8 @@ Route::post("/dang-ky","LoginController@register")->name("register");
 Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/","UserController@Index")->name("user.index");
     Route::get("/cua-hang/{Id?}","UserController@Shop")->name("user.shop");
-    Route::get("/contact","UserController@Contact")->name("user.contact");
-    Route::get("/single/{Id?}","UserController@Single")->name("user.single");
+    Route::get("contact","UserController@Contact")->name("user.contact");
+    Route::get("/single/{book_id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
     Route::get("cart","UserController@Cart")->name("user.cart");
 

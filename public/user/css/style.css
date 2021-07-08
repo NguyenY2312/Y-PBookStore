@@ -1679,7 +1679,7 @@ ul.links li a:hover {
 }
 .owl-item.active {
     padding: 15px;
-    
+    border: 1px solid #e4e4e4;
 }
 
 /*--social-icons--*/
@@ -1948,6 +1948,7 @@ ul.links li a:hover {
     }
     .owl-item.active {
        padding:0px;
+       border: 1px solid #e4e4e4;
     }
  
 }
