@@ -26,6 +26,7 @@ class LoginController extends Controller
         {
             foreach ($account as $item)
             {
+                $id = $item->Id;
                 $mk = $item->Mat_Khau;
                 $tk = $item->Email;
                 $loaitk = $item->Loai_TK;
@@ -53,7 +54,7 @@ class LoginController extends Controller
                 }
                 else
                 {
-                    Cookie::queue('UserEmail', $tk, 14400);
+                    Cookie::queue('UserId', $id, 14400);
                     return redirect()->route('user.index');
                 }
             }

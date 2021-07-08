@@ -235,33 +235,6 @@
 																	<span class="money ">{{$books->Gia_Tien}} đ</span>
 																</div>
 															</div>
-															<ul class="stars">
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-															</ul>
 														</div>
 														<div class="googles single-item hvr-outline-out">
 															<form action="#" method="post">
@@ -269,11 +242,18 @@
 																<input type="hidden" name="add" value="1">
 																<input type="hidden" name="googles_item" value="Farenheit">
 																<input type="hidden" name="amount" value="575.00">
-																<button type="submit" class="googles-cart pgoogles-cart">
+																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
 																	<i class="fas fa-cart-plus"></i>
 																</button>
 															</form>
-
+														</div>
+														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+														<form>
+														{{ csrf_field() }}
+															<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
+																<i class="fas fa-heart"></i>
+															</button>	
+														</form>
 														</div>
 													</div>
 													<div class="clearfix"></div>
@@ -282,7 +262,7 @@
 										</div>
 									</div>
 									@endforeach
-								
+									<div id="snackbar">Đã thêm vào sách yêu thích</div>
 								</div>
 								<br>
 								{!! $book->links() !!}

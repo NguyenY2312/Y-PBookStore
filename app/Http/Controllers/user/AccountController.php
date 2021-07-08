@@ -5,6 +5,7 @@ use App\Models\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cookie;
+use App\Models\FavoriteBook;
 class AccountController extends Controller
 {
     /**
@@ -14,12 +15,58 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $user = Account::where('Email', Cookie::get('UserEmail'))->first();
+        $user = Account::where('Id', Cookie::get('UserId'))->first();
+        $sach_yeu_thich = FavoriteBook::where('Id_TK', Cookie::get('UserId'))->get();
         //return dd($user);
-        return View('user.pages.usermanagement', $user);
+        return View('user.pages.usermanagement', $user, ['sach_yeu_thich'=>$sach_yeu_thich]);
         //
     }
 
+    public function updateinfomation(Request $request, $id)
+    {
+        //
+        $tai_khoan = Account::find($id);
+        if($request->file('Anh_Dai_Dien')!= null){
+            $name = $request->file('Anh_Dai_Dien')->getClientOriginalName();     
+            $anh_dai_dien = $request->file('Anh_Dai_Dien')->move('images', $name);
+        } 
+        else $anh_dai_dien=$tai_khoan->Anh_Dai_Dien;
+      
+        $tai_khoan->Ho_Ten=$request['Ho_Ten'];
+        $tai_khoan->Ngay_Sinh=$request['Ngay_Sinh'];
+        $tai_khoan->Gioi_Tinh=$request['Gioi_Tinh'];
+        $tai_khoan->Anh_Dai_Dien=$anh_dai_dien;
+        $tai_khoan->So_Dien_Thoai=$request['So_Dien_Thoai'];
+        $tai_khoan->Dia_Chi=$request['Dia_Chi'];
+        //$tai_khoan->Gioi_Tinh=$request['Gioi_Tinh'];
+        $tai_khoan->save();
+        return redirect()->back();
+    }
+
+    public function addfavoritebook(Request $request)
+    {
+        $sach = $request['Id_Sach'];
+        $check = FavoriteBook::where('Id_Sach', $sach)->first();
+        if($check == null){
+            $sach_yeu_thich=FavoriteBook::create([
+                'Id_Sach'=>$sach,
+                'Id_TK'=>Cookie::get('UserId')
+            ]);
+            return response()->json('Đã thêm vào sách yêu thích!');
+        }           
+        return response()->json('Sách đã yêu thích');
+    }
+
+    public function deletefavoritebook(Request $request)
+    {
+        $sach = $request['Id'];
+        $sach_yt = FavoriteBook::find($sach);
+        if($sach_yt != null){
+            $sach_yt->delete();
+        }
+        $sach_yeu_thich = FavoriteBook::where('Id_TK', Cookie::get('UserId'))->get();         
+        return response()->json($sach_yeu_thich);
+    }
     /**
      * Show the form for creating a new resource.
      *

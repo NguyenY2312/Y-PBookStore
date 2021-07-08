@@ -23,8 +23,16 @@ class UserController extends Controller
         return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
 
-    public function Shop(){
-        $book = Book::where('Trang_Thai',2)->paginate(12);
+    public function Shop($id){
+        if($id == 0){
+            $book = Book::where('Trang_Thai',2)
+                      ->paginate(12);
+        }
+        else{
+        $book = Book::where('Trang_Thai',2)
+                      ->where('The_loai', $id)
+                      ->paginate(12);
+        }
         return view($this->viewprefix.'shop',compact('book'));
         //return view($this->user."shop");
     }

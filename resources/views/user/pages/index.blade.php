@@ -70,6 +70,7 @@
 			<!--//banner -->
 		</div>
 	</div>
+	<div id="snackbar">Đã thêm vào sách yêu thích</div>
 	<!--//banner-sec-->
 	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container-fluid">
@@ -86,7 +87,7 @@
 									<img src="{!! $newbook->Anh_Bia !!}" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="{{ route('user.single')}}" class="link-product-add-cart">Xem Chi Tiết</a>
+											<a href="{{ route('user.single', $newbook->Id)}}" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
 									<span class="product-new-top" style="background-color: green;">Mới</span>
@@ -113,6 +114,14 @@
 												<input type="hidden" name="amount" value="">
 												<button type="submit" class="googles-cart pgoogles-cart">
 													<i class="fas fa-cart-plus" style="padding-top:15px"></i>
+												</button>	
+											</form>
+										</div>
+										<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+											<form>
+											{{ csrf_field() }}
+												<button type="button" class="googles-heart" onclick="Favorite({{ $newbook->Id }})">
+													<i class="fas fa-heart"></i>
 												</button>	
 											</form>
 										</div>
@@ -146,7 +155,7 @@
 										<img src="{!! $hotbook->Anh_Bia !!}" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="{{ route('user.single')}}" class="link-product-add-cart">Xem Chi Tiết</a>
+												<a href="{{ route('user.single', $hotbook->Id)}}" class="link-product-add-cart">Xem Chi Tiết</a>
 											</div>
 										</div>
 										<span class="product-new-top" style="background-color: red;">Bán chạy</span>
@@ -175,6 +184,14 @@
 														<i class="fas fa-cart-plus" style="padding-top:15px"></i>
 													</button>	
 												</form>
+											</div>
+											<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+											<form>
+											{{ csrf_field() }}
+												<button type="button" class="googles-heart" onclick="Favorite({{ $hotbook->Id }})">
+													<i class="fas fa-heart"></i>
+												</button>	
+											</form>
 											</div>
 										</div>
 										<div class="clearfix"></div>

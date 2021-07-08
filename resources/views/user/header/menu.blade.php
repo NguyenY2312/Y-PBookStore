@@ -29,89 +29,63 @@
 							<ul class="dropdown-menu mega-menu">
 								<li>
 									<div class="row">
-										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> Learning Books </h5>
-											<ul>
+										<div class="col-md-4 media-list span4 text-center">
+											<h5 class="tittle-w3layouts-sub"> Học Tập </h5>
+											<ul style="font-size:120%">
 												<li class="media-mini mt-3">
-													<a href="{{ route('user.shop')}}">High School</a>
+													<a href="{{ route('user.shop', 8)}}">Sách giáo khoa</a>
 												</li>
 												<li class="">
-													<a href="{{ route('user.shop')}}"> Primary School</a>
+													<a href="{{ route('user.shop', 12)}}"> Sách tham khảo</a>
 												</li>
 												<li>
-													<a href="{{ route('user.shop')}}">Textbook</a>
-												</li>
-												<li class="mt-3">
-													<h5>Reference Books</h5>
-												</li>
-												<li class="mt-2">
-													<a href="about.html">Basic</a>
+													<a href="{{ route('user.shop', 11)}}"> Sách học ngoại ngữ/Từ điển </a>
 												</li>
 												<li>
-													<a href="customer.html">Advanced</a>
+													<a href="{{ route('user.shop', 5)}}"> Văn học </a>
 												</li>
 											</ul>
 										</div>
-										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> Light Novels </h5>
-											<ul>
+										<div class="col-md-4 media-list span4 text-center">
+											<h5 class="tittle-w3layouts-sub"> Giải Trí </h5>
+											<ul style="font-size:120%">
 												<li class="media-mini mt-3">
-													<a href="shop.html">Romantic</a>
+													<a href="{{ route('user.shop', 1)}}"> Truyện tranh </a>
 												</li>
 												<li class="">
-													<a href="shop.html"> Life </a>
+													<a href="{{ route('user.shop', 2)}}"> Sách thiếu nhi </a>
 												</li>
-												<li>
-													<a href="shop.html"> Science Fiction </a>
+												<li class="">
+													<a href="{{ route('user.shop', 7)}}"> Văn hóa/Du lịch</a>
 												</li>
-												<li class="mt-3">
-													<h5>Comic Books</h5>
+												<li class="">
+													<a href="{{ route('user.shop', 9)}}"> Thưởng thức/Đời sống</a>
 												</li>
-												<li class="mt-2">
-													<a href="about.html">Color Comics</a>
-												</li>
-												<li>
-													<a href="customer.html">Fable</a>
-												</li>
-												<li>
-													<a href="customer.html">Fairy Tales</a>
-												</li>
-												<li>
-													<a href="customer.html">Manga</a>
-												</li>
-												<li>
-													<a href="customer.html">Myth</a>
-												</li>
-												<li>
-													<a href="customer.html">Ghost Story</a>
-												</li>
+												<li class="">
+													<a href="{{ route('user.shop', 10)}}"> Tạp chí</a>
+												</li>													
 											</ul>
 										</div>
-										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> Learning Books </h5>
-											<ul>
+										<div class="col-md-4 media-list span4 text-center">
+											<h5 class="tittle-w3layouts-sub"> Kỹ Năng </h5>
+											<ul style="font-size:120%">
 												<li class="media-mini mt-3">
-													<a href="{{ route('user.shop')}}">High School</a>
+													<a href="{{ route('user.shop', 3)}}">Kỹ năng sống</a>
 												</li>
 												<li class="">
-													<a href="{{ route('user.shop')}}"> Primary School</a>
+													<a href="{{ route('user.shop', 4)}}"> Kinh tế </a>
 												</li>
 												<li>
-													<a href="{{ route('user.shop')}}">Textbook</a>
-												</li>
-												<li class="mt-3">
-													<h5>View more pages</h5>
-												</li>
-												<li class="mt-2">
-													<a href="{{ route('user.about')}}">Giới Thiệu</a>
+													<a href="{{ route('user.shop', 13)}}">Sách ẩm thực</a>
 												</li>
 												<li>
-													<a href="customer.html">Customers</a>
+													<a href="{{ route('user.shop', 6)}}">Tâm lý/Giáo dục</a>
 												</li>
 											</ul>
 										</div>
 									</div>
 									<hr>
+									<a href="{{ route('user.shop', 0)}}" style="text-align:center;"><h5 class="tittle-w3layouts-sub"> Xem Tất Cả </h5></a>
 								</li>
 							</ul>
 						</li>
