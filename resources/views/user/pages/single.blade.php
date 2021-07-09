@@ -23,21 +23,20 @@
 		<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 			<div class="container">
 				<div class="inner-sec-shop pt-lg-4 pt-3">
-				@foreach($books as $book)
 					<div class="row">
 							<div class="col-lg-4 single-right-left ">
 									<div class="grid images_3_of_2">
 										<div class="flexslider1">
 					
 											<ul class="slides">
-												<li data-thumb="{{$book->Anh_Bia}}">
-													<div class="thumb-image"> <img src="{{$book->Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{{$Anh_Bia}}">
+													<div class="thumb-image"> <img src="{{$Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{{$book->Anh_Bia}}">
-													<div class="thumb-image"> <img src="{{$book->Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{{$Anh_Bia}}">
+													<div class="thumb-image"> <img src="{{$Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{{$book->Anh_Bia}}">
-													<div class="thumb-image"> <img src="{{$book->Anh_Bia }}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												<li data-thumb="{{$Anh_Bia}}">
+													<div class="thumb-image"> <img src="{{$Anh_Bia }}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
 											</ul>
 											<div class="clearfix"></div>
@@ -45,43 +44,33 @@
 									</div>
 								</div>
 								<div class="col-lg-8 single-right-left simpleCart_shelfItem">
-									<h3>{{$book->Ten_Sach}} </h3>
+									<h3>{{$Ten_Sach}} </h3>
 									<br>
 									<div class="row">
   										<div class="col-6">
-										  <span>Công ty phát hành: </span>
-										  <a href='#'>NXB Đà Nẵng</a>
-										  </div>
-  										<div class="col-6">
 										  <span>Tác giả:</span>
-										  <span>{{$book->Tac_Gia}}</span>
+										  <span>{{$Tac_Gia}}</span>
 										</div>
 									</div>
 									<div class="row">
   										<div class="col-6">
 										  <span>Nhà xuất bản: </span>
-										  <span>NXB Đà Nẵng</span>
+										  <span></span>
 										  </div>
   										<div class="col-6">
 										  <span>Hình thức bìa:</span>
-										  <span>Bìa Mềm</span>
+										  <span>
+										  @if($Loai_Bia == 0) {{"Bìa cứng"}}
+										  @elseif (($Loai_Bia == 1)) {{"Massmarket Paperback"}}
+										  @else {{"Bìa mềm"}}
+										  @endif
+										  </span>
 										</div>
 									</div>
 
-									<p><span class="item_price">{{number_format($book->Gia_Tien).' '. 'VNĐ'}}</span>
-										<del>169.000 ₫</del>
+									<p><span class="item_price">{{number_format($Gia_Tien)}} VNĐ</span>
+										<del>169.000 VNĐ</del>
 									</p>
-									<div class="rating1">
-										<ul class="stars">
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-											<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
 									<br>
 									
   										<div class="row">
@@ -107,11 +96,10 @@
 									<br>
 									
 									<label class="control-label">Số Lượng: </label>
-                            <div class="form-group quantity-box ">
-                                
-                                <input class="form-control col-sm-3" value="1" min="1" max="20" type="number">
-                            </div>
-							<br>
+									<div class="form-group quantity-box" style="display: inline-flex;align-items: baseline;justify-content: space-evenly;">                                
+										<input class="form-control col-sm-3" value="1" min="1" max="{{$So_Luong}}" type="number" style="width:150px"> (Còn {{$So_Luong}} sản phẩm)
+									</div>
+									<br>
                        
                     
 									<div class="occasion-cart">
@@ -141,14 +129,11 @@
 								<h4>THÔNG TIN CHI TIẾT</h4>
 								<br>
 								<table class="thong-tin">
+								@foreach ($thong_tin_sach as $book)
 								<tbody>
 									<tr>
-										<td>Công ty phát hành</td>
-										<td>Nhà Xuất Bản Đà Nẵng</td>
-									</tr>
-									<tr>
-										<td>Ngày xuất bản</td>
-										<td>09-2020</td>
+										<td>Thể loại</td>
+										<td>{{$book->TheLoai->The_Loai}}</td>
 									</tr>
 									<tr>
 										<td>Dịch Giả</td>
@@ -164,9 +149,10 @@
 									</tr>
 									<tr>
 										<td>Nhà xuất bản</td>
-										<td>Nhà Xuất Bản Đà Nẵng</td>
+										<td>{{$book->NhaXuatBan->Ten_NXB}}</td>
 									</tr>
 								</tbody>
+								@endforeach
 								</table>
 								<br>
 									<div id="horizontalTab">
@@ -181,12 +167,11 @@
 					
 					<div class="single_page">
 					<h5>MÔ TẢ SẢN PHẨM</h5>
-					<p>{{$book->Mo_Ta}}
+					<p>{{$Mo_Ta}}
 					</p>
 						
 					</div>
 				</div>
-				@endforeach
 											<!--//tab_one-->
 											<div class="tab2">
 					
@@ -251,7 +236,7 @@
 														<img src="{!! asset($tuong_tu->Anh_Bia)!!}" class="img-fluid" alt="">
 														<div class="men-cart-pro">
 															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single',$tuong_tu->Id)}}" class="link-product-add-cart">Xem Ngay</a>
+																<a href="{{ route('user.single', $tuong_tu->Id)}}" class="link-product-add-cart">Xem Ngay</a>
 															</div>
 														</div>
 														<span class="product-new-top">Nổi bật</span>
@@ -268,46 +253,28 @@
 																		<span class="money ">{{number_format($tuong_tu->Gia_Tien).' '. 'VNĐ'}}</span>
 																	</div>
 																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
 															</div>
 															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Fastrack Aviator">
-																	<input type="hidden" name="amount" value="325.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-
+															<form action="#" method="post">
+																<input type="hidden" name="cmd" value="_cart">
+																<input type="hidden" name="add" value="1">
+																<input type="hidden" name="googles_item" value="Farenheit">
+																<input type="hidden" name="amount" value="575.00">
+																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
+																	<i class="fas fa-cart-plus"></i>
+																</button>
+															</form>
 															</div>
+															@if (Cookie::get('UserId') != null)
+															<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+																<form>
+																{{ csrf_field() }}
+																	<button type="button" class="googles-heart" onclick="Favorite({{ $tuong_tu->Id }})">
+																		<i class="fas fa-heart"></i>
+																	</button>	
+																</form>
+															</div>
+															@endif
 														</div>
 
 													</div>
@@ -322,5 +289,6 @@
 					</div>
 					<!--//slider-->
 				</div>
+				<div id="snackbar">Đã thêm vào sách yêu thích</div>
 		</section>
 		@stop

@@ -28,7 +28,7 @@
 							<h3>Ưu Đãi Lớn
 								<span>Giảm Giá 50% Tất Cả Các Loại Sách</span>
 							</h3>
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
+							<a href="{{ route('user.shop', 0)}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 						</div>
 					</div>
 					<div class="carousel-item item2" style="background-image: url(user/images/banner-4.jpg);">
@@ -36,7 +36,7 @@
 							<h3>Với Y&P
 								<span>Kiến Thức Là Vô Tận</span>
 							</h3>
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
+							<a href="{{ route('user.shop', 0)}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 
 						</div>
 					</div>
@@ -45,7 +45,7 @@
 							<h3>Đến Với Y&P
 								<span>Chúng Tôi Sẽ Cho Bạn Dịch Vụ Tốt Nhất</span>
 							</h3>
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
+							<a href="{{ route('user.shop', 0)}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 							<h3>Đồng Hành Cùng Y&P
 								<span>Trở Lại Trường Sau Mùa Hè</span>
 							</h3>
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
+							<a href="{{ route('user.shop', 0)}}" class="btn btn-sm animated-button gibson-three mt-4">Đến Cửa Hàng</a>
 						</div>
 					</div>
 				</div>
@@ -117,6 +117,7 @@
 												</button>	
 											</form>
 										</div>
+										@if (Cookie::get('UserId') != null)
 										<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 											<form>
 											{{ csrf_field() }}
@@ -125,6 +126,7 @@
 												</button>	
 											</form>
 										</div>
+										@endif
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -185,14 +187,16 @@
 													</button>	
 												</form>
 											</div>
+											@if (Cookie::get('UserId') != null)
 											<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
-											<form>
-											{{ csrf_field() }}
-												<button type="button" class="googles-heart" onclick="Favorite({{ $hotbook->Id }})">
-													<i class="fas fa-heart"></i>
-												</button>	
-											</form>
+												<form>
+												{{ csrf_field() }}
+													<button type="button" class="googles-heart" onclick="Favorite({{ $hotbook->Id }})">
+														<i class="fas fa-heart"></i>
+													</button>	
+												</form>
 											</div>
+											@endif
 										</div>
 										<div class="clearfix"></div>
 									</div>

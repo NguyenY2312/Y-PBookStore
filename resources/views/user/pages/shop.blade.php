@@ -202,14 +202,16 @@
 																</button>
 															</form>
 														</div>
+														@if (Cookie::get('UserId') != null)
 														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
-														<form>
-														{{ csrf_field() }}
-															<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
-																<i class="fas fa-heart"></i>
-															</button>	
-														</form>
+															<form>
+															{{ csrf_field() }}
+																<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
+																	<i class="fas fa-heart"></i>
+																</button>	
+															</form>
 														</div>
+														@endif
 													</div>
 													<div class="clearfix"></div>
 												</div>

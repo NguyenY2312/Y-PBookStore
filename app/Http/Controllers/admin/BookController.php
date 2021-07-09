@@ -119,7 +119,7 @@ class BookController extends Controller
         $sach->So_Trang=$request['So_Trang'];
         $sach->Trang_Thai=$request['Trang_Thai'];
         $sach->save();
-        return redirect()->route('book.index');
+        return redirect()->back();
         //return dd($sach);
         //
     }
@@ -128,7 +128,7 @@ class BookController extends Controller
         $sach = Book::find($id);
         $sach->is_deleted = 1;
         $sach->save();
-        return redirect()->route('book.index');
+        return redirect()->back();
     }
     /**
      * Remove the specified resource from storage.

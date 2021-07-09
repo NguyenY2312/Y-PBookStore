@@ -128,7 +128,7 @@ class AccountController extends Controller
         $tai_khoan->Gioi_Tinh=$request['Gioi_Tinh'];
         $tai_khoan->Trang_Thai=$request['Trang_Thai'];
         $tai_khoan->save();
-        return redirect()->route('account.index');
+        return redirect()->back();
     }
 
     public function delete(Request $request, $id)
@@ -136,7 +136,7 @@ class AccountController extends Controller
         $tai_khoan = Account::find($id);
         $tai_khoan->is_deleted = 1;
         $tai_khoan->save();
-        return redirect()->route('account.index');
+        return redirect()->back();
     }
     /**
      * Remove the specified resource from storage.
