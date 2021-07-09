@@ -35,7 +35,7 @@ class UserController extends Controller
         return view($this->viewprefix.'shop',compact('book'));
     }
     public function Contact(){
-        return view($this->user."contact");
+        return view($this->viewprefix.'contact');
     }
     public function Single($book_id){
         //lấy thông tin sách chi tiết
@@ -48,7 +48,7 @@ class UserController extends Controller
         //return view($this->user."single");
     }
     public function About(){
-        return view($this->user."about");
+        return view($this->viewprefix.'about');
     }
     public function Cart(){
         return view($this->user."cart");

@@ -54,7 +54,7 @@
 								<p><span style="font-weight: 400;">Chỉ với thao tác đăng ký đơn giản, hãy trở thành thành viên của Y&B Books ngay hôm nay!</span></p>
 								</div>
 
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Mua Ngay</a>
+							<a href="{{ route('user.shop',0)}}" class="btn btn-sm animated-button gibson-three mt-4">Mua Ngay</a>
 
 						</div>
 					</div>

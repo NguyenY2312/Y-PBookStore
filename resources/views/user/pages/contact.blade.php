@@ -7,7 +7,7 @@
 
 					<ul class="short">
 						<li>
-							<a href="index.html">Trang Chủ</a>
+							<a href="{{route('user.index')}}">Trang Chủ</a>
 							<i>|</i>
 						</li>
 						<li>Liên Hệ</li>
