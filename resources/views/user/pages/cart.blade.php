@@ -39,14 +39,15 @@
 								<th>Số lượng</th>
 								<th>Giá</th>
 								<th>Tổng tiền</th>
-								<th>Xóa</th>
+								<th>Thao tác</th>
 							</tr>
 						</thead>
 						<tbody>
 						
 						@foreach($content as $v_content)
+						<form action="{{route('cap-nhat-gio-hang')}}" method="POST">
+									{{csrf_field()}}
 							<tr class="rem1">
-								
 								<td class="invert-image">
 									<a href="{{ route('user.single')}}">
 										<img src="{{$v_content->options->image}}" alt=" " class="img-responsive">
@@ -54,21 +55,14 @@
 								</td>
 								<td class="invert">{{$v_content->name}} </td>
 								<td class="invert">
-									<div class="quantity">
-									<form action="{{route('cap-nhat-gio-hang')}}" method="POST">
-									{{csrf_field()}}
-										
-										<input type="text" name="cart_quantity" value="{{$v_content->qty}}">
 									
-							
+									
+										<input type="text" name="cart_quantity" style="width:50px;border: 1px solid #CDCDCD;color: #868282" value="{{$v_content->qty}}">
 										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
-										<input type="submit" name="update_qty" value="Cập nhật" class="btn">
-											
-										</div>
-									</div>
+										
+										
+									
 								</td>
-								
-
 								<td class="invert">{{number_format($v_content->price)}} VNĐ</td>
 								<td class="invert">
 								@php
@@ -80,10 +74,13 @@
 									<a href="{{route('xoa-gio-hang',$v_content->rowId)}}">
 										<i class='fas fa-trash-alt' style='font-size:15px; color:black'></i>
 									</a>
+									<button type="submit" name="update_qty" style='background:white;border:none'><i class='fas fa-sync-alt' style='font-size:15px; color:black'></i></button>
+
 
 								</td>
 							</tr>
-					
+							
+						</form>
 						@endforeach
 				
 						</tbody>
