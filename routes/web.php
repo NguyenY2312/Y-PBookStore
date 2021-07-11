@@ -29,7 +29,12 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("contact","UserController@Contact")->name("user.contact");
     Route::get("/single/{book_id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
-    Route::get("cart","UserController@Cart")->name("user.cart");
+    //giỏ hàng
+    Route::get("/gio-hang","UserController@showCart")->name("gio-hang");
+    Route::post("/chuyen-gio-hang","UserController@saveCart")->name("chuyen-gio-hang");
+    Route::post("/cap-nhat-gio-hang","UserController@updateCart")->name("cap-nhat-gio-hang");
+    Route::get("/xoa-gio-hang/{rowId?}","UserController@deleteCart")->name("xoa-gio-hang");
+
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
 });
 

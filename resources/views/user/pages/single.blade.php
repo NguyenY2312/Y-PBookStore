@@ -109,11 +109,12 @@
                     
 									<div class="occasion-cart">
 											<div class="googles single-item singlepage">
-													<form action="#" method="post">
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="googles_item" value="Farenheit">
-														<input type="hidden" name="amount" value="149.000">
+													<form action="{{route('chuyen-gio-hang')}}" method="POST">
+													{{csrf_field()}}
+														<input type="hidden" name="qty" value="1" min="1">
+														<input type="hidden" name="bookid_hidden" value="{{$bk->Id}}">
+														<input type="hidden" name="googles_item" value="{{$bk->Ten_Sach}}">
+														<input type="hidden" name="amount" value="{{number_format($bk->Gia_Tien)}} VNĐ">
 														<button type="submit" class="googles-cart pgoogles-cart">
 															Chọn Mua
 														</button>
