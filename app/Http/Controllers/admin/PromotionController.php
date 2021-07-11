@@ -20,7 +20,7 @@ class PromotionController extends Controller
     public function index()
     {
         // 
-        $khuyen_mai = Promotion::where('is_deleted', 0)->orderBy('Id', 'desc')->paginate(7);
+        $khuyen_mai = Promotion::where('is_deleted', 0)->orderBy('Id', 'desc')->paginate(4);
         return View('admin.pages.Promotion.promotion', ['khuyen_mai' => $khuyen_mai]);
     }
 
