@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/quan-ly-tai-khoan',"user\AccountController@index")->name("user.account");
 Route::post('/them-sach-yeu-thich',"user\AccountController@addfavoritebook")->name("user.accountheart");
+Route::post('/doi-mat-khau',"user\AccountController@changepass")->name("user.accountpass");
 Route::post('/xoa-sach-yeu-thich',"user\AccountController@deletefavoritebook")->name("user.deleteheart");
 Route::post('/cap-nhat-thong-tin/{id}',"user\AccountController@updateinfomation")->name("user.updateinfomation");
 Route::post('/cua-hang/loc-san-pham/{Id?}',"user\UserController@ShopQuery")->name("user.shopquery");

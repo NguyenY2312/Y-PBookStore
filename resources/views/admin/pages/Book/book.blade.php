@@ -52,8 +52,8 @@
                     <td><img src="{{$book->Anh_Bia}}" style="width:80px; height:80px; border-radius:0%"></td>
                     <td style="max-width: 180px; text-overflow: ellipsis; overflow: hidden">{{$book->Ten_Sach}}</td>
                     <td>{{$book->TheLoai->The_Loai}}</td>
-                    <td>{{$book->Tac_Gia}}</td>
-                    <td>{{$book->NhaXuatBan->Ten_NXB}}</td>
+                    <td style="max-width: 180px; text-overflow: ellipsis; overflow: hidden">{{$book->Tac_Gia}}</td>
+                    <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden">{{$book->NhaXuatBan->Ten_NXB}}</td>
                     <td>
                     @if($book->Phien_Ban == 0) {{"Bản thường"}}
                     @else {{"Bản đặc biệt"}}

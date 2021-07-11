@@ -15,7 +15,7 @@
                     <a href="{{route('user.index')}}">Trang Chủ</a>
                     <i>|</i>
                 </li>
-                <li>Sản Phẩm</li>
+                <li>Khuyến Mãi</li>
             </ul>
         </div>
     </div>
@@ -45,7 +45,7 @@
                         <h3 class="agileits-sear-head">Khoảng giá</h3>
                         <ul class="dropdown-menu6">
                             <li>
-                                <a onclick="Price(this)" class="{{ Request::get('price') == 1 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1])}}" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a>  
+                                <a class="{{ Request::get('price') == 1 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1])}}" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a>  
                                 <a class="{{ Request::get('price') == 2 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 2])}}" style="border:solid 1px; padding:5px">100000 - 200000 VNĐ</a>
                             </li>
                             <li style="padding-top:20px">
@@ -139,7 +139,7 @@
         var z = location.href;
         var attrs = z.substr(z.indexOf("page"), 6);
         if(y != null){
-            if(y.search("page") === -1 && y.search("price") === -1 && y.search("orderby") === -1 && ys.search("category") === -1)
+            if(y.search("page") === -1 && y.search("price") === -1 && y.search("orderby") === -1 && y.search("category") === -1)
             {
 
             }
@@ -198,16 +198,6 @@
     function onChangedCate(){
         $('#form-cate').submit();
         localStorage.mycate = location.href;
-    }
-    function Price(item){
-        var route = item.href;
-        var price = route.substr(route.indexOf("price"), 7);
-        var nowroute = location.href;
-        if(nowroute.search(price) != -1)
-        {
-            var m = nowroute.replace(price, '');
-            window.location.href = m; 
-        }
     }
 </script>
 @stop

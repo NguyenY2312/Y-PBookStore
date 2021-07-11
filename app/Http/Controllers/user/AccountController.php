@@ -67,6 +67,17 @@ class AccountController extends Controller
         $sach_yeu_thich = FavoriteBook::where('Id_TK', Cookie::get('UserId'))->get();         
         return response()->json($sach_yeu_thich);
     }
+
+    public function changepass(Request $request)
+    {
+        $mk = $request['Mat_Khau'];
+        $tai_khoan = Account::find(Cookie::get('UserId'));
+        if($tai_khoan != null){
+            $tai_khoan->Mat_Khau = $mk;
+        }
+        $tai_khoan->save();      
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
