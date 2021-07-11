@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     public function Contact(){
-        return view($this->user."contact");
+        return view($this->viewprefix.'contact');
     }
 
     public function Promotion(Request $request){
@@ -138,7 +138,7 @@ class UserController extends Controller
         //return view($this->user."single");
     }
     public function About(){
-        return view($this->user."about");
+        return view($this->viewprefix.'about');
     }
     public function Cart(){
         return view($this->user."cart");

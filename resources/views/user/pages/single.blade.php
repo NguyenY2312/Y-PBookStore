@@ -7,7 +7,7 @@
 
 					<ul class="short">
 						<li>
-							<a href="index.html">Trang chủ</a>
+							<a href="#">Trang chủ</a>
 							<i>|</i>
 						</li>
 						<li>Chi tiết sản phẩm</li>
@@ -44,31 +44,36 @@
 									</div>
 								</div>
 								<div class="col-lg-8 single-right-left simpleCart_shelfItem">
-									<h3>{{$Ten_Sach}} </h3>
+									@foreach ($thong_tin_sach as $bk)
+									<h3>{{$bk->Ten_Sach}} </h3>
 									<br>
 									<div class="row">
   										<div class="col-6">
 										  <span>Tác giả:</span>
-										  <span>{{$Tac_Gia}}</span>
+										  <span>{{$bk->Tac_Gia}}</span>
+										</div>
+										<div class="col-6">
+										  <span>Thể loại:</span>
+										  <span>{{$bk->TheLoai->The_Loai}}</span>
 										</div>
 									</div>
 									<div class="row">
   										<div class="col-6">
 										  <span>Nhà xuất bản: </span>
-										  <span></span>
+										  <span>{{$bk->NhaXuatBan->Ten_NXB}}</span>
 										  </div>
   										<div class="col-6">
 										  <span>Hình thức bìa:</span>
 										  <span>
-										  @if($Loai_Bia == 0) {{"Bìa cứng"}}
-										  @elseif (($Loai_Bia == 1)) {{"Massmarket Paperback"}}
+										  @if($bk->Loai_Bia == 0) {{"Bìa cứng"}}
+										  @elseif (($bk->Loai_Bia == 1)) {{"Massmarket Paperback"}}
 										  @else {{"Bìa mềm"}}
 										  @endif
 										  </span>
 										</div>
 									</div>
 
-									<p><span class="item_price">{{number_format($Gia_Tien)}} VNĐ</span>
+									<p><span class="item_price">{{number_format($bk->Gia_Tien)}} VNĐ</span>
 										<del>169.000 VNĐ</del>
 									</p>
 									<br>
@@ -97,7 +102,7 @@
 									
 									<label class="control-label">Số Lượng: </label>
 									<div class="form-group quantity-box" style="display: inline-flex;align-items: baseline;justify-content: space-evenly;">                                
-										<input class="form-control col-sm-3" value="1" min="1" max="{{$So_Luong}}" type="number" style="width:150px"> (Còn {{$So_Luong}} sản phẩm)
+										<input class="form-control col-sm-3" value="1" min="1" max="{{$bk->So_Luong}}" type="number" style="width:150px"> (Còn {{$bk->So_Luong}} sản phẩm)
 									</div>
 									<br>
                        
@@ -117,7 +122,7 @@
 		
 											</div>
 									</div>
-									
+									@endforeach
 								</div>
 								<div class="clearfix"> </div>
 								<!--/tabs-->
@@ -239,7 +244,7 @@
 																<a href="{{ route('user.single', $tuong_tu->Id)}}" class="link-product-add-cart">Xem Ngay</a>
 															</div>
 														</div>
-														<span class="product-new-top">Nổi bật</span>
+												
 													</div>
 													<div class="item-info-product">
 
