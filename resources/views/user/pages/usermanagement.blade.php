@@ -98,7 +98,11 @@
                         @else {{"Bản đặc biệt"}}
                         @endif
                         </td>
-                        <td>{{$favoritebook->Sach->Gia_Tien}} VNĐ</td>
+                        <td>
+                            @if($favoritebook->Sach->Gia_Khuyen_Mai == 0) {{number_format($favoritebook->Sach->Gia_Tien)}} VNĐ
+                            @else {{number_format($favoritebook->Sach->Gia_Khuyen_Mai)}} VNĐ
+                            @endif
+                        </td>
                         <td>
                         @if($favoritebook->Sach->Trang_Thai == 0) {{"Ngừng bán"}}
                         @elseif (($favoritebook->Sach->Trang_Thai == 1)) {{"Tạm hết hàng"}}
@@ -173,7 +177,7 @@
               <div class="col-lg-12">
                 <label for="exampleInputTopic">Ảnh đại diện</label>
                 <div class="custom-file">
-                    <input accept="image/*" type="file" class="form-control" name="Anh_Dai_Dien" id="Anh_Bia" placeholder="Chọn ảnh" />
+                    <input accept="image/*" title="" type="file" class="form-control" name="Anh_Dai_Dien" id="Anh_Dai_Dien" placeholder="Chọn ảnh" />
                </div>
               </div>
               <div class="col-lg-12" style="margin-top:20px">

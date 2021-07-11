@@ -115,6 +115,9 @@
 					$('.rem3').remove();
 				});
 			});
+			$('.page-link').on('click', function(e){
+				localStorage.myurl = location.href;
+			});
 		});
 	</script>
 	<!--//close-->
@@ -122,20 +125,26 @@
 	<!-- price range (top products) -->
 	<script src="{!! asset('user/js/jquery-ui.js') !!}"></script>
 		<script>
-			//<![CDATA[ 
-			$(window).load(function () {
-				$("#slider-range").slider({
-					range: true,
-					min: 0,
-					max: 700000,
-					values: [0, 150000],
-					slide: function (event, ui) {
-						$("#amount").val( ui.values[0] +"đ" + " - " + ui.values[1]+ "đ");
-					}
-				});
-				$("#amount").val( $("#slider-range").slider("values", 0)+"đ" + " - " + $("#slider-range").slider("values", 1)+"đ" );
-
-			}); //]]>
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				step: 10000,
+				max: 700000,
+				values: [0, 700000],
+				slide: function (event, ui) {
+					$("#amount").val( ui.values[0] +"đ" + " - " + ui.values[1]+ "đ");
+					var x = ui.values[0];
+					var y = ui.values[1];
+					$.ajax({
+						url: "{{ route('user.shopquery', 0) }}",
+						type:'POST',
+						data: {Min: x, Max: y, _token: '{{ csrf_token() }}' },
+						success: function(data) {
+						}
+					});
+				}
+			});
+			$("#amount").val( $("#slider-range").slider("values", 0)+"đ" + " - " + $("#slider-range").slider("values", 1)+"đ" );
 		</script>
 	<!--// Count-down -->
 	<script src="{{ asset('user/js/owl.carousel.js') }}"></script>

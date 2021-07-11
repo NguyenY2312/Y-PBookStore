@@ -45,8 +45,11 @@ class PromotionController extends Controller
     {
         $get_used = Promotion::where([ ['Trang_Thai','=', 0], ['is_deleted','=', 0] ]);
         //
-        $name = $request->file('Banner')->getClientOriginalName();
-        if ($request->file('Banner') != null) $pathimg = $request->file('Banner')->move('images', $name);
+        if ($request->file('Banner') != null)
+        {
+            $name = $request->file('Banner')->getClientOriginalName();
+            $pathimg = $request->file('Banner')->move('images', $name);
+        }
         else $pathimg = '/admin/images/promotion/';
         //lấy trạng thái
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
@@ -55,7 +58,8 @@ class PromotionController extends Controller
         if ($enddate < $datenow) $trangthai = 1;
         else if ($startdate > $datenow) $trangthai = 2;
         else $trangthai = 0;
-        if ($trangthai == 0 && $get_used->count() > 0)
+
+        if ($trangthai == 0 && $get_used != null)
         {
             $errors = new MessageBag(['create' => ["Có khuyến mãi đang áp dụng. Không thể tạo nữa!"]]);
             return redirect()->route('promotion.create')->withErrors($errors);          
@@ -114,13 +118,12 @@ class PromotionController extends Controller
     {
         //
         $get_used = Promotion::where([ ['Trang_Thai','=', 0], ['is_deleted','=', 0] ])->first();
-        if ($get_used->count() > 0){
-            $used_Id = $get_used->Id;
-        }
-        //
         $khuyen_mai = Promotion::find($id);
-        $name = $request->file('Banner')->getClientOriginalName();
-        if ($request->file('Banner') != null) $pathimg = $request->file('Banner')->move('images', $name);
+        if ($request->file('Banner') != null)
+        { 
+            $name = $request->file('Banner')->getClientOriginalName();
+            $pathimg = $request->file('Banner')->move('images', $name);
+        }
         else $pathimg = $khuyen_mai->Banner;
         //lấy trạng thái
         $datenow = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
@@ -129,10 +132,27 @@ class PromotionController extends Controller
         if ($enddate < $datenow) $trangthai = 1;
         else if ($startdate > $datenow) $trangthai = 2;
         else $trangthai = 0;
-        if ($trangthai == 0 && $used_Id != $id)
-        {
-            $errors = new MessageBag(['update' => ["Có khuyến mãi đang áp dụng. Không thể tạo nữa!"]]);
-            return redirect()->route('promotion.edit', $id)->withErrors($errors);          
+        //
+        if ($get_used != null){
+            $used_Id = $get_used->Id;
+            //
+            if ($trangthai == 0 && $used_Id != $id)
+            {
+                $errors = new MessageBag(['update' => ["Có khuyến mãi đang áp dụng. Không thể tạo nữa!"]]);
+                return redirect()->route('promotion.edit', $id)->withErrors($errors);          
+            }
+            else
+            {
+                $khuyen_mai->Ten_CTKM = $request['Ten_CTKM'];
+                $khuyen_mai->Banner = $pathimg;
+                $khuyen_mai->Tg_Bat_Dau = $startdate;
+                $khuyen_mai->Tg_Ket_Thuc = $enddate;
+                $khuyen_mai->Noi_Dung = $request['Noi_Dung'];
+                $khuyen_mai->Link_Chi_Tiet = $request['Link_Chi_Tiet'];
+                $khuyen_mai->Trang_Thai = $trangthai;
+                $khuyen_mai->save();
+                return redirect()->back();
+            }
         }
         else
         {
@@ -144,7 +164,7 @@ class PromotionController extends Controller
             $khuyen_mai->Link_Chi_Tiet = $request['Link_Chi_Tiet'];
             $khuyen_mai->Trang_Thai = $trangthai;
             $khuyen_mai->save();
-            return redirect()->route('promotion.index');
+            return redirect()->back();
         }
     }
 
@@ -177,13 +197,9 @@ class PromotionController extends Controller
 
     public function addpromotiondetail(Request $request)
     {
-        $name = $request->file('Banner_The_Loai')->getClientOriginalName();
-        if ($request->file('Banner_The_Loai') != null) $pathimg = $request->file('Banner_The_Loai')->move('images', $name);
-        else $pathimg = '/admin/images/promotion/';
         $noi_dung=DetailPromotion::create([
             'Id_Khuyen_Mai'=>$request['Id_Khuyen_Mai'],
             'Id_The_Loai'=>$request['The_Loai'],
-            'Banner'=>$pathimg,
             'Gia_Tri_Khuyen_Mai'=>$request['Gia_Tri'],
             'Kich_Hoat'=>$request['Kich_Hoat'],
         ]);
@@ -195,11 +211,7 @@ class PromotionController extends Controller
     {
         $id = $request['Id_NDKM'];
         $noi_dung = DetailPromotion::find($id);
-        $name = $request->file('Banner_The_Loai')->getClientOriginalName();
-        if ($request->file('Banner_The_Loai') != null) $pathimg = $request->file('Banner_The_Loai')->move('images', $name);
-        else $pathimg = $noi_dung->Banner;
         $noi_dung->Id_The_Loai = $request['The_Loai'];
-        $noi_dung->Banner = $pathimg;
         $noi_dung->Gia_Tri_Khuyen_Mai = $request['Gia_Tri'];
         $noi_dung->Kich_Hoat = $request['Kich_Hoat'];
         $noi_dung->save();

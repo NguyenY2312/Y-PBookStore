@@ -16,6 +16,7 @@ Route::get('/quan-ly-tai-khoan',"user\AccountController@index")->name("user.acco
 Route::post('/them-sach-yeu-thich',"user\AccountController@addfavoritebook")->name("user.accountheart");
 Route::post('/xoa-sach-yeu-thich',"user\AccountController@deletefavoritebook")->name("user.deleteheart");
 Route::post('/cap-nhat-thong-tin/{id}',"user\AccountController@updateinfomation")->name("user.updateinfomation");
+Route::post('/cua-hang/loc-san-pham/{Id?}',"user\UserController@ShopQuery")->name("user.shopquery");
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");
 Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");
@@ -28,7 +29,7 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/single/{book_id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
     Route::get("cart","UserController@Cart")->name("user.cart");
-
+    Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
 });
 
 Route::group(['middleware' => ['checklogin']], function () {

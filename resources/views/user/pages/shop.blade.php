@@ -171,7 +171,7 @@
 										<div class="product-googles-info googles">
 											<div class="men-pro-item">
 												<div class="men-thumb-item">
-													<img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid" alt="">
+													<img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
 															<a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Chi Tiết</a>
@@ -184,10 +184,10 @@
 														<div class="grid_meta">
 															<div class="product_price">
 																<h4 class= "hidden"> 
-																	<a href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
+																	<a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
 																</h4>
 																<div class="grid-price mt-2">
-																	<span class="money ">{{number_format($books->Gia_Tien).' '. 'VNĐ'}}</span>
+																	<span class="money gia-tien">{{number_format($books->Gia_Tien).' '. 'VNĐ'}}</span>
 																</div>
 															</div>
 														</div>

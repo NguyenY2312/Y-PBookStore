@@ -11,14 +11,13 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-bottom: -10px">
 					<ul class="navbar-nav nav-mega mx-auto">
 						<!-- Trang chủ -->
-						<li class="nav-item active">
-							<a class="nav-link ml-lg-0" href="{{ route('user.index')}}">Trang Chủ
-								<span class="sr-only">(current)</span>
+						<li class="nav-item">
+							<a class="nav-link ml-lg-0" id="nav-home" href="{{ route('user.index')}}">Trang Chủ
 							</a>
 						</li>
 						<!-- Ưu đãi lớn -->
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('user.shop')}}">Khuyến Mãi</a>
+							<a class="nav-link" id="nav-ctkm" href="{{ route('user.promotion')}}">Khuyến Mãi</a>
 						</li>
 						<!-- Cửa hàng -->
 						<li class="nav-item dropdown">

@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('UpdatePromotionDaily')->everyMinute();
+        $schedule->command('UpdatePricePromotion')->everyMinute();
     }
 
     /**

@@ -55,7 +55,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <label for="exampleInputContent">Nội dung</label>
-                    <textarea type="text" style="height:100px" class="form-control" name="Noi_Dung" id="Noi_Dung" placeholder="Nhập nội dung chương trình khuyến mãi"></textarea>
+                    <textarea type="text" style="height:100px" class="form-control" name="Noi_Dung" id="editor" placeholder="Nhập nội dung chương trình khuyến mãi"></textarea>
                   </div>
                 </div>
                 <div class="row">
@@ -74,6 +74,7 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('admin/js/ckeditor.js') }}"></script>
 <script>
     function Active(){
       var element = document.getElementById("active_promotion");
@@ -99,4 +100,58 @@
       else return true;
     }
 </script>
+<script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+            
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'indent',
+                        'outdent',
+                        '|',
+                        'imageUpload',
+                        'blockQuote',
+                        'insertTable',
+                        'mediaEmbed',
+                        'undo',
+                        'redo'
+                    ]
+                },
+                language: 'vi',
+                image: {
+                    toolbar: [
+                        'imageTextAlternative',
+                        'imageStyle:full',
+                        'imageStyle:side'
+                    ]
+                },
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                },
+                licenseKey: '',
+              
+            })
+            .then(editor => {
+                window.editor = editor;
+            
+      })
+      .catch(error => {
+          console.error('Oops, something went wrong!');
+          console.error('Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:');
+          console.warn('Build id: xxscohtgbl7s-8o65j7c6blw0');
+          console.error(error);
+      });
+</script>  
 @stop

@@ -20,6 +20,7 @@ class Book extends Model
         'So_Trang',
         'SKU',
         'Gia_Tien',
+        'Gia_Khuyen_Mai',
         'Mo_Ta',
         'The_Loai',
         'Trang_Thai',
@@ -31,5 +32,8 @@ class Book extends Model
     }
     public function TheLoai(){
         return $this->belongsTo('App\Models\Category', 'The_Loai', 'Id');
+    }
+    public function KhuyenMai(){
+        return $this->belongsTo('App\Models\DetailPromotion', 'The_Loai', 'Id_The_Loai');
     }
 }

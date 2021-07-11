@@ -208,5 +208,11 @@
 				</div>			
 		</div>
 	</section>
+	<script>
+	window.onload = function(){
+	var element = document.getElementById("nav-home");
+	element.classList.add("active");
+	}
+	</script>
 	<!-- about -->
 @stop

@@ -55,7 +55,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <label for="exampleInputContent">Nội dung</label>
-                    <textarea type="text" style="height:100px" class="form-control" name="Noi_Dung" id="Noi_Dung" placeholder="Nhập nội dung chương trình khuyến mãi">{{$Noi_Dung}}</textarea>
+                    <textarea type="text" style="height:100px" class="form-control" name="Noi_Dung" id="editor" placeholder="Nhập nội dung chương trình khuyến mãi">{{$Noi_Dung}}</textarea>
                   </div>
                 </div>
                 <div class="row">
@@ -81,7 +81,6 @@
                         <thead>
                         <tr>
                         <th>Thể loại sách</th>
-                        <th>Banner</th>
                         <th>Giá trị khuyến mãi</th>
                         <th>Kích hoạt</th>
                         <th>Thao tác</th>
@@ -91,9 +90,6 @@
                         @foreach ($noi_dung_khuyen_mai as $detailpromotion)
                         <tr>
                         <td>{{$detailpromotion->TheLoai->The_Loai}}</td>
-                        <td>
-                            <img src="\{{$detailpromotion->Banner}}" style="width:80px; height:20px; border-radius:0%">
-                        </td>
                         <td>{{$detailpromotion->Gia_Tri_Khuyen_Mai}}%</td>
                         <td>
                         @if($detailpromotion->Kich_Hoat == 0) <input style="margin-left:30px;width:20px;height:20px;margin-bottom: 0.5rem;" checked="" disabled="" type="checkbox" id="exampleInputTitle">
@@ -138,14 +134,8 @@
               </div>            
               <div class="col-lg-6">
                 <label for="exampleInputTopic">Giá trị khuyến mãi (%)</label>
-                <input type="text" class="form-control" name="Gia_Tri" id="Gia_Tri">              
-              </div>
-              <div class="col-lg-6" style="margin-top:20px">
-                <label for="exampleInputTopic">Chọn banner</label>
-                <div class="custom-file">
-                    <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" name="Banner_The_Loai" id="Anh_Bia" placeholder="Chọn ảnh" />
-                    <input type="text" value="{{$Id}}" class="form-control" name="Id_Khuyen_Mai" hidden>
-               </div>
+                <input type="text" class="form-control" name="Gia_Tri" id="Gia_Tri">
+                <input type="text" value="{{$Id}}" class="form-control" name="Id_Khuyen_Mai" hidden>              
               </div>
               <div class="col-lg-6" style="margin-top:20px">
                 <label for="exampleInputTopic">Kích hoạt</label>
@@ -190,13 +180,7 @@
               <div class="col-lg-6" id="gia-tri">
                 <label for="exampleInputTopic">Giá trị khuyến mãi (%)</label>
                 <input type="text" class="form-control" name="Gia_Tri" id="GTKM">
-              </div>
-              <div class="col-lg-6" style="margin-top:20px">
-                <label for="exampleInputTopic">Chọn banner</label>
-                <div class="custom-file">
-                    <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" name="Banner_The_Loai" id="Banner_The_Loai" placeholder="Chọn ảnh" />
-                    <input type="text" class="form-control" name="Id_NDKM" id="Id_NDKM" hidden>
-               </div>
+                <input type="text" class="form-control" name="Id_NDKM" id="Id_NDKM" hidden>
               </div>
               <div class="col-lg-6 kich-hoat" style="margin-top:20px">
                 <label for="exampleInputTopic">Kích hoạt</label>
@@ -216,6 +200,7 @@
   </div>
 </div>
 <!-- End Modal -->
+<script src="{{ asset('admin/js/ckeditor.js') }}"></script>
 <script>
     function sendId(k, t, v, a){
         var Id = document.getElementById('Id_NDKM');
@@ -261,4 +246,58 @@
       else return true;
     }
 </script>
+<script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+            
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'indent',
+                        'outdent',
+                        '|',
+                        'imageUpload',
+                        'blockQuote',
+                        'insertTable',
+                        'mediaEmbed',
+                        'undo',
+                        'redo'
+                    ]
+                },
+                language: 'vi',
+                image: {
+                    toolbar: [
+                        'imageTextAlternative',
+                        'imageStyle:full',
+                        'imageStyle:side'
+                    ]
+                },
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells'
+                    ]
+                },
+                licenseKey: '',
+              
+            })
+            .then(editor => {
+                window.editor = editor;
+            
+      })
+      .catch(error => {
+          console.error('Oops, something went wrong!');
+          console.error('Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:');
+          console.warn('Build id: xxscohtgbl7s-8o65j7c6blw0');
+          console.error(error);
+      });
+</script>  
 @stop
