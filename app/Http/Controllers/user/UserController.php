@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use Cart;
 class UserController extends Controller
 {
     //
@@ -140,7 +141,33 @@ class UserController extends Controller
     public function About(){
         return view($this->viewprefix.'about');
     }
-    public function Cart(){
-        return view($this->user."cart");
+    public function showCart(){
+        return view($this->viewprefix."cart");
+    }
+    public function saveCart(Request $request){
+        $Id=$request->bookid_hidden;
+        $So_Luong=$request->qty;
+        $book_info = Book::where('Id',$Id)->where('Trang_Thai',2)->first();
+
+        $data['id']=$book_info->Id;
+        $data['qty']=$So_Luong;
+        $data['name']=$book_info->Ten_Sach;
+        $data['price']=$book_info->Gia_Tien;
+        $data['weight']=$book_info->Gia_Tien;
+        $data['options']['image']=$book_info->Anh_Bia;
+        Cart::add($data);
+
+
+        return redirect()->route('gio-hang');
+    }
+    public function deleteCart($rowId){
+        Cart::update($rowId,0);
+        return redirect()->route('gio-hang');
+    }
+    public function updateCart(Request $request){
+        $rowId=$request->rowId_cart;
+        $qty=$request->cart_quantity;
+        Cart::update($rowId,$qty);
+        return redirect()->route('gio-hang');
     }
 }

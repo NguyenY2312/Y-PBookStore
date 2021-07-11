@@ -48,8 +48,12 @@ table.timetable_sub {
     color: #868282;
 }
 
-.timetable_sub td {
+.timetable_sub tr td {
 	border: 1px solid #CDCDCD;
+}
+.timetable_sub  tr:last-child td {
+		border: none;
+	
 }
 
 td.invert-image a img {

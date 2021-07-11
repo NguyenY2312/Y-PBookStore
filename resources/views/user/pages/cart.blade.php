@@ -24,106 +24,68 @@
 	<!--checkout-->
 	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container">
-			<div class="inner-sec-shop px-lg-4 px-3">
+			<div class="inner-sec-shop">
 				<h3 class="tittle-w3layouts my-lg-4 mt-3">Giỏ hàng </h3>
 				<div class="checkout-right">
+				@php
+				$content= Cart::content();
+				@endphp
 					<table class="timetable_sub">
 						<thead>
 							<tr>
-								<th>STT</th>
 								<th>Hình</th>
-								<th>Số lượng</th>
+
 								<th>Tên sản phẩm</th>
+								<th>Số lượng</th>
 								<th>Giá</th>
+								<th>Tổng tiền</th>
 								<th>Xóa</th>
 							</tr>
 						</thead>
 						<tbody>
+						
+						@foreach($content as $v_content)
 							<tr class="rem1">
-								<td class="invert ">1</td>
+								
 								<td class="invert-image">
 									<a href="{{ route('user.single')}}">
-										<img src="user\images\Book\SACH_KINH_TE\Đừng Bao Giờ Đi Ăn Một Mình (Tái Bản)\DD.png" alt=" " class="img-responsive">
+										<img src="{{$v_content->options->image}}" alt=" " class="img-responsive">
 									</a>
 								</td>
+								<td class="invert">{{$v_content->name}} </td>
 								<td class="invert">
 									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
+									<form action="{{route('cap-nhat-gio-hang')}}" method="POST">
+									{{csrf_field()}}
+										
+										<input type="text" name="cart_quantity" value="{{$v_content->qty}}">
+									
+							
+										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
+										<input type="submit" name="update_qty" value="Cập nhật" class="btn">
+											
 										</div>
 									</div>
 								</td>
-								<td class="invert">Đừng Bao Giờ Đi Ăn Một Mình </td>
+								
 
-								<td class="invert">73.700 ₫</td>
+								<td class="invert">{{number_format($v_content->price)}} VNĐ</td>
 								<td class="invert">
-									<a href="#">
+								@php
+								$subtotal=$v_content->price * $v_content->qty;
+								echo number_format($subtotal).' '.'VNĐ';
+								@endphp
+								</td>
+								<td class="invert">
+									<a href="{{route('xoa-gio-hang',$v_content->rowId)}}">
 										<i class='fas fa-trash-alt' style='font-size:15px; color:black'></i>
 									</a>
 
 								</td>
 							</tr>
-							<tr class="rem2">
-								<td class="invert">2</td>
-								<td class="invert-image">
-									<a href="{{ route('user.single')}}">
-										<img src="user\images\Book\SACH_KINH_TE\How Money Works - Hiểu Hết Về Tiền\DD.png" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Hiểu Hết Về Tiền </td>
-
-								<td class="invert">223.700 ₫</td>
-								<td class="invert">
-									<a href="#">
-											<i class='fas fa-trash-alt' style='font-size:15px;color:black'></i>
-									</a>
-
-								</td>
-							</tr>
-							<tr class="rem3">
-								<td class="invert">3</td>
-								<td class="invert-image">
-									<a href="{{ route('user.single')}}">
-										<img src="user\images\Book\SACH_KINH_TE\Phân Tích Chứng Khoán\DD.png" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Phân Tích Chứng Khoán</td>
-
-								<td class="invert">334.200 ₫</td>
-								<td class="invert">
-									<a href="#">
-											<i class='fas fa-trash-alt' style='font-size:15px;color:black'></i>
-									</a>
-
-								</td>
-							</tr>
-
+					
+						@endforeach
+				
 						</tbody>
 					</table>
 		
@@ -132,11 +94,11 @@
 						
 							<li>Tổng tiền:
 					
-								<span>631.600 ₫</span>
+								<span>{{Cart::subtotal()}} VNĐ</span>
 							</li>
 							<li>Tổng thanh toán:
 							
-								<span>631.600 ₫</span>
+								<span>{{Cart::total()}} VNĐ</span>
 							</li>
 
 						</ul>
