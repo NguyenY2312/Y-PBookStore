@@ -94,7 +94,7 @@
 						</li>
 						<!-- Thông tin & liên hệ -->
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('user.about')}}">Giới Thiệu</a>
+							<a class="nav-link" id="nav-contact" href="{{ route('user.about')}}">Liên Hệ</a>
 						</li>
 						<!-- Thanh tìm kiếm -->
 						<li style="padding: 5px 0 0 15px;">

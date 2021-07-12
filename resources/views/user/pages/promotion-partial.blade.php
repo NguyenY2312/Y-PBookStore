@@ -12,7 +12,7 @@
                             <a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Chi Tiết</a>
                         </div>
                     </div>
-                    <span class="product-new-top" style="background: #F60B0E;">- {{(1 - ($books->Gia_Khuyen_Mai / $books->Gia_Tien))*100}}%</span>
+                    <span class="product-new-top" style="background: #F60B0E;">@if ($books->Gia_Khuyen_Mai != 0) - {{(1 - ($books->Gia_Khuyen_Mai / $books->Gia_Tien))*100}}%  @endif</span>
                 </div>
                 <div class="item-info-product">
                     <div class="info-product-price">

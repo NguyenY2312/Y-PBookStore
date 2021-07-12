@@ -64,6 +64,15 @@ class UpdatePricePromotion extends Command
                 }    
             }
         }
+        else{
+            $sach = Book::all();
+            foreach($sach as $book)
+            {
+                $sp = Book::find($book->Id);
+                $sp->Gia_Khuyen_Mai = 0;
+                $sp->save();
+            }
+        }
         return 0;
     }
 }

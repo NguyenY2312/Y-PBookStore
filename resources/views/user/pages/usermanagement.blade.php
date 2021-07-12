@@ -47,7 +47,7 @@
 									</tr>
                                     <tr>
 										<td>Ngày sinh:</td>
-										<td>{{ $Ngay_Sinh }}</td>
+										<td>{{ date('d-m-Y', strtotime($Ngay_Sinh)) }}</td>
 									</tr>
 									<tr>
 										<td>Số điện thoại:</td>

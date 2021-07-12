@@ -139,6 +139,11 @@
 			alert('Xác thực mật khẩu không khớp!');
 			return false;
 		}
+		else if(x.length < 6 || y.length < 6)
+		{
+			alert('Mật khẩu phải từ 6 - 18 ký tự!');
+			return false;
+		}
 		alert('Cập nhật thành công!');
 		return true;
 	}

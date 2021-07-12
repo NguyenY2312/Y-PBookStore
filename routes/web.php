@@ -18,6 +18,7 @@ Route::post('/doi-mat-khau',"user\AccountController@changepass")->name("user.acc
 Route::post('/xoa-sach-yeu-thich',"user\AccountController@deletefavoritebook")->name("user.deleteheart");
 Route::post('/cap-nhat-thong-tin/{id}',"user\AccountController@updateinfomation")->name("user.updateinfomation");
 Route::post('/cua-hang/loc-san-pham/{Id?}',"user\UserController@ShopQuery")->name("user.shopquery");
+Route::post('/gui-lien-he',"user\AccountController@mailcontact")->name("user.mailcontact");
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");
 Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");

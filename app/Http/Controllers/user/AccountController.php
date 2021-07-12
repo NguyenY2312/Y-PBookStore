@@ -5,6 +5,9 @@ use App\Models\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cookie;
+use Mail;
+use App\Mail\MailContact;
+use App\Mail\MailResponse;
 use App\Models\FavoriteBook;
 class AccountController extends Controller
 {
@@ -77,6 +80,21 @@ class AccountController extends Controller
         }
         $tai_khoan->save();      
         return redirect()->back();
+    }
+
+    public function mailcontact(Request $request)
+    {
+        $data = [
+            'name' => $request['Name'],
+            'email' => $request['Email'],
+            'phone' => $request['Phone'],
+            'content' => $request['Content'],
+        ];
+        Mail::to('ypbookstore2018@gmail.com')->send(new MailContact($data));
+        //password tài khoản: a@123456 
+        Mail::to($request['Email'])->send(new MailResponse());    
+        return redirect()->back();
+        //return dd($data);
     }
     /**
      * Show the form for creating a new resource.

@@ -59,7 +59,7 @@
                     @else {{"Nữ"}}
                     @endif
                     </td>
-                    <td>{{$account->Ngay_Sinh}}</td>
+                    <td>{{ date('d-m-Y', strtotime($account->Ngay_Sinh)) }}</td>
                     <td>{{$account->So_Dien_Thoai}}</td>
                     <td>{{$account->Dia_Chi}}</td>
                     <td>
