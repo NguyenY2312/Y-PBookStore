@@ -99,7 +99,7 @@
 							</li>
 
 						</ul>
-						<a href="payment.html" class="btn">THANH TOÁN</a>
+						<a href="{{route('loginview')}}" class="btn">THANH TOÁN</a>
 						<a href="#" class="btn">TIẾP TỤC MUA SẮM</a>
 					</div>
 					<div class="clearfix"> </div>

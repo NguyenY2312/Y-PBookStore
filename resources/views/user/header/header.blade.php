@@ -86,7 +86,7 @@
 						</li>
 						<!-- Giỏ hàng -->
 						<li>
-								<span class="fas fa-cart-plus" aria-hidden="true" style="color: rgb(35, 175, 156)"></span><a href="#" class="hover-nut"> Giỏ Hàng </a>
+								<span class="fas fa-cart-plus" aria-hidden="true" style="color: rgb(35, 175, 156)"></span><a href="{{route('gio-hang')}}" class="hover-nut"> Giỏ Hàng </a>
 							<!-- <form action="#" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">

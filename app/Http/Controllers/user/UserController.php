@@ -170,4 +170,9 @@ class UserController extends Controller
         Cart::update($rowId,$qty);
         return redirect()->route('gio-hang');
     }
+    public function checkout(){
+        return view($this->viewprefix."checkout");
+    }
+
 }
+
