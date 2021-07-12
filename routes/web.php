@@ -35,7 +35,8 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::post("/chuyen-gio-hang","UserController@saveCart")->name("chuyen-gio-hang");
     Route::post("/cap-nhat-gio-hang","UserController@updateCart")->name("cap-nhat-gio-hang");
     Route::get("/xoa-gio-hang/{rowId?}","UserController@deleteCart")->name("xoa-gio-hang");
-
+    //thanh toán
+    Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
 });
 

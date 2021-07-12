@@ -51,10 +51,7 @@ table.timetable_sub {
 .timetable_sub tr td {
 	border: 1px solid #CDCDCD;
 }
-.timetable_sub  tr:last-child td {
-		border: none;
-	
-}
+
 
 td.invert-image a img {
 	width: 30%;
