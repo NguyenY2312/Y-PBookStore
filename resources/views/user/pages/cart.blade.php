@@ -99,7 +99,11 @@
 							</li>
 
 						</ul>
+						@if (Cookie::get('UserId') == null)
 						<a href="{{route('loginview')}}" class="btn">THANH TOÁN</a>
+						@else
+						<a href="{{route('thanh-toan')}}" class="btn">THANH TOÁN</a>
+						@endif
 						<a href="#" class="btn">TIẾP TỤC MUA SẮM</a>
 					</div>
 					<div class="clearfix"> </div>

@@ -173,6 +173,8 @@ class UserController extends Controller
     public function checkout(){
         return view($this->viewprefix."checkout");
     }
+    
+    
 
 }
 

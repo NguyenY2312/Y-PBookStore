@@ -107,14 +107,16 @@
 										</div>
 										<!-- Thêm vào giỏ hàng -->
 										<div class="googles single-item hvr-outline-out">
-											<form action="#" method="post">
-												<input type="hidden" name="cmd" value="">
-												<input type="hidden" name="add" value="">
-												<input type="hidden" name="googles_item" value="">
-												<input type="hidden" name="amount" value="">
-												<button type="submit" class="googles-cart pgoogles-cart">
-													<i class="fas fa-cart-plus" style="padding-top:15px"></i>
-												</button>	
+											<form action="{{route('chuyen-gio-hang')}}" method="POST">
+												{{csrf_field()}}
+												<input type="hidden" name="qty" value="1" min="1">
+												<input type="hidden" name="bookid_hidden" value="{{$newbook->Id}}">
+												<input type="hidden" name="googles_item" value="{{$newbook->Ten_Sach}}">
+												<input type="hidden" name="amount" value="{{number_format($newbook->Gia_Tien)}} VNĐ">
+												<button type="submit" class="googles-cart pgoogles-cart" style="padding-top: 15px;">
+													<i class="fas fa-cart-plus"></i>
+												</button>
+																
 											</form>
 										</div>
 										@if (Cookie::get('UserId') != null)
@@ -177,15 +179,17 @@
 											</div>
 											<!-- Thêm vào giỏ hàng -->
 											<div class="googles single-item hvr-outline-out">
-												<form action="#" method="post">
-													<input type="hidden" name="cmd" value="">
-													<input type="hidden" name="add" value="">
-													<input type="hidden" name="googles_item" value="">
-													<input type="hidden" name="amount" value="">
-													<button type="submit" class="googles-cart pgoogles-cart">
-														<i class="fas fa-cart-plus" style="padding-top:15px"></i>
-													</button>	
-												</form>
+											<form action="{{route('chuyen-gio-hang')}}" method="POST">
+												{{csrf_field()}}
+												<input type="hidden" name="qty" value="1" min="1">
+												<input type="hidden" name="bookid_hidden" value="{{$hotbook->Id}}">
+												<input type="hidden" name="googles_item" value="{{$hotbook->Ten_Sach}}">
+												<input type="hidden" name="amount" value="{{number_format($hotbook->Gia_Tien)}} VNĐ">
+												<button type="submit" class="googles-cart pgoogles-cart" style="padding-top: 15px;">
+													<i class="fas fa-cart-plus"></i>
+												</button>
+																
+											</form>
 											</div>
 											@if (Cookie::get('UserId') != null)
 											<div class="googles single-item hvr-outline-out" style="margin-top:-15px">

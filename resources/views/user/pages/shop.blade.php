@@ -192,15 +192,18 @@
 															</div>
 														</div>
 														<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Farenheit">
-																<input type="hidden" name="amount" value="575.00">
+															<form action="{{route('chuyen-gio-hang')}}" method="POST">
+																{{csrf_field()}}
+																<input type="hidden" name="qty" value="1" min="1">
+																<input type="hidden" name="bookid_hidden" value="{{$books->Id}}">
+																<input type="hidden" name="googles_item" value="{{$books->Ten_Sach}}">
+																<input type="hidden" name="amount" value="{{number_format($books->Gia_Tien)}} VNĐ">
 																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
 																	<i class="fas fa-cart-plus"></i>
 																</button>
+															
 															</form>
+														
 														</div>
 														@if (Cookie::get('UserId') != null)
 														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
