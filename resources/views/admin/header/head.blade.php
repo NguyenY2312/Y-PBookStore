@@ -50,5 +50,9 @@ ul.breadcrumb li a:hover {
   color: #ff4e00;
   text-decoration: none;
 }
+
+.custom-file-label{
+  height: 46px;
+}
  </style>
 </head>

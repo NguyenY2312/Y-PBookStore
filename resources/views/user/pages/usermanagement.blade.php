@@ -74,7 +74,7 @@
 											<div class="tab1">
 					
 					<div class="single_page">
-                    <table class="table table-bordered" id="favorite-book">
+                    <table class="table table-bordered" id="favorite-book" style="width:1000px">
                     <thead>
                     <tr style="text-align:center">
                         <th>Tên sách</th>
@@ -124,34 +124,33 @@
                 <!--//tab_one-->
                 <div class="tab2">
                     <div class="single_page">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="width:1000px; text-align:center">
                     <thead>
                     <tr style="text-align:center">
-                        <th>Mã đơn hàng</th>
                         <th>Tên người nhận</th>
                         <th>Địa chỉ</th>
+                        <th>Ngày lập</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach ($don_hang as $order)
                     <tr>
-                        <td>BC8OE</td>
-                        <td>Ngô Hoài Phong</td>
-                        <td>800 Nguyễn Văn Linh, Phường Tân Phú, Quận 7, TP HCM</td>
-                        <td>168.000 VNĐ</td>
-                        <td>Đang giao</td>
+                        <td>{{ $order->Account->Ho_Ten }}</td>
+                        <td>{{ $order->Dia_Chi_Giao_Hang }}</td>
+                        <td><!-- {{ date('d-m-Y', strtotime($order->Ngay_Lap)) }} -->{{ $order->Ngay_Lap }}</td>
+                        <td>{{ number_format($order->Tong_Tien) }} VNĐ</td>
+                        <td>
+                            @if($order->Trang_Thai == 0) {{"Đang giao"}}
+                            @elseif (($order->Trang_Thai == 1)) {{"Đã giao"}}
+                            @else {{"Đã hủy"}}
+                            @endif
+                        </td>
                         <td><button class="btn btn-primary">Xem chi tiết</button></td>
                     </tr>
-                    <tr>
-                        <td>BC703</td>
-                        <td>Ngô Hoài Phong</td>
-                        <td>800 Nguyễn Văn Linh, Phường Tân Phú, Quận 7, TP HCM</td>
-                        <td>168.000 VNĐ</td>
-                        <td>Đang giao</td>
-                        <td><button class="btn btn-primary">Xem chi tiết</button></td>
-                    </tr>
+                    @endforeach
                     </tbody>
                     </table>			
                     </div>

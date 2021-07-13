@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 use App\Models\Account;
+use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cookie;
@@ -20,8 +21,9 @@ class AccountController extends Controller
     {
         $user = Account::where('Id', Cookie::get('UserId'))->first();
         $sach_yeu_thich = FavoriteBook::where('Id_TK', Cookie::get('UserId'))->get();
+        $don_hang = Order::where('Id_KH', Cookie::get('UserId'))->get();
         //return dd($user);
-        return View('user.pages.usermanagement', $user, ['sach_yeu_thich'=>$sach_yeu_thich]);
+        return View('user.pages.usermanagement', $user, ['sach_yeu_thich'=>$sach_yeu_thich, 'don_hang'=>$don_hang]);
         //
     }
 

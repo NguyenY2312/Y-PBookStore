@@ -51,15 +51,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-5">
                   <label for="exampleInputTopic">Ảnh bìa</label>
                     <div class="custom-file">
-                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" value="{{ str_replace('/user/images/book/', '', $Anh_Bia) }}" name="Anh_Bia" id="Anh_Bia" placeholder="Chọn ảnh" name="hinh_anh" />
+                        <input accept="*.png|*.jpg|*.jpeg" type="file" class="form-control" value="{{ $Anh_Bia }}" name="Anh_Bia" id="Anh_Bia" placeholder="Chọn ảnh"/>
                     </div>
                   </div>
-                  <!-- <div class="col-lg-3">
-                    <img src="{{$Anh_Bia}}" style="width:80px; height:80px; border-radius:0%">
-                  </div> -->
+                  <div class="col-lg-1">
+                    <img src="{{$Anh_Bia}}" style="width:80px; height:80px; border-radius:0%; border: solid 1px">
+                  </div>
                   <div class="col-lg-6">
                     <label for="exampleInputTopic">Nhà xuất bản</label>
                     <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" name="Nha_Xuat_Ban" class="form-control" id="Nha_Xuat_Ban" placeholder="Title">

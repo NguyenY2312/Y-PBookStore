@@ -36,4 +36,8 @@ class Book extends Model
     public function KhuyenMai(){
         return $this->belongsTo('App\Models\DetailPromotion', 'The_Loai', 'Id_The_Loai');
     }
+    public function AnhHover(){
+        $anh = $this->belongsTo('App\Models\ImageBook', 'Id', 'Id_Sach');
+        return $anh->where('Loai_Anh', 1);
+    }
 }

@@ -26,7 +26,7 @@
 <section class="banner-bottom-wthreelayouts py-lg-5 py-3">
     <div class="container-fluid">
         <div class="inner-sec-shop px-lg-4 px-3">
-            <h2 class="tittle-w3layouts my-lg-4 mt-3 text-center" style="color:#FFC107; font-weight:bold"><i class="fas fa-gift"></i> {{$Ten_CTKM}} <i class="fas fa-gift"></i></h2>
+            <h2 class="tittle-w3layouts my-lg-4 mt-3 text-left" style="color:#FFC107; font-weight:bold"><i class="fas fa-gift"></i> {{$Ten_CTKM}} <i class="fas fa-gift"></i></h2>
             <div class="row">
                 <!-- product left -->
                 <div class="side-bar col-lg-3">
