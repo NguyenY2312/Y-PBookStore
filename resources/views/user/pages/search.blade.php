@@ -4,14 +4,14 @@
 		<div class="banner_inner">
 			<div class="services-breadcrumb">
 				<div class="inner_breadcrumb">
-
-					<ul class="short">
+                    <ul class="short">
 						<li>
 							<a href="{{route('user.index')}}">Trang Chủ</a>
-							<i>|</i>
+							<i class='fas fa-angle-right'></i>
 						</li>
-						<li>Sản Phẩm</li>
+						<li>KẾT QUẢ TÌM KIẾM</li>
 					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -20,15 +20,15 @@
 		<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 			<div class="container-fluid">
 				<div class="inner-sec-shop px-lg-4 px-3">
-					<h4 class="tittle-w3layouts my-lg-4 mt-3">CÁC SẢN PHẨM SÁCH </h4>
+					
 					<div class="row">
 						<!-- product left -->
 						<div class="side-bar col-lg-3">
 							<div class="search-hotel">
 								<h3 class="agileits-sear-head">Tìm kiếm</h3>
 								<form action="{{route('tim-kiem')}}" method="POST">
-									@csrf
-										<input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
+                               @csrf
+										<input class="form-control" type="search" name="search" placeholder="Tìm kiếm" >
 										<button class="btn1">
 												<i class="fas fa-search"></i>
 										</button>
@@ -167,15 +167,15 @@
 								
 								<div class="row">
 									<!-- /womens -->
-									@foreach($book as $books)
+									@foreach($search_book as $sbook)
 									<div class="col-md-3 product-men women_two shop-gd">
 										<div class="product-googles-info googles">
 											<div class="men-pro-item">
 												<div class="men-thumb-item">
-													<img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
+													<img src="{!! asset($sbook->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Chi Tiết</a>
+															<a href="{{ route('user.single',$sbook->Id)}}" class="link-product-add-cart">Chi Tiết</a>
 														</div>
 													</div>
 													<span class="product-new-top">Mới</span>
@@ -185,10 +185,10 @@
 														<div class="grid_meta">
 															<div class="product_price">
 																<h4 class= "hidden"> 
-																	<a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
+																	<a class="ten-sach" href="{{ route('user.single',$sbook->Id)}}">{{$sbook->Ten_Sach}}</a>
 																</h4>
 																<div class="grid-price mt-2">
-																	<span class="money gia-tien">{{number_format($books->Gia_Tien).' '. 'VNĐ'}}</span>
+																	<span class="money gia-tien">{{number_format($sbook->Gia_Tien).' '. 'VNĐ'}}</span>
 																</div>
 															</div>
 														</div>
@@ -196,9 +196,9 @@
 															<form action="{{route('chuyen-gio-hang')}}" method="POST">
 																{{csrf_field()}}
 																<input type="hidden" name="qty" value="1" min="1">
-																<input type="hidden" name="bookid_hidden" value="{{$books->Id}}">
-																<input type="hidden" name="googles_item" value="{{$books->Ten_Sach}}">
-																<input type="hidden" name="amount" value="{{number_format($books->Gia_Tien)}} VNĐ">
+																<input type="hidden" name="bookid_hidden" value="{{$sbook->Id}}">
+																<input type="hidden" name="googles_item" value="{{$sbook->Ten_Sach}}">
+																<input type="hidden" name="amount" value="{{number_format($sbook->Gia_Tien)}} VNĐ">
 																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
 																	<i class="fas fa-cart-plus"></i>
 																</button>
@@ -210,7 +210,7 @@
 														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 															<form>
 															{{ csrf_field() }}
-																<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
+																<button type="button" class="googles-heart" onclick="Favorite({{ $sbook->Id }})">
 																	<i class="fas fa-heart"></i>
 																</button>	
 															</form>
@@ -226,7 +226,7 @@
 									<div id="snackbar">Đã thêm vào sách yêu thích</div>
 								</div>
 								<br>
-								{!! $book->links() !!}
+								{!! $search_book->links() !!}
 								
 						
 								

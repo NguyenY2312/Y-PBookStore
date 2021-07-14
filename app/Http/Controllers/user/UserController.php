@@ -173,7 +173,17 @@ class UserController extends Controller
     public function checkout(){
         return view($this->viewprefix."checkout");
     }
-    
+    public function bookSearch(Request $request){
+        $tk=$request->search;
+        $search_book=Book::where('Trang_Thai',2)
+                    ->where('Ten_Sach','like','%'.$tk.'%')
+                    ->orwhere('Tac_Gia','like','%'.$tk.'%')
+                    ->orwhere('Mo_Ta','like','%'.$tk.'%')
+                    ->orwhere('Gia_Tien','like','%'.$tk.'%')
+                    ->orderBy('Id','DESC')
+                    ->paginate('12');
+        return view($this->viewprefix.'search',compact('search_book'));
+    }
     
 
 }
