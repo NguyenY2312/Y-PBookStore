@@ -268,10 +268,16 @@
 																	<h4 class="hidden">
 																		<a href="{{ route('user.single'), $tuong_tu->Id}}">{{$tuong_tu->Ten_Sach}} </a>
 																	</h4>
+																	@if($tuong_tu->Gia_Khuyen_Mai != 0)
 																	<div class="grid-price mt-2">
-																		<span class="money ">{{number_format($tuong_tu->Gia_Tien).' '. 'VNĐ'}}</span>
+																		<span class="money gia-tien">{{number_format($tuong_tu->Gia_Khuyen_Mai)}} VNĐ <i style="color:gray; font-size:70%; text-decoration-line:line-through;"> {{number_format($tuong_tu->Gia_Tien).' '. 'VNĐ'}} </i></span>
 																	</div>
-																</div>
+																	@else
+																	<div class="grid-price mt-2">
+																		<span class="money gia-tien">{{number_format($tuong_tu->Gia_Tien).' '. 'VNĐ'}}</span>
+																	</div>
+																	@endif
+																	</div>
 															</div>
 															@if (Cookie::get('UserId') != null)
 															<div class="googles single-item hvr-outline-out">

@@ -94,14 +94,20 @@
 								<div class="item-info-product">
 									<div class="info-product-price">
 										<!-- Tên và giá tiền -->
-										<div class="grid_meta">
+										<div class="grid_meta" style="padding-left:20px">
 											<div class="product_price">
 												<h4 style="padding-top:20px; color: #959596; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
 													<a href="{{ route('user.single')}}">{{ $newbook->Ten_Sach }}</a>
 												</h4>
+												@if ($newbook->Gia_Khuyen_Mai == 0)
 												<div class="grid-price mt-2">
-													<span class="money ">{{ $newbook->Gia_Tien }} VNĐ</span>
+													<span class="money ">{{ number_format($newbook->Gia_Tien) }} VNĐ</span>
 												</div>
+												@else
+												<div class="grid-price mt-2">
+													<span class="money">{{ number_format($newbook->Gia_Khuyen_Mai) }} VNĐ</span> &nbsp; <i style="color:gray; font-size:80%; text-decoration-line:line-through;"> {{number_format($newbook->Gia_Tien).' '. 'VNĐ'}} </i></span>
+												</div>
+												@endif
 											</div>
 										</div>
 										<!-- Thêm vào giỏ hàng -->
@@ -161,16 +167,22 @@
 									<div class="item-info-product">
 										<div class="info-product-price">
 											<!-- Tên và giá tiền -->
-											<div class="grid_meta">
+											<div class="grid_meta" style="padding-left:20px">
 												<div class="product_price">
 												<h4 style="padding-top:20px; color: #959596; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
 														<a href="{{ route('user.single')}}">{{ $hotbook->Ten_Sach }}</a>
 													</h4>
+													@if ($hotbook->Gia_Khuyen_Mai == 0)
 													<div class="grid-price mt-2">
-														<span class="money ">{{ $hotbook->Gia_Tien }} VNĐ</span>
+														<span class="money ">{{ number_format($hotbook->Gia_Tien) }} VNĐ</span>
+													</div>
+													@else
+													<div class="grid-price mt-2">
+														<span class="money">{{ number_format($hotbook->Gia_Khuyen_Mai) }} VNĐ</span> &nbsp; <i style="color:gray; font-size:80%; text-decoration-line:line-through;"> {{number_format($hotbook->Gia_Tien).' '. 'VNĐ'}} </i></span>
+													</div>
+													@endif
 													</div>
 												</div>
-											</div>
 											<!-- Thêm vào giỏ hàng -->
 											@if (Cookie::get('UserId') != null)
 											<div class="googles single-item hvr-outline-out">
