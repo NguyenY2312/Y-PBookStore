@@ -98,10 +98,13 @@
 						</li>
 						<!-- Thanh tìm kiếm -->
 						<li style="padding: 5px 0 0 15px;">
-							<input type="text" class="input-search">
-							<button style="border-radius: 0.25rem; padding: 0.25rem 0.5rem; background-color: rgb(104, 101, 92); color: cornsilk;" type="button">
+						<form action="{{route('tim-kiem')}}" method="POST"> 
+							@csrf
+							<input type="search"  name="search">
+							<button style="border-radius: 0.25rem; padding: 0.25rem 0.5rem; background-color: rgb(104, 101, 92); color: cornsilk;" type="submit">
 								<i class="fas fa-search"></i>
-							</button>	
+							</button>
+						</form>	
 						</li>
 					</ul>
 

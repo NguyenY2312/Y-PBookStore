@@ -44,6 +44,8 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     //thanh toán
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
+    //tìm kiếm
+    Route::post("/tim-kiem","UserController@bookSearch")->name("tim-kiem");
 });
 
 Route::group(['middleware' => ['checklogin']], function () {
