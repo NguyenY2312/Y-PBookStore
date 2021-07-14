@@ -69,4 +69,6 @@
 				</p>
 			</div>
 		</div>
+		<div id="snackbar">Đã thêm vào sách yêu thích</div>
+		<div id="addcart">Đã thêm vào giỏ hàng</div>
 	</footer>

@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
-use Cart;
+use Cookie;
+use App\Models\Cart;
 class UserController extends Controller
 {
     //
@@ -142,7 +143,15 @@ class UserController extends Controller
         return view($this->viewprefix.'about');
     }
     public function showCart(){
-        return view($this->viewprefix."cart");
+        if(Cookie::get('UserId') != null){
+            $gio_hang = Cart::where('Id_TK', Cookie::get('UserId'))->get();
+            return view($this->viewprefix."cart", ['gio_hang' => $gio_hang]);
+        }
+        else
+        {
+            $errors = new MessageBag(['error' => ["Bạn chưa đăng nhập. Vui lòng đăng nhập để xem giỏ hàng!"]]);
+            return view($this->viewprefix."error")->withErrors($errors);
+        }
     }
     public function saveCart(Request $request){
         $Id=$request->bookid_hidden;
@@ -161,14 +170,8 @@ class UserController extends Controller
         return redirect()->route('gio-hang');
     }
     public function deleteCart($rowId){
-        Cart::update($rowId,0);
-        return redirect()->route('gio-hang');
     }
     public function updateCart(Request $request){
-        $rowId=$request->rowId_cart;
-        $qty=$request->cart_quantity;
-        Cart::update($rowId,$qty);
-        return redirect()->route('gio-hang');
     }
     public function checkout(){
         return view($this->viewprefix."checkout");

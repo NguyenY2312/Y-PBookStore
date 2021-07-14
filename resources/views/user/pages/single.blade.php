@@ -1,5 +1,13 @@
 @extends('user.layout')
 	@section('content')
+	<style>
+		div.vertical-line{
+      width: 0px; /* Use only border style */
+      height: 100%;
+      float: left; 
+      border: 1px inset; /* This is default border style for <hr> tag */
+    }
+	</style>
 		<!-- banner -->
 		<div class="banner_inner">
 			<div class="services-breadcrumb">
@@ -72,10 +80,16 @@
 										  </span>
 										</div>
 									</div>
-
-									<p><span class="item_price">{{number_format($bk->Gia_Tien)}} VNĐ</span>
-										<del>169.000 VNĐ</del>
+									@if($bk->Gia_Khuyen_Mai != 0)
+									<p>
+										<span class="item_price">{{number_format($bk->Gia_Khuyen_Mai)}} VNĐ</span>
+										<del>{{number_format($bk->Gia_Tien)}} VNĐ</del>
 									</p>
+									@else
+									<p>
+										<span class="item_price">{{number_format($bk->Gia_Tien)}} VNĐ</span>
+									</p>
+									@endif
 									<br>
 									
   										<div class="row">
@@ -99,30 +113,29 @@
     									</div>
   										</div>
 									<br>
-									
-									<label class="control-label">Số Lượng: </label>
-									<div class="form-group quantity-box" style="display: inline-flex;align-items: baseline;justify-content: space-evenly;">                                
-										<input class="form-control col-sm-3" value="1" min="1" max="{{$bk->So_Luong}}" type="number" style="width:150px"> (Còn {{$bk->So_Luong}} sản phẩm)
-									</div>
-									<br>
-                       
-                    
-									<div class="occasion-cart">
+									<form action="{{ route('account.payment') }}" method="POST">
+									{{csrf_field()}}
+										<label class="control-label">Số Lượng: </label>
+										<div class="form-group quantity-box" style="display: inline-flex;align-items: baseline;justify-content: space-evenly;">                                
+											<input class="form-control col-sm-3" id="So_Luong_SP" name="So_Luong" value="1" min="1" max="{{$bk->So_Luong}}" type="number" style="width:150px"> (Còn {{$bk->So_Luong}} sản phẩm)
+											<input type="hidden" name="Id" value="{{ $bk->Id }}"/>
+										</div>
+										<br>
+							
+										<div class="occasion-cart" style="display: inline-flex; padding-top:15px">
 											<div class="googles single-item singlepage">
-													<form action="{{route('chuyen-gio-hang')}}" method="POST">
-													{{csrf_field()}}
-														<input type="hidden" name="qty" value="1" min="1">
-														<input type="hidden" name="bookid_hidden" value="{{$bk->Id}}">
-														<input type="hidden" name="googles_item" value="{{$bk->Ten_Sach}}">
-														<input type="hidden" name="amount" value="{{number_format($bk->Gia_Tien)}} VNĐ">
-														<button type="submit" class="googles-cart pgoogles-cart">
-															Chọn Mua
-														</button>
-														
-													</form>
-		
+												<button type="submit" class="link-product-add-cart">
+													Mua ngay
+												</button>														
 											</div>
-									</div>
+											<div class="vertical-line" style="height: 40px; margin-left:10px"></div>
+											<div class="googles single-item singlepage" style="margin-left:10px">
+												<button type="button" onclick="AddCart({{ $bk->Id }})" class="link-product-add-cart">
+													Thêm giỏ hàng
+												</button>														
+											</div>
+										</div>
+									</form>
 									@endforeach
 								</div>
 								<div class="clearfix"> </div>
@@ -250,7 +263,7 @@
 													<div class="item-info-product">
 
 														<div class="info-product-price">
-															<div class="grid_meta">
+															<div class="grid_meta" style="padding-top: 25px;">
 																<div class="product_price">
 																	<h4 class="hidden">
 																		<a href="{{ route('user.single'), $tuong_tu->Id}}">{{$tuong_tu->Ten_Sach}} </a>
@@ -260,18 +273,15 @@
 																	</div>
 																</div>
 															</div>
+															@if (Cookie::get('UserId') != null)
 															<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Farenheit">
-																<input type="hidden" name="amount" value="575.00">
-																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
+															<form action="" method="POST">
+																{{csrf_field()}}
+																<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $tuong_tu->Id }})" style="padding-top: 15px;">
 																	<i class="fas fa-cart-plus"></i>
-																</button>
+																</button>								
 															</form>
 															</div>
-															@if (Cookie::get('UserId') != null)
 															<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 																<form>
 																{{ csrf_field() }}
@@ -282,7 +292,6 @@
 															</div>
 															@endif
 														</div>
-
 													</div>
 												</div>
 											</div>
@@ -295,6 +304,5 @@
 					</div>
 					<!--//slider-->
 				</div>
-				<div id="snackbar">Đã thêm vào sách yêu thích</div>
 		</section>
 		@stop

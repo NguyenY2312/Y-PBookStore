@@ -44,6 +44,23 @@
                     }
                 });
 		}
+		function AddCart(e){
+			var soluong = document.getElementById('So_Luong_SP');
+			if(soluong != null){
+				var num = soluong.value;
+			}
+			else{
+				var num = 1;
+			}
+                $.ajax({
+                    url: "{{ route('account.addcart') }}",
+                    type:'POST',
+                    data: {Id_Sach: e, So_Luong: num, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+						ShowMessageCart(data);
+                    }
+                });
+		}
 		function DeleteFavorite(e){
 			var tablefavorite = document.getElementById("favorite-book");
                 $.ajax({
@@ -70,6 +87,11 @@
 	<script>
 	function ShowMessage(e) {
 	var x = document.getElementById("snackbar");
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+	function ShowMessageCart(e) {
+	var x = document.getElementById("addcart");
 	x.className = "show";
 	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 	}

@@ -21,6 +21,28 @@
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+#addcart {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #26d326;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 85%;
+  bottom: 70px;
+  font-size: 17px;
+}
+
+#addcart.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;} 
   to {bottom: 70px; opacity: 1;}
@@ -86,7 +108,7 @@
 						</li>
 						<!-- Giỏ hàng -->
 						<li>
-								<span class="fas fa-cart-plus" aria-hidden="true" style="color: rgb(35, 175, 156)"></span><a href="{{route('gio-hang')}}" class="hover-nut"> Giỏ Hàng </a>
+								<span class="fas fa-cart-plus" aria-hidden="true" style="color: rgb(35, 175, 156)"></span><a href="{{route('user.cart')}}" class="hover-nut"> Giỏ Hàng </a>
 							<!-- <form action="#" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Quản lý tài khoản
 Route::get('/quan-ly-tai-khoan',"user\AccountController@index")->name("user.account");
 Route::post('/them-sach-yeu-thich',"user\AccountController@addfavoritebook")->name("user.accountheart");
 Route::post('/doi-mat-khau',"user\AccountController@changepass")->name("user.accountpass");
@@ -19,6 +20,16 @@ Route::post('/xoa-sach-yeu-thich',"user\AccountController@deletefavoritebook")->
 Route::post('/cap-nhat-thong-tin/{id}',"user\AccountController@updateinfomation")->name("user.updateinfomation");
 Route::post('/cua-hang/loc-san-pham/{Id?}',"user\UserController@ShopQuery")->name("user.shopquery");
 Route::post('/gui-lien-he',"user\AccountController@mailcontact")->name("user.mailcontact");
+//Giỏ hàng
+Route::post('/them-gio-hang',"user\AccountController@addcart")->name("account.addcart");
+Route::get("/gio-hang","user\UserController@showCart")->name("user.cart");
+Route::get('/xoa-gio-hang/{Id?}',"user\AccountController@deletecart")->name("account.cartdelete");
+Route::post('/cap-nhat-gio-hang',"user\AccountController@updatecart")->name("account.updatecart");
+Route::post('/thanh-toan',"user\AccountController@payment")->name("account.payment");
+Route::get('/thanh-toan-gio-hang',"user\AccountController@paymentcart")->name("account.paymentcart");
+Route::post('/thanh-toan-gio-hang',"user\AccountController@createpaymentcart")->name("account.createpaymentcart");
+Route::post('/thanh-toan-nhanh',"user\AccountController@createpaymentquick")->name("account.createpaymentquick");
+//Đăng nhập đăng ký
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");
 Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");
@@ -30,11 +41,6 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("contact","UserController@Contact")->name("user.contact");
     Route::get("/single/{book_id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
-    //giỏ hàng
-    Route::get("/gio-hang","UserController@showCart")->name("gio-hang");
-    Route::post("/chuyen-gio-hang","UserController@saveCart")->name("chuyen-gio-hang");
-    Route::post("/cap-nhat-gio-hang","UserController@updateCart")->name("cap-nhat-gio-hang");
-    Route::get("/xoa-gio-hang/{rowId?}","UserController@deleteCart")->name("xoa-gio-hang");
     //thanh toán
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");

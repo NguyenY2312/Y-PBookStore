@@ -1700,6 +1700,9 @@ ul.links li a:hover {
     color: #ff4e00;
 }
 
+.cart-hover a:hover {
+    color: #ff4e00;
+}
 /*--//footer--*/
 /*-- to-top --*/
 

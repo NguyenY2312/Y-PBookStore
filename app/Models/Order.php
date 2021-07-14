@@ -14,10 +14,9 @@ class Order extends Model
         'Id_KH',
         'Ngay_Lap',
         'Dia_Chi_Giao_Hang',
+        'PT_Thanh_Toan',
         'Tong_Tien',
         'Trang_Thai'
-
-
     ];
     public function Account(){
         return $this->belongsTo('App\Models\Account', 'Id_KH', 'Id');

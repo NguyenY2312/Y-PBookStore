@@ -25,16 +25,12 @@
 	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container">
 			<div class="inner-sec-shop">
-				<h3 class="tittle-w3layouts my-lg-4 mt-3">Giỏ hàng </h3>
+				<h3 class="tittle-w3layouts my-lg-4 mt-3">GIỎ HÀNG </h3>
 				<div class="checkout-right">
-				@php
-				$content= Cart::content();
-				@endphp
 					<table class="timetable_sub">
 						<thead>
 							<tr>
-								<th>Hình</th>
-
+								<th>Ảnh bìa</th>
 								<th>Tên sản phẩm</th>
 								<th>Số lượng</th>
 								<th>Giá</th>
@@ -43,77 +39,72 @@
 							</tr>
 						</thead>
 						<tbody>
-						
-						@foreach($content as $v_content)
-						<form action="{{route('cap-nhat-gio-hang')}}" method="POST">
-									{{csrf_field()}}
+						@foreach($gio_hang as $cart)
+						<form action="{{ route('account.updatecart')}}" method="POST">
+							{{csrf_field()}}
 							<tr class="rem1">
-								<td class="invert-image">
-									<a href="{{ route('user.single')}}">
-										<img src="{{$v_content->options->image}}" alt=" " class="img-responsive">
+								<td class="invert-image" style="width: 250px; height: 150px;">
+									<a href="{{ route('user.single', $cart->Sach->Id)}}">
+										<img src="{{$cart->Sach->Anh_Bia}}" alt=" " class="img-responsive">
 									</a>
 								</td>
-								<td class="invert">{{$v_content->name}} </td>
-								<td class="invert">
-									
-									
-										<input type="text" name="cart_quantity" style="width:50px;border: 1px solid #CDCDCD;color: #868282" value="{{$v_content->qty}}">
-										<input type="hidden" name="rowId_cart" value="{{$v_content->rowId}}" class="form-control">
-										
-										
-									
+								<td class="invert">{{$cart->Sach->Ten_Sach}} </td>
+								<td class="invert">					
+									<input type="number" min="1" max="{{ $cart->Sach->So_Luong}}" name="So_Luong" style="width:50px;border: 1px solid #CDCDCD;color: #868282" value="{{$cart->So_Luong}}">
+									<input type="hidden" name="Id" value="{{$cart->Id}}" class="form-control">
 								</td>
-								<td class="invert">{{number_format($v_content->price)}} VNĐ</td>
-								<td class="invert">
-								@php
-								$subtotal=$v_content->price * $v_content->qty;
-								echo number_format($subtotal).' '.'VNĐ';
-								@endphp
+								@if ($cart->Sach->Gia_Khuyen_Mai == 0)
+								<td class="invert">{{number_format($cart->Sach->Gia_Tien)}} VNĐ</td>
+								<td class="total invert" title="{{$cart->Sach->Gia_Tien * $cart->So_Luong}}">
+								{{ number_format($cart->Sach->Gia_Tien * $cart->So_Luong) }} VNĐ
 								</td>
+								@else
+								<td class="invert">{{number_format($cart->Sach->Gia_Khuyen_Mai)}} VNĐ</td>
+								<td class="total invert" title="{{$cart->Sach->Gia_Khuyen_Mai * $cart->So_Luong}}">
+								{{ number_format($cart->Sach->Gia_Khuyen_Mai * $cart->So_Luong) }} VNĐ
+								</td>
+								@endif
 								<td class="invert">
-									<a href="{{route('xoa-gio-hang',$v_content->rowId)}}">
-										<i class='fas fa-trash-alt' style='font-size:15px; color:black'></i>
+									<button class="cart-hover" type="submit" style="background:white; border:none; cursor:pointer"><i class="fas fa-sync-alt" style="font-size:15px"></i></button> &nbsp;
+									<a class="cart-hover" href="{{ route('account.cartdelete', [$cart->Id])}}">
+										<i class="fas fa-trash-alt" style="font-size:15px;"></i>
 									</a>
-									<button type="submit" name="update_qty" style='background:white;border:none'><i class='fas fa-sync-alt' style='font-size:15px; color:black'></i></button>
-
-
 								</td>
 							</tr>
 							
 						</form>
 						@endforeach
-				
 						</tbody>
 					</table>
-		
 					<div class="col-md-4 checkout-right-basket">
-						<ul>
-						
-							<li>Tổng tiền:
-					
-								<span>{{Cart::subtotal()}} VNĐ</span>
+						<ul>				
+							<li style="font-size:120%; font-weight:600">Tổng tiền: &nbsp;	
+								<input id="money-total" style="border: none; color: #f40017; text-align:right" readonly/>
 							</li>
-							<li>Tổng thanh toán:
-							
-								<span>{{Cart::total()}} VNĐ</span>
-							</li>
-
 						</ul>
-						@if (Cookie::get('UserId') == null)
-						<a href="{{route('loginview')}}" class="btn">THANH TOÁN</a>
-						@else
-						<a href="{{route('thanh-toan')}}" class="btn">THANH TOÁN</a>
-						@endif
-						<a href="#" class="btn">TIẾP TỤC MUA SẮM</a>
+						<a href="{{ route('account.paymentcart') }}" class="btn">THANH TOÁN</a>
+						<a href="{{ route('user.shop',0) }}" class="btn">TIẾP TỤC MUA SẮM</a>
 					</div>
 					<div class="clearfix"> </div>
-
 				</div>
-
 			</div>
-
 		</div>
 	</section>
 	<!--//checkout-->
+	<script>
+		Number.prototype.format = function(n, x) {
+			var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+			return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+		};
+		window.onload = function(){
+			var total = [];
+			$('.total').each(function (index, e) {
+                total.push(e.title);
+			});
+			var money = 0;
+			total.forEach(element => money = parseInt(money) + parseInt(element));
+			document.getElementById('money-total').value = money.format() + " VNĐ";
+		}
+	</script>
 	<!--footer -->
 	@stop

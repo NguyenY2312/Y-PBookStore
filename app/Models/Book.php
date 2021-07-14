@@ -40,4 +40,7 @@ class Book extends Model
         $anh = $this->belongsTo('App\Models\ImageBook', 'Id', 'Id_Sach');
         return $anh->where('Loai_Anh', 1);
     }
+    public function Sach(){
+        return $this->belongsTo('App\Models\Book', 'Id', 'Id');
+    }
 }

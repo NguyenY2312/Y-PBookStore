@@ -181,7 +181,7 @@
 												</div>
 												<div class="item-info-product">
 													<div class="info-product-price">
-														<div class="grid_meta">
+														<div class="grid_meta" style="padding-top: 15px;">
 															<div class="product_price">
 																<h4 class= "hidden"> 
 																	<a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
@@ -191,21 +191,15 @@
 																</div>
 															</div>
 														</div>
-														<div class="googles single-item hvr-outline-out">
-															<form action="{{route('chuyen-gio-hang')}}" method="POST">
-																{{csrf_field()}}
-																<input type="hidden" name="qty" value="1" min="1">
-																<input type="hidden" name="bookid_hidden" value="{{$books->Id}}">
-																<input type="hidden" name="googles_item" value="{{$books->Ten_Sach}}">
-																<input type="hidden" name="amount" value="{{number_format($books->Gia_Tien)}} VNĐ">
-																<button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
-																	<i class="fas fa-cart-plus"></i>
-																</button>
-															
-															</form>
-														
-														</div>
 														@if (Cookie::get('UserId') != null)
+														<div class="googles single-item hvr-outline-out">
+														<form action="" method="POST">
+															{{csrf_field()}}
+															<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $books->Id }})">
+																<i class="fas fa-cart-plus"></i>
+															</button>								
+														</form>
+														</div>
 														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 															<form>
 															{{ csrf_field() }}
@@ -222,7 +216,6 @@
 										</div>
 									</div>
 									@endforeach
-									<div id="snackbar">Đã thêm vào sách yêu thích</div>
 								</div>
 								<br>
 								{!! $book->links() !!}

@@ -16,7 +16,7 @@
                 </div>
                 <div class="item-info-product">
                     <div class="info-product-price">
-                        <div class="grid_meta">
+                        <div class="grid_meta" style="padding-top: 10px;">
                             <div class="product_price">
                                 <h4 class= "hidden"> 
                                     <a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
@@ -32,18 +32,15 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="googles single-item hvr-outline-out">
-                            <form action="#" method="post">
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="add" value="1">
-                                <input type="hidden" name="googles_item" value="Farenheit">
-                                <input type="hidden" name="amount" value="575.00">
-                                <button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </form>
-                        </div>
                         @if (Cookie::get('UserId') != null)
+                        <div class="googles single-item hvr-outline-out">
+                        <form action="" method="POST">
+                            {{csrf_field()}}
+                            <button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $books->Id }})">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>								
+                        </form>
+                        </div>
                         <div class="googles single-item hvr-outline-out" style="margin-top:-15px">
                             <form>
                             {{ csrf_field() }}
@@ -76,7 +73,7 @@
                 </div>
                 <div class="item-info-product">
                     <div class="info-product-price">
-                        <div class="grid_meta">
+                        <div class="grid_meta" style="padding-top: 10px;">
                             <div class="product_price">
                                 <h4 class= "hidden"> 
                                     <a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
@@ -86,18 +83,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="googles single-item hvr-outline-out">
-                            <form action="#" method="post">
-                                <input type="hidden" name="cmd" value="_cart">
-                                <input type="hidden" name="add" value="1">
-                                <input type="hidden" name="googles_item" value="Farenheit">
-                                <input type="hidden" name="amount" value="575.00">
-                                <button type="submit" class="googles-cart pgoogles-cart" style="margin-top: -5px;">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </form>
-                        </div>
                         @if (Cookie::get('UserId') != null)
+                        <div class="googles single-item hvr-outline-out">
+                        <form action="" method="POST">
+                            {{csrf_field()}}
+                            <button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $books->Id }})">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>								
+                        </form>
+                        </div>
                         <div class="googles single-item hvr-outline-out" style="margin-top:-15px">
                             <form>
                             {{ csrf_field() }}
@@ -115,5 +109,4 @@
     </div>
     @endforeach
     @endif
-    <div id="snackbar">Đã thêm vào sách yêu thích</div>
 </div>

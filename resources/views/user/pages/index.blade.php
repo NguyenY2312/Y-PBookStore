@@ -70,7 +70,6 @@
 			<!--//banner -->
 		</div>
 	</div>
-	<div id="snackbar">Đã thêm vào sách yêu thích</div>
 	<!--//banner-sec-->
 	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container-fluid">
@@ -106,20 +105,15 @@
 											</div>
 										</div>
 										<!-- Thêm vào giỏ hàng -->
+										@if (Cookie::get('UserId') != null)
 										<div class="googles single-item hvr-outline-out">
-											<form action="{{route('chuyen-gio-hang')}}" method="POST">
+											<form action="" method="POST">
 												{{csrf_field()}}
-												<input type="hidden" name="qty" value="1" min="1">
-												<input type="hidden" name="bookid_hidden" value="{{$newbook->Id}}">
-												<input type="hidden" name="googles_item" value="{{$newbook->Ten_Sach}}">
-												<input type="hidden" name="amount" value="{{number_format($newbook->Gia_Tien)}} VNĐ">
-												<button type="submit" class="googles-cart pgoogles-cart" style="padding-top: 15px;">
+												<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $newbook->Id }})" style="padding-top: 15px;">
 													<i class="fas fa-cart-plus"></i>
-												</button>
-																
+												</button>								
 											</form>
 										</div>
-										@if (Cookie::get('UserId') != null)
 										<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 											<form>
 											{{ csrf_field() }}
@@ -178,20 +172,15 @@
 												</div>
 											</div>
 											<!-- Thêm vào giỏ hàng -->
+											@if (Cookie::get('UserId') != null)
 											<div class="googles single-item hvr-outline-out">
-											<form action="{{route('chuyen-gio-hang')}}" method="POST">
+											<form action="" method="POST">
 												{{csrf_field()}}
-												<input type="hidden" name="qty" value="1" min="1">
-												<input type="hidden" name="bookid_hidden" value="{{$hotbook->Id}}">
-												<input type="hidden" name="googles_item" value="{{$hotbook->Ten_Sach}}">
-												<input type="hidden" name="amount" value="{{number_format($hotbook->Gia_Tien)}} VNĐ">
-												<button type="submit" class="googles-cart pgoogles-cart" style="padding-top: 15px;">
+												<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $hotbook->Id }})" style="padding-top: 15px;">
 													<i class="fas fa-cart-plus"></i>
-												</button>
-																
+												</button>								
 											</form>
 											</div>
-											@if (Cookie::get('UserId') != null)
 											<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
 												<form>
 												{{ csrf_field() }}
