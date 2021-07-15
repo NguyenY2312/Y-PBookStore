@@ -241,7 +241,8 @@ class AccountController extends Controller
         //
         $don_hang = Order::find($id);
         $ctdh = OrderDetail::where('Id_DH', $id)->get();
-        return View('user.pages.orderdetail');
+        $kh = Account::where('Id', Cookie::get('UserId'))->get();
+        return View('user.pages.orderdetail', $don_hang, ['ctdh'=>$ctdh, 'kh'=>$kh]);
     }
 
     public function create()
