@@ -63,7 +63,7 @@ class UserController extends Controller
     }
 
     public function Promotion(Request $request){
-        $promotion = Promotion::where('Trang_Thai', 0)->orderBy('Id', 'desc')->first();
+        $promotion = Promotion::where('Trang_Thai', 0)->where('is_deleted', 0)->orderBy('Id', 'desc')->first();
         if ($promotion != null){
         $detail = DetailPromotion::where('Id_Khuyen_Mai', $promotion->Id)->where('Kich_Hoat', 0)->get();
         $book = Book::where('Id', '=', 0);
@@ -97,6 +97,10 @@ class UserController extends Controller
             if($cate==0) $book = $book;
             else
             $book = $book->groupby('Id')->having('The_Loai', '=', $cate);
+        }
+        if($request['search']){
+            $search = $request['search'];
+            $book = $book->groupby('Id')->having('Ten_Sach', 'like', '%'.$search.'%');
         }
         if($request['orderby']){
             $orderby = $request['orderby'];

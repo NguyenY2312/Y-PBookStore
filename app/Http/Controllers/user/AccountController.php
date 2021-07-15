@@ -236,6 +236,14 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function orderdetail($id)
+    {
+        //
+        $don_hang = Order::find($id);
+        $ctdh = OrderDetail::where('Id_DH', $id)->get();
+        return View('user.pages.orderdetail');
+    }
+
     public function create()
     {
         //

@@ -40,7 +40,7 @@ class UpdatePricePromotion extends Command
     public function handle()
     {
         // kiểm tra có khuyến mãi hay không
-        $promotion = Promotion::where('Trang_Thai', 0)->orderBy('Id', 'desc')->first();
+        $promotion = Promotion::where('Trang_Thai', 0)->where('is_deleted', 0)->orderBy('Id', 'desc')->first();
         if ($promotion != null){
             //lấy nội dung chương trình
             $all = Book::where('is_deleted', '=', 0)->get();

@@ -25,10 +25,13 @@ Route::post('/them-gio-hang',"user\AccountController@addcart")->name("account.ad
 Route::get("/gio-hang","user\UserController@showCart")->name("user.cart");
 Route::get('/xoa-gio-hang/{Id?}',"user\AccountController@deletecart")->name("account.cartdelete");
 Route::post('/cap-nhat-gio-hang',"user\AccountController@updatecart")->name("account.updatecart");
+//Thanh toán
 Route::post('/thanh-toan',"user\AccountController@payment")->name("account.payment");
 Route::get('/thanh-toan-gio-hang',"user\AccountController@paymentcart")->name("account.paymentcart");
 Route::post('/thanh-toan-gio-hang',"user\AccountController@createpaymentcart")->name("account.createpaymentcart");
 Route::post('/thanh-toan-nhanh',"user\AccountController@createpaymentquick")->name("account.createpaymentquick");
+//Chi tiết đơn hàng
+Route::get('/chi-tiet-don-hang/{Id?}',"user\AccountController@orderdetail")->name("account.orderdetail");
 //Đăng nhập đăng ký
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");

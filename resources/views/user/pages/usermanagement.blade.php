@@ -74,7 +74,7 @@
 											<div class="tab1">
 					
 					<div class="single_page">
-                    <table class="table table-bordered" id="favorite-book" style="width:1000px">
+                    <table class="table table-bordered" id="favorite-book" style="width:1100px">
                     <thead>
                     <tr style="text-align:center">
                         <th>Tên sách</th>
@@ -124,7 +124,7 @@
                 <!--//tab_one-->
                 <div class="tab2">
                     <div class="single_page">
-                    <table class="table table-bordered" style="width:1000px; text-align:center">
+                    <table class="table table-bordered" style="width:1100px; text-align:center">
                     <thead>
                     <tr style="text-align:center">
                         <th>Tên người nhận</th>
@@ -148,7 +148,7 @@
                             @else {{"Đã hủy"}}
                             @endif
                         </td>
-                        <td><button class="btn btn-primary">Xem chi tiết</button></td>
+                        <td><a href="{{ route('account.orderdetail', $order->Id)}}" class="btn btn-primary">Xem chi tiết</a></td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -176,7 +176,8 @@
               <div class="col-lg-12">
                 <label for="exampleInputTopic">Ảnh đại diện</label>
                 <div class="custom-file">
-                    <input accept="image/*" title="" type="file" class="form-control" name="Anh_Dai_Dien" id="Anh_Dai_Dien" placeholder="Chọn ảnh" />
+                    <input accept="image/*" title="" type="file" class="form-control custom-file-input" name="Anh_Dai_Dien" id="Anh_Dai_Dien" placeholder="Chọn ảnh" />
+                    <label class="custom-file-label" for="Anh_Dai_Dien">{{$Anh_Dai_Dien}}</label>
                </div>
               </div>
               <div class="col-lg-12" style="margin-top:20px">
