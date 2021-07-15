@@ -883,7 +883,7 @@ input#amount1 {
 .left-side ul li {
 	display: inline-block;
 	width: 100%;
-	margin-bottom: 6px;
+	margin-bottom: 14px;
 }
 
 input.checked {

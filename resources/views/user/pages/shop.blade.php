@@ -35,24 +35,35 @@
 										<div class="clearfix"> </div>
 									</form>
 							</div>
-							<!-- price range -->
-							<div class="range">
+							<!-- price range-->
+							<div class="customer-rev left-side">
 								<h3 class="agileits-sear-head">Giá khoảng</h3>
-								<ul class="dropdown-menu6">
+								<ul class="">
 									<li>
-
-										<div id="slider-range"></div>
-										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+										<a href="?price=1" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a>  
 									</li>
+									<li>
+										<a href="?price=2"  style="border:solid 1px; padding:5px">100000 - 200000 VNĐ</a>  
+									</li>
+									<li>
+										<a href="?price=3"  style="border:solid 1px; padding:5px">200000 - 300000 VNĐ</a>  
+									</li>
+									<li>
+										<a href="?price=4"  style="border:solid 1px; padding:5px">Trên 300000 VNĐ</a>  
+									</li>
+									<li>
+										<a href="?price=0"  style="border:solid 1px; padding:5px">Tất cả</a>  
+									</li>
+									
 								</ul>
-							</div>
+							</div> 
 							<!-- //price range -->
 							<!--preference -->
 							<div class="left-side">
 								<h3 class="agileits-sear-head">Ngôn ngữ</h3>
 								<ul>
 									<li>
-										<input type="checkbox" class="checked">
+										<input type="checkbox" class="checked" name="ngonngu">
 										<span class="span">Tiếng Việt</span>
 									</li>
 									<li>
@@ -167,7 +178,7 @@
 								
 								<div class="row">
 									<!-- /womens -->
-									@foreach($book as $books)
+									@foreach($show_book as $books)
 									<div class="col-md-3 product-men women_two shop-gd">
 										<div class="product-googles-info googles">
 											<div class="men-pro-item">
@@ -225,7 +236,7 @@
 									@endforeach
 								</div>
 								<br>
-								{!! $book->links() !!}
+								{{ $show_book->links() }}
 								
 						
 								

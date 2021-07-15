@@ -28,18 +28,70 @@ class UserController extends Controller
         $sach_ban_chay = Book::orderBy('Id', 'desc')->take(4)->get();
         return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
-    public function Shop($id){
-        if($id == 0){
-            $book = Book::where('Trang_Thai',2)
-                        ->paginate(12);
+    public function Shop(Request $request,$id){
+        if($id == 0 ){
+            $show_book = Book::query();
+            if($request['price']){
+                
+                $price = $request['price'];
+                switch($price)
+                {
+                    case 1:
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0)->having('Gia_Tien','<=', 100000);
+                        
+                    break;
+                    case 2:
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000);
+                    break;
+                    case 3:
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000);
+                    break;
+                    case 4:
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000);
+                    break;
+                    default:
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
+                    break;
+                }
+            }
+            $show_book =$show_book->where('Trang_Thai',2)->orderBy('Id','DESC')->groupby('Id')->paginate(12);
+            
         }
         else{
-        $book = Book::where('Trang_Thai',2)
-                      ->where('The_loai', $id)
+        $show_book = Book::where('Trang_Thai',2);
+        if($request['price']){
+                
+            $price = $request['price'];
+            switch($price)
+            {
+                case 1:
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0)->having('Gia_Tien','<=', 100000);
+                    
+                break;
+                case 2:
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000);
+                break;
+                case 3:
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000);
+                break;
+                case 4:
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000);
+                break;
+                default:
+                $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
+                break;
+            }
+        }
+                    $show_book=$show_book ->where('The_loai', $id)->groupby('Id')
                       ->paginate(12);
         }
+        return view($this->viewprefix.'shop',compact('show_book'));
+        
+         
+           
+        
         //return response()->json('Thành công');
-        return view($this->viewprefix.'shop',compact('book'));
+  
     }
 
     public function ShopQuery(Request $request, $id){
@@ -64,67 +116,70 @@ class UserController extends Controller
 
     public function Promotion(Request $request){
         $promotion = Promotion::where('Trang_Thai', 0)->where('is_deleted', 0)->orderBy('Id', 'desc')->first();
-        if ($promotion != null){
-        $detail = DetailPromotion::where('Id_Khuyen_Mai', $promotion->Id)->where('Kich_Hoat', 0)->get();
-        $book = Book::where('Id', '=', 0);
-        foreach($detail as $detailpromotion)
+        if ($promotion != null)
         {
-            $book = $book->orwhere('The_Loai', '=',$detailpromotion->Id_The_Loai);           
-        }
-        if($request['price']){
-            $price = $request['price'];
-            switch($price)
+            $detail = DetailPromotion::where('Id_Khuyen_Mai', $promotion->Id)->where('Kich_Hoat', 0)->get();
+            $book = Book::where('Id', '=', 0);
+            foreach($detail as $detailpromotion)
             {
-                case 1:
-                $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 0)->having('Gia_Khuyen_Mai','<=', 100000);
-                break;
-                case 2:
-                $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 100000)->having('Gia_Khuyen_Mai','<=', 200000);
-                break;
-                case 3:
-                $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 200000)->having('Gia_Khuyen_Mai','<=', 300000);
-                break;
-                case 4:
-                $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 300000);
-                break;
-                default:
-                $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 0);
-                break;
+                $book = $book->orwhere('The_Loai', '=',$detailpromotion->Id_The_Loai);
+                
+                        
             }
-        }
-        if($request['category']){
-            $cate = $request['category'];
-            if($cate==0) $book = $book;
-            else
-            $book = $book->groupby('Id')->having('The_Loai', '=', $cate);
-        }
-        if($request['search']){
-            $search = $request['search'];
-            $book = $book->groupby('Id')->having('Ten_Sach', 'like', '%'.$search.'%');
-        }
-        if($request['orderby']){
-            $orderby = $request['orderby'];
-            switch($orderby)
-            {
-                case 'new':
-                $book = $book->orderBy('Id', 'desc');
-                break;
-                case 'old':
-                $book = $book->orderBy('Id', 'asc');
-                break;
-                case 'asc':
-                $book = $book->orderBy('Gia_Khuyen_Mai', 'asc');
-                break;
-                case 'des':
-                $book = $book->orderBy('Gia_Khuyen_Mai', 'desc');
-                break;
-                default:
-                $book = $book->orderBy('Id', 'desc');
-                break;
+            if($request['price']){
+                $price = $request['price'];
+                switch($price)
+                {
+                    case 1:
+                    $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 0)->having('Gia_Khuyen_Mai','<=', 100000);
+                    break;
+                    case 2:
+                    $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 100000)->having('Gia_Khuyen_Mai','<=', 200000);
+                    break;
+                    case 3:
+                    $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 200000)->having('Gia_Khuyen_Mai','<=', 300000);
+                    break;
+                    case 4:
+                    $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 300000);
+                    break;
+                    default:
+                    $book = $book->groupby('Id')->having('Gia_Khuyen_Mai', '>=', 0);
+                    break;
+                }
             }
-        }
-        $book = $book->groupby('Id')->having('is_deleted', 0)->paginate(12);
-        return view($this->viewprefix."promotion", $promotion,['book'=>$book]);
+            if($request['category']){
+                $cate = $request['category'];
+                if($cate==0) $book = $book;
+                else
+                $book = $book->groupby('Id')->having('The_Loai', '=', $cate);
+            }
+            if($request['search']){
+                $search = $request['search'];
+                $book = $book->groupby('Id')->having('Ten_Sach', 'like', '%'.$search.'%');
+            }
+            if($request['orderby']){
+                $orderby = $request['orderby'];
+                switch($orderby)
+                {
+                    case 'new':
+                    $book = $book->orderBy('Id', 'desc');
+                    break;
+                    case 'old':
+                    $book = $book->orderBy('Id', 'asc');
+                    break;
+                    case 'asc':
+                    $book = $book->orderBy('Gia_Khuyen_Mai', 'asc');
+                    break;
+                    case 'des':
+                    $book = $book->orderBy('Gia_Khuyen_Mai', 'desc');
+                    break;
+                    default:
+                    $book = $book->orderBy('Id', 'desc');
+                    break;
+                }
+            }
+            $book = $book->groupby('Id')->having('is_deleted', 0)->paginate(12);
+            return view($this->viewprefix."promotion", $promotion,['book'=>$book]);
         }
         else
         {
