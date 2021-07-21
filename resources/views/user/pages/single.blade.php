@@ -178,55 +178,65 @@
 										<ul class="resp-tabs-list">
 											
 											<li>MÔ TẢ SẢN PHẨM</li>
-											<li>KHÁCH HÀNG NHẬN XÉT</li>
+											<li class="active">KHÁCH HÀNG NHẬN XÉT</li>
 										</ul>
 										<div class="resp-tabs-container">
 											<!--/tab_one-->
 											<div class="tab1">
 					
-					<div class="single_page">
-					<h5>MÔ TẢ SẢN PHẨM</h5>
-					<p>{{$Mo_Ta}}
-					</p>
-						
-					</div>
-				</div>
+												<div class="single_page">
+												<h5>MÔ TẢ SẢN PHẨM</h5>
+												<p>{{$Mo_Ta}}
+												</p>
+													
+												</div>
+											</div>
 											<!--//tab_one-->
 											<div class="tab2">
-					
+											
 												<div class="single_page">
 													<div class="bootstrap-tab-text-grids">
-														<div class="bootstrap-tab-text-grid">
-															<div class="bootstrap-tab-text-grid-left">
-																<img src="{!! asset('user/images/admin.jpg')!!}" alt=" " class="img-fluid">
+													@foreach($comments as $com)
+														<div class="row">
+															<div class="col-md-2">
+																
+																<img src="{!! asset('user/images/admin.jpg')!!}" class="img-fluid">
 															</div>
-															<div class="bootstrap-tab-text-grid-right">
-																<ul>
-																	<li><a href="#">Admin</a></li>
-																	<li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Trả lời</a></li>
-																</ul>
-																<p>Lâu lắm mới có 1 cuốn sách của tác giả Việt Nam mà mình thấy hay như vậy. Trong cuốn
-																	 này tác giả Trần Thanh Phong đã nêu ra rất nhiều vấn đề thực tế trong ngành bán lẻ 
-																	 và cách giải quyết chúng một cách hiệu quả. Bằng ngôn ngữ bình dị, nhẹ nhàng, anh 
-																	 Phong chia sẻ kinh nghiệm trong kinh doanh như một người anh đi trước cho đàn em. 
-																	 Một điểm cộng khác nữa là anh Phong cực kì thân thiện, sẽ kết nối và hỏi thăm bạn 
-																	 ngay khi bạn quét QR để lấy tài liệu. Ngay khi đọc được 50% mình đã gợi ý mua cho 
-																	 hội bạn cũng đang kinh doanh nhỏ như mình</p>
+															<div class="col-md-10">
+																<p style="color:green">@ {{$com->Ten_NBL}} </p>
+																<p>{{$com->Thoi_Gian}}</p>
+																<p>{{$com->Noi_Dung}}
+																</p>
 															</div>
-															<div class="clearfix"> </div>
 														</div>
+														<hr>
+														@endforeach
+														
+														@if(Cookie::get('UserId') != null)
+														
 														<div class="add-review">
 															<h4>Thêm nhận xét</h4>
-															<form action="#" method="post">
-																	<input class="form-control" type="text" name="Name" placeholder="Bạn hãy nhập tên..." required="">
-																<input class="form-control" type="email" name="Email" placeholder="Bạn hãy nhập email..." required="">
-																<textarea name="Message" placeholder="Nhập nội dung" required=""></textarea>
-																<input type="submit" value="Gửi">
+															
+															<form method="POST">
+															{{ csrf_field() }}
+															
+																<input class="form-control" type="text" name="TenND" placeholder="Vui lòng nhập tên..." >
+															
+																<textarea name="Noi_Dung" placeholder="Vui lòng nhập nội dung bình luận..." ></textarea>
+																<input type="text" name="Trang_Thai" hidden class="form-control" 
+																	value="1">
+														
+																<input type="submit" id="submit" value="Gửi">
 															</form>
+															
 														</div>
+														@else
+                        								<a href="#" class="btn hvr-hover">Vui lòng đăng nhập để bình luận</a>
+                       	 								@endif
 													</div>
 					
 												</div>
+											
 											</div>
 								
 										</div>

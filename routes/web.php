@@ -42,13 +42,15 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/","UserController@Index")->name("user.index");
     Route::get("/cua-hang/{Id?}","UserController@Shop")->name("user.shop");
     Route::get("contact","UserController@Contact")->name("user.contact");
-    Route::get("/single/{book_id?}","UserController@Single")->name("user.single");
+    Route::get("/chi-tiet-san-pham/{book_id?}","UserController@Single")->name("user.single");
     Route::get("about","UserController@About")->name("user.about");
     //thanh toán
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
     //tìm kiếm
     Route::post("/tim-kiem","UserController@bookSearch")->name("tim-kiem");
+    //bình luận 
+    Route::post('/chi-tiet-san-pham/{id}','UserController@postComment');
 });
 
 Route::group(['middleware' => ['checklogin']], function () {
