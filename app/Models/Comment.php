@@ -15,7 +15,8 @@ class Comment extends Model
         'Id_TK',
         'Noi_Dung',
         'Thoi_Gian',
-        'Trang_Thai'
+        'Trang_Thai',
+        'Ten_NBL'
 
     ];
     public function TaiKhoan(){
@@ -23,6 +24,9 @@ class Comment extends Model
     }
     public function Sach(){
         return $this->belongsTo('App\Models\Book', 'Id_Sach', 'Id');
+    }
+    public function user_info(){
+        return $this->hasOne('App\Models\Account','Id','Id_TK');
     }
     public $timestamps = false;
 

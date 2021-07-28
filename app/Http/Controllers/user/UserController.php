@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\ImageBook;
 use App\Models\PublishingHouse;
 use App\Models\Promotion;
+use App\Models\Comment;
 use App\Models\DetailPromotion;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use Cookie;
 use Carbon\Carbon;
 use App\Models\Cart;
@@ -218,13 +220,18 @@ class UserController extends Controller
     }
 
     public function Single($book_id){
+        
         //lấy thông tin sách chi tiết
         $sach = Book::where('Id',$book_id)->where('Trang_Thai',2)->first();
+        //
+        
         //lấy thông tin thể loại/ nhà xuất bản
         $thong_tin_sach = Book::where('Id',$book_id)->where('Trang_Thai',2)->get();
         //sách liên quan
         $sach_tuong_tu = Book::where('The_Loai', $sach->The_Loai)->where('Trang_Thai',2)->whereNotIn('Id',[$book_id])->get();
-        return view($this->viewprefix.'single', $sach, ['thong_tin_sach'=>$thong_tin_sach, 'sach_tuong_tu'=>$sach_tuong_tu]);
+        $comments=Comment::where('Id_Sach',$book_id)->where('Trang_Thai',1)->get();
+       
+        return view($this->viewprefix.'single', $sach, ['thong_tin_sach'=>$thong_tin_sach, 'sach_tuong_tu'=>$sach_tuong_tu,'comments'=>$comments]);
         //return view($this->user."single");
     }
     public function About(){
@@ -263,6 +270,16 @@ class UserController extends Controller
     }
     public function checkout(){
         return view($this->viewprefix."checkout");
+    }
+    public function postComment($id,Request $request){
+        $comment=new Comment;
+        $comment->Ten_NBL=$request->TenND;
+        $comment->Noi_Dung=$request->Noi_Dung;
+        $comment->Id_Sach=$id;
+        $comment->Trang_Thai=$request->Trang_Thai;
+        $comment->Id_TK=Cookie::get('UserId');
+        $comment->save();
+        return back();
     }
     public function bookSearch(Request $request){
         $tk=$request->search;
