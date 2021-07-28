@@ -159,7 +159,7 @@ class AccountController extends Controller
         $tai_khoan = Account::find(Cookie::get('UserId'));
         if($idsach != null && $soluong != null)
         {
-            $sach = Book::where('Id', $idsach)->get();
+            $sach = Book::where('Id', $idsach)->get();          
             foreach($sach as $book)
             $book->So_Luong = $soluong;
         }
@@ -198,6 +198,9 @@ class AccountController extends Controller
                     'So_Luong'=>$sp->So_Luong,
                     'Trang_Thai'=>0
                 ]);
+                $sach = Book::find($sp->Id_Sach);
+                $sach->So_Luong = $sach->So_Luong - $sp->So_Luong;
+                $sach->save();
                 $sp->delete();
             }
         }
@@ -228,6 +231,10 @@ class AccountController extends Controller
                 'So_Luong'=>$so_luong,
                 'Trang_Thai'=>0
             ]);
+
+            $sach = Book::find($id_sach);
+            $sach->So_Luong = $sach->So_Luong - $so_luong;
+            $sach->save();
         }
         return response()->json('Đặt hàng thành công!');
     }
@@ -243,6 +250,29 @@ class AccountController extends Controller
         $ctdh = OrderDetail::where('Id_DH', $id)->get();
         $kh = Account::where('Id', Cookie::get('UserId'))->get();
         return View('user.pages.orderdetail', $don_hang, ['ctdh'=>$ctdh, 'kh'=>$kh]);
+    }
+
+    public function cancelorder($id)
+    {
+        //
+        $don_hang = Order::find($id);
+        if ($don_hang != null) {
+            $don_hang->Trang_Thai = 4;
+            $don_hang->save();
+        }
+        $ctdh = OrderDetail::where('Id_DH', $id)->get();
+        foreach ($ctdh as $ct)
+        {
+            //cập nhật trạng thái đơn hàng
+            $savectdh = OrderDetail::find($ct->Id);
+            $savectdh->Trang_Thai = 1;
+            $savectdh->save();
+            //cập nhật số lượng sách
+            $savesach = Book::find($ct->Id_Sach);
+            $savesach->So_Luong = $savesach->So_Luong + $ct->So_Luong;
+            $savesach->save();
+        }
+        return redirect()->back();
     }
 
     public function create()

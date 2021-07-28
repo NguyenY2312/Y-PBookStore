@@ -143,11 +143,16 @@
                         <td><!-- {{ date('d-m-Y', strtotime($order->Ngay_Lap)) }} -->{{ $order->Ngay_Lap }}</td>
                         <td>{{ number_format($order->Tong_Tien) }} VNĐ</td>
                         <td>
-                            @if($order->Trang_Thai == 0) {{"Đang giao"}}
-                            @elseif (($order->Trang_Thai == 1)) {{"Đã giao"}}
+                            @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}
+                            @elseif (($order->Trang_Thai == 1)) {{"Đã nhận đơn"}}
+                            @elseif (($order->Trang_Thai == 2)) {{"Đang giao"}}
+                            @elseif (($order->Trang_Thai == 3)) {{"Đã nhận hàng"}}
                             @else {{"Đã hủy"}}
                             @endif
                         </td>
+                        @if ($order->Trang_Thai == 0 || $order->Trang_Thai == 1 || $order->Trang_Thai == 2)
+                        <td><a href="{{ route('account.cancelorder', $order->Id)}}" class="btn btn-danger">Hủy đơn</a></td>
+                        @endif
                         <td><a href="{{ route('account.orderdetail', $order->Id)}}" class="btn btn-primary">Xem chi tiết</a></td>
                     </tr>
                     @endforeach

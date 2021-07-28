@@ -22094,12 +22094,21 @@ code {
 }
 
 .card.card-light-blue {
-  background: #7978E9;
+  background: #4bcb4b;
   color: #ffffff;
 }
 
 .card.card-light-blue:hover {
-  background: #8f8eed;
+  background: #3cb03c;
+}
+
+.card.card-light-yellow {
+  background: #e6ae00;
+  color: #ffffff;
+}
+
+.card.card-light-yellow:hover {
+  background: #f6bd09;
 }
 
 .card.card-light-danger {

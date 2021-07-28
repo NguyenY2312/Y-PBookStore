@@ -540,7 +540,7 @@
       }
       var southAmericaChartCanvas = $("#south-america-chart").get(0).getContext("2d");
       var southAmericaChart = new Chart(southAmericaChartCanvas, {
-        type: 'doughnut',
+        type: 'bar',
         data: areaData,
         options: areaOptions,
         plugins: southAmericaChartPlugins
@@ -679,3 +679,4 @@ $('#example tbody').on('click', 'td.details-control', function () {
   
   });
 })(jQuery);
+

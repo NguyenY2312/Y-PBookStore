@@ -32,6 +32,7 @@ Route::post('/thanh-toan-gio-hang',"user\AccountController@createpaymentcart")->
 Route::post('/thanh-toan-nhanh',"user\AccountController@createpaymentquick")->name("account.createpaymentquick");
 //Chi tiết đơn hàng
 Route::get('/chi-tiet-don-hang/{Id?}',"user\AccountController@orderdetail")->name("account.orderdetail");
+Route::get('/huy-don-hang/{Id?}',"user\AccountController@cancelorder")->name("account.cancelorder");
 //Đăng nhập đăng ký
 Route::post("/dang-nhap","LoginController@login")->name("login");
 Route::get("/logout","LoginController@logoutAd")->name("logoutAd");

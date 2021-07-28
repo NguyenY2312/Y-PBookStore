@@ -245,5 +245,11 @@
 					</div>
 			</div>
 		</section>
-        @stop
+		@stop
+<script>
+	window.onload = function(){
+	var element = document.getElementById("nav-cuahang");
+	element.classList.add("active");
+	}
+</script>
 		

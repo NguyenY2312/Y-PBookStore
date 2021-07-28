@@ -67,9 +67,9 @@
                     </td>
                     <td>{{$book->Gia_Tien}} VNĐ</td>
                     <td>{{$book->So_Luong}}</td>
-                    <td> 
+                    <td>
                     @if($book->Trang_Thai == 0) {{"Ngừng bán"}}
-                    @elseif (($book->Trang_Thai == 1)) {{"Tạm hết hàng"}}
+                    @elseif (($book->So_Luong == 0)) {{"Tạm hết hàng"}}
                     @else {{"Còn hàng"}}
                     @endif
                     </td>

@@ -7,12 +7,15 @@ use App\Models\ImageBook;
 use App\Models\PublishingHouse;
 use App\Models\Promotion;
 use App\Models\DetailPromotion;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
 use Cookie;
+use Carbon\Carbon;
 use App\Models\Cart;
 class UserController extends Controller
 {
@@ -24,8 +27,34 @@ class UserController extends Controller
     }
     public function Index(){
         $sach_moi = Book::orderBy('Id', 'desc')->take(8)->get();
-        //return dd($sach);
-        $sach_ban_chay = Book::orderBy('Id', 'desc')->take(4)->get();
+        $ngay = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $ngaybd = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
+        $don_hang = Order::where([['Ngay_Lap', '>=', $ngaybd], ['Trang_Thai', '<>', 4]])->get();
+        $id_sach = OrderDetail::where('Trang_Thai', 0);
+        foreach ($don_hang as $order)
+        {
+            $id_sach = $id_sach->orwhere('Id_DH', $order->Id);
+        }
+        $id_sach = $id_sach->groupBy('Id_Sach')->get();
+        foreach($id_sach as $sach)
+        {
+            $sach->So_Luong = 0;
+        }
+        foreach($id_sach as $sach)
+        {
+            $ctdh = OrderDetail::all();
+            foreach ($ctdh as $ct){
+                if($ct->Id_Sach == $sach->Id_Sach)
+                    $sach->So_Luong = $sach->So_Luong + $ct->So_Luong;
+            }
+        }
+        $sach_ban_chay = Book::where('Id', 0);
+        foreach ($id_sach->sortByDesc('So_Luong')->take(8) as $sach)
+        {
+            $sach_ban_chay = $sach_ban_chay->orwhere('Id', $sach->Id_Sach);
+        }
+        $sach_ban_chay = $sach_ban_chay->get();
+        //return dd($sach_ban_chay);
         return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
     public function Shop(Request $request,$id){

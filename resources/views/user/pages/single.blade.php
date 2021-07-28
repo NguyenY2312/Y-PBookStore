@@ -113,6 +113,7 @@
     									</div>
   										</div>
 									<br>
+									@if($bk->So_Luong > 0)
 									<form action="{{ route('account.payment') }}" method="POST">
 									{{csrf_field()}}
 										<label class="control-label">Số Lượng: </label>
@@ -136,6 +137,9 @@
 											</div>
 										</div>
 									</form>
+									@else
+										<h4 style="color:gray">(Hết hàng)</h4>
+									@endif
 									@endforeach
 								</div>
 								<div class="clearfix"> </div>
