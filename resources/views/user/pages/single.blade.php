@@ -181,74 +181,72 @@
 									<div id="horizontalTab">
 										<ul class="resp-tabs-list">
 											
-											<li>MÔ TẢ SẢN PHẨM</li>
-											<li class="active">KHÁCH HÀNG NHẬN XÉT</li>
+											<li>KHÁCH HÀNG NHẬN XÉT</li>
+											<li class="active">MÔ TẢ SẢN PHẨM</li>
 										</ul>
 										<div class="resp-tabs-container">
-											<!--/tab_one-->
-											<div class="tab1">
-					
-												<div class="single_page">
-												<h5>MÔ TẢ SẢN PHẨM</h5>
-												<p>{{$Mo_Ta}}
-												</p>
-													
-												</div>
-											</div>
-											<!--//tab_one-->
-											<div class="tab2">
+										<!--//tab_one-->
+										<div class="tab1">
 											
-												<div class="single_page">
-													<div class="bootstrap-tab-text-grids">
-													@foreach($comments as $com)
-														<div class="row">
-															<div class="col-md-2">
-																
-																<img src="{!! asset('user/images/admin.jpg')!!}" class="img-fluid">
-															</div>
-															<div class="col-md-10">
-																<p style="color:green">@ {{$com->Ten_NBL}} </p>
-																<p>{{$com->Thoi_Gian}}</p>
-																<p>{{$com->Noi_Dung}}
-																</p>
-															</div>
+											<div class="single_page">
+												<div class="bootstrap-tab-text-grids" style="width:1100px">
+												@foreach($comments as $com)
+													<div class="row">
+														<div class="col-md-2">
+															
+															<img src="{!! asset($com->TaiKhoan->Anh_Dai_Dien)!!}" class="img-fluid">
 														</div>
-														<hr>
-														@endforeach
-														
-														@if(Cookie::get('UserId') != null)
-														
-														<div class="add-review">
-															<h4>Thêm nhận xét</h4>
-															
-															<form method="POST">
-															{{ csrf_field() }}
-															
-																<input class="form-control" type="text" name="TenND" placeholder="Vui lòng nhập tên..." >
-															
-																<textarea name="Noi_Dung" placeholder="Vui lòng nhập nội dung bình luận..." ></textarea>
-																<input type="text" name="Trang_Thai" hidden class="form-control" 
-																	value="1">
-														
-																<input type="submit" id="submit" value="Gửi">
-															</form>
-															
+														<div class="col-md-10">
+															<p style="color:green">@ {{$com->TaiKhoan->Ho_Ten}} </p>
+															<p>{{$com->Thoi_Gian}}</p>
+															<p>{{$com->Noi_Dung}}
+															</p>
 														</div>
-														@else
-                        								<a href="#" class="btn hvr-hover">Vui lòng đăng nhập để bình luận</a>
-                       	 								@endif
 													</div>
-					
+													<hr>
+													@endforeach
+													
+													@if(Cookie::get('UserId') != null)
+													
+													<div class="add-review">
+														<h4>Thêm nhận xét</h4>
+														
+														<form method="POST">
+														{{ csrf_field() }}
+														
+															<!-- <input class="form-control" type="text" name="TenND" placeholder="Vui lòng nhập tên..." > -->
+														
+															<textarea name="Noi_Dung" placeholder="Nhập nội dung bình luận..." ></textarea>
+															<input type="text" name="Trang_Thai" hidden class="form-control" 
+																value="1">
+													
+															<input type="submit" id="submit" value="Gửi">
+														</form>
+														
+													</div>
+													@else
+													<a href="/dang-nhap" class="btn hvr-hover">Vui lòng đăng nhập để bình luận</a>
+														@endif
 												</div>
-											
+				
 											</div>
-								
+										
 										</div>
+							<!--/tab_two-->
+							<div class="tab2">
+					
+										<div class="single_page">
+										<h5>MÔ TẢ SẢN PHẨM</h5>
+										<p>{{$Mo_Ta}}
+										</p>
+											
+									</div>
+							</div>
 									</div>
 								</div>
+							</div>
 
-								<!--//tabs-->
-					
+							<!--//tabs-->														
 					</div>
 				</div>
 			</div>

@@ -273,7 +273,6 @@ class UserController extends Controller
     }
     public function postComment($id,Request $request){
         $comment=new Comment;
-        $comment->Ten_NBL=$request->TenND;
         $comment->Noi_Dung=$request->Noi_Dung;
         $comment->Id_Sach=$id;
         $comment->Trang_Thai=$request->Trang_Thai;
