@@ -15,15 +15,21 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold" >QUẢN LÝ ĐƠN HÀNG</h3>
                 </div>
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:20px">
-                <form id="" method="POST" action="{{ route('order.search')}}">
+                <div class="col-12" style="padding-top:10px;">
+                    <ul class="breadcrumb" style="border: none">
+                      <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+                      <li>Quản lý đơn hàng</li>
+                    </ul>
+                </div>
+                <div class="col-lg-12" style="padding-top:20px">
+                <form id="" method="POST" action="{{ route('order.search')}}" style="float:right">
                 @csrf
                       <input style="padding: 0.5rem 1.5rem; border-radius: 10px; margin-left:1.55rem" type="text" name="NhapTimKiem" placeholder="Tìm kiếm" >                     
                       <button id="btnsearch" style="padding: 0.5rem 1.5rem; border-radius: 10px;background:#a3a4a5c2"><i class='fas fa-search' style='font-size:15px'></i></button>
                   </form>
-                  
+                </div>
                   <!-- /.card-header -->
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="padding-top:40px">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0" >
                     <div class="card-body">
                     <table id="order" class="table">
                   <thead>
@@ -90,7 +96,7 @@
                   @endforeach
                   </tbody>
                 </table>
-              </div>
+             
               </div>
               <!-- /.card-body -->
                 </div>
