@@ -57,6 +57,8 @@
                         @else {{"Đã hủy"}}
                         @endif
                     </td>
+                    <td>
+                    <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
                     @else
                     <td>{{$order->Id}}</td>
                     <td>{{$order->Account->Ho_Ten}}</td>
@@ -71,15 +73,13 @@
                         @elseif (($order->Trang_Thai == 3)) {{"Đã giao"}}
                         @else {{"Đã hủy"}}
                         @endif
-                    </td>
-                    @endif
+                    </td>                  
                     <td>
-                        
-                        <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
-   
+                    <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
+                    <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                    @endif                       
                           @csrf
-                          @method('DELETE')
-                          <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                          @method('DELETE')                        
                           <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
 
                         </form>
