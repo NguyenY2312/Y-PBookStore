@@ -45,11 +45,15 @@
 								<h3 class="agileits-sear-head">Khoảng giá</h3>
 								<ul class="dropdown-menu6">
 									<li>
-										<a class="{{ Request::get('price') == 1 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1])}}" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a>  
+										<a class="{{ Request::get('price') == 1 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1])}}" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a> 
+									</li>
+									<li  style="padding-top:20px"> 
 										<a class="{{ Request::get('price') == 2 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 2])}}" style="border:solid 1px; padding:5px">100000 - 200000 VNĐ</a>
 									</li>
 									<li style="padding-top:20px">
 										<a class="{{ Request::get('price') == 3 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 3])}}" style="border:solid 1px; padding:5px">200000 - 300000 VNĐ</a> 
+									</li>
+									<li  style="padding-top:20px">	
 										<a class="{{ Request::get('price') == 4 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 4])}}" style="border:solid 1px; padding:5px">Trên 300000 VNĐ</a>
 									</li>
 									<li style="padding-top:20px">

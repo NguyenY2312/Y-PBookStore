@@ -52,10 +52,7 @@
 							<a href="{{ route('user.index')}}">Trang chủ</a>
 						</li>
 						<li>
-							<a href="{{ route('user.shop')}}">Cửa hàng</a>
-						</li>
-						<li>
-							<a href="{{ route('user.contact')}}">Liên hệ</a>
+							<a href="{{ route('user.shop',0)}}">Cửa hàng</a>
 						</li>
 						<li>
 							<a href="{{ route('user.about')}}">Giới thiệu</a>
