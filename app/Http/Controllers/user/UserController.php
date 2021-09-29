@@ -59,7 +59,8 @@ class UserController extends Controller
         //return dd($sach_ban_chay);
         return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
     }
-    public function Shop(Request $request,$id){
+    public function Shop(Request $request, $id){
+        $sortMoney = "";
         if($id == 0 ){
             $show_book = Book::query();
             if($request['price']){
@@ -68,77 +69,185 @@ class UserController extends Controller
                 switch($price)
                 {
                     case 1:
-                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0)->having('Gia_Tien','<=', 100000);
-                        
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien','<=', 100000)->orhaving('Gia_Khuyen_Mai','<=', 100000)->having('Gia_Khuyen_Mai','>', 0);                      
                     break;
                     case 2:
-                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000);
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','<=', 200000)->having('Gia_Khuyen_Mai','>=', 100000);
                     break;
                     case 3:
-                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000);
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','<=', 300000)->having('Gia_Khuyen_Mai','>=', 200000);
                     break;
                     case 4:
-                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000);
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','>=', 300000);
                     break;
                     default:
-                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
+                        $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
                     break;
                 }
             }
-            $show_book =$show_book->where('Trang_Thai',2)->orderBy('Id','DESC')->groupby('Id')->paginate(12);
-            
+            if($request['search']){
+                $search = $request['search'];
+                $show_book = $show_book->groupby('Id')->having('Ten_Sach', 'like', '%'.$search.'%');
+            }
+            if($request['orderby']){
+                $orderby = $request['orderby'];
+                switch($orderby)
+                {
+                    case 'new':
+                    $show_book = $show_book->orderBy('created_at', 'desc');
+                    break;
+                    case 'old':
+                    $show_book = $show_book->orderBy('created_at', 'asc');
+                    break;
+                    case 'asc':
+                    $sortMoney = "asc";
+                    break;
+                    case 'des':
+                    $sortMoney = "des";
+                    break;
+                    default:
+                    $show_book = $show_book->orderBy('created_at', 'desc');
+                    break;
+                }
+            }      
         }
         else{
-        $show_book = Book::where('Trang_Thai',2);
+        $show_book = Book::where('The_Loai', $id);
         if($request['price']){
                 
             $price = $request['price'];
             switch($price)
             {
                 case 1:
-                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0)->having('Gia_Tien','<=', 100000);
-                    
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien','<=', 100000)->orhaving('Gia_Khuyen_Mai','<=', 100000)->having('Gia_Khuyen_Mai','>', 0);                      
                 break;
                 case 2:
-                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000);
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 100000)->having('Gia_Tien','<=', 200000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','<=', 200000)->having('Gia_Khuyen_Mai','>=', 100000);
                 break;
                 case 3:
-                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000);
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 200000)->having('Gia_Tien','<=', 300000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','<=', 300000)->having('Gia_Khuyen_Mai','>=', 200000);
                 break;
                 case 4:
-                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000);
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 300000)->having('Gia_Khuyen_Mai','==', 0)->orhaving('Gia_Khuyen_Mai','>=', 300000);
                 break;
                 default:
-                $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
+                    $show_book =  $show_book->groupby('Id')->having('Gia_Tien', '>=', 0);
                 break;
             }
         }
-                    $show_book=$show_book ->where('The_loai', $id)->groupby('Id')
-                      ->paginate(12);
+        if($request['search']){
+            $search = $request['search'];
+            $show_book = $show_book->groupby('Id')->having('Ten_Sach', 'like', '%'.$search.'%');
         }
-        return view($this->viewprefix.'shop',compact('show_book'));
-        
-         
-           
-        
+        if($request['orderby']){
+            $orderby = $request['orderby'];
+            switch($orderby)
+            {
+                case 'new':
+                $show_book = $show_book->orderBy('created_at', 'desc');
+                break;
+                case 'old':
+                $show_book = $show_book->orderBy('created_at', 'asc');
+                break;
+                case 'asc':
+                $sortMoney = "asc";
+                break;
+                case 'des':
+                $sortMoney = "des";
+                break;
+                default:
+                $show_book = $show_book->orderBy('created_at', 'desc');
+                break;
+            }
+        }
+        }
+        if ($sortMoney == "asc") {
+            $show_book=$show_book->where('is_deleted', 0)->groupby('Id')->paginate(12);
+            $show_book = $this->SortAsc($show_book);
+        }         
+        else if ($sortMoney == "des") {
+            $show_book=$show_book->where('is_deleted', 0)->groupby('Id')->paginate(12);
+            $show_book = $this->SortDesc($show_book);
+        }
+        else
+            $show_book=$show_book->where('is_deleted', 0)->groupby('Id')->paginate(12);
+            
+        return view($this->viewprefix.'shop',compact('show_book'));    
         //return response()->json('Thành công');
-  
     }
 
-    public function ShopQuery(Request $request, $id){
-        $max = $request['Max'];
-        $min = $request['Min'];
-        if($id == 0){
-            $book = Book::where('Trang_Thai',2)
-                        ->where([ ['Gia_Tien','>=', $min],['Gia_Tien','<=', $max] ])
-                        ->paginate(12);
+    function SortAsc($array) {
+        $array_size = count($array);
+        for($i = 0; $i < $array_size; $i ++) {
+            for($j = 0; $j < $array_size; $j ++) {
+                if($array[$i]->Gia_Khuyen_Mai == 0 && $array[$j]->Gia_Khuyen_Mai == 0){
+                    if ($array[$i]->Gia_Tien < $array[$j]->Gia_Tien) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai != 0 && $array[$j]->Gia_Khuyen_Mai == 0){
+                    if ($array[$i]->Gia_Khuyen_Mai < $array[$j]->Gia_Tien) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai == 0 && $array[$j]->Gia_Khuyen_Mai != 0){
+                    if ($array[$i]->Gia_Tien < $array[$j]->Gia_Khuyen_Mai) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai != 0 && $array[$j]->Gia_Khuyen_Mai != 0){
+                    if ($array[$i]->Gia_Khuyen_Mai < $array[$j]->Gia_Khuyen_Mai) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+            }
         }
-        else{
-        $book = Book::where('Trang_Thai',2)
-                      ->where('The_loai', $id)
-                      ->paginate(12);
+        return $array;
+    }
+
+    function SortDesc($array) {
+        $array_size = count($array);
+        for($i = 0; $i < $array_size; $i ++) {
+            for($j = 0; $j < $array_size; $j ++) {
+                if($array[$i]->Gia_Khuyen_Mai == 0 && $array[$j]->Gia_Khuyen_Mai == 0){
+                    if ($array[$i]->Gia_Tien > $array[$j]->Gia_Tien) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai != 0 && $array[$j]->Gia_Khuyen_Mai == 0){
+                    if ($array[$i]->Gia_Khuyen_Mai > $array[$j]->Gia_Tien) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai == 0 && $array[$j]->Gia_Khuyen_Mai != 0){
+                    if ($array[$i]->Gia_Tien > $array[$j]->Gia_Khuyen_Mai) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+                else if($array[$i]->Gia_Khuyen_Mai != 0 && $array[$j]->Gia_Khuyen_Mai != 0){
+                    if ($array[$i]->Gia_Khuyen_Mai > $array[$j]->Gia_Khuyen_Mai) {
+                        $tem = $array[$i];
+                        $array[$i] = $array[$j];
+                        $array[$j] = $tem;
+                    }
+                }
+            }
         }
-        return response()->json($book);
+        return $array;
     }
 
     public function Contact(){
@@ -153,9 +262,7 @@ class UserController extends Controller
             $book = Book::where('Id', '=', 0);
             foreach($detail as $detailpromotion)
             {
-                $book = $book->orwhere('The_Loai', '=',$detailpromotion->Id_The_Loai);
-                
-                        
+                $book = $book->orwhere('The_Loai', '=',$detailpromotion->Id_The_Loai);                                       
             }
             if($request['price']){
                 $price = $request['price'];
@@ -193,10 +300,10 @@ class UserController extends Controller
                 switch($orderby)
                 {
                     case 'new':
-                    $book = $book->orderBy('Id', 'desc');
+                    $book = $book->orderBy('created_at', 'desc');
                     break;
                     case 'old':
-                    $book = $book->orderBy('Id', 'asc');
+                    $book = $book->orderBy('created_at', 'asc');
                     break;
                     case 'asc':
                     $book = $book->orderBy('Gia_Khuyen_Mai', 'asc');
@@ -205,7 +312,7 @@ class UserController extends Controller
                     $book = $book->orderBy('Gia_Khuyen_Mai', 'desc');
                     break;
                     default:
-                    $book = $book->orderBy('Id', 'desc');
+                    $book = $book->orderBy('created_at', 'desc');
                     break;
                 }
             }

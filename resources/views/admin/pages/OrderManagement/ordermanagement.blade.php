@@ -1,5 +1,11 @@
 @extends('admin.layout')
 @section('content')
+<style>
+  .or-cancel{
+    opacity: 0.5;
+    font-style: italic;
+  }
+</style>
  <!-- partial -->
  <div class="main-panel">
     <div class="content-wrapper">
@@ -36,17 +42,37 @@
                   @foreach($don_hang as $order)
                 
                   <tr>
+                    @if ($order->Trang_Thai == 4)
+                    <td class="or-cancel">{{$order->Id}}</td>
+                    <td class="or-cancel">{{$order->Account->Ho_Ten}}</td>
+                    <td class="or-cancel">{{$order->Account->So_Dien_Thoai}}</td>
+                    <td class="or-cancel">{{$order->Ngay_Lap}}</td>
+                    <td class="or-cancel">{{$order->Dia_Chi_Giao_Hang}}</td>
+                    <td class="or-cancel">{{$order->Tong_Tien}} VNĐ</td>
+                    <td class="or-cancel">
+                        @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}
+                        @elseif (($order->Trang_Thai == 1)) {{"Đã nhận đơn"}}
+                        @elseif (($order->Trang_Thai == 2)) {{"Đang giao"}}
+                        @elseif (($order->Trang_Thai == 3)) {{"Đã giao"}}
+                        @else {{"Đã hủy"}}
+                        @endif
+                    </td>
+                    @else
                     <td>{{$order->Id}}</td>
                     <td>{{$order->Account->Ho_Ten}}</td>
                     <td>{{$order->Account->So_Dien_Thoai}}</td>
                     <td>{{$order->Ngay_Lap}}</td>
                     <td>{{$order->Dia_Chi_Giao_Hang}}</td>
-                    <td>{{$order->Tong_Tien}}</td>
+                    <td>{{$order->Tong_Tien}} VNĐ</td>
                     <td>
-                      @if($order->Trang_Thai == 0) {{"Chưa hoàn thành"}}
-                      @else {{"Đã hoàn thành"}}
-                      @endif
+                        @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}
+                        @elseif (($order->Trang_Thai == 1)) {{"Đã nhận đơn"}}
+                        @elseif (($order->Trang_Thai == 2)) {{"Đang giao"}}
+                        @elseif (($order->Trang_Thai == 3)) {{"Đã giao"}}
+                        @else {{"Đã hủy"}}
+                        @endif
                     </td>
+                    @endif
                     <td>
                         
                         <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">

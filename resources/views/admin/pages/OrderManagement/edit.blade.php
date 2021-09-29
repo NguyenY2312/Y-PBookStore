@@ -23,11 +23,35 @@
                     <label for="exampleInputTitle">Trạng thái</label>
                     <select style="border: 1px solid #CED4DA;border-radius: 4px; outline: none;" class="form-control" name="Trang_Thai"  placeholder="Status">
                         @if($don_hang->Trang_Thai==0)
-                        <option value="0" selected>Chưa hoàn thành</option>
-                        <option value="1">Đã boàn thành</option>
+                        <option value="0" selected>Chờ nhận đơn</option>
+                        <option value="1">Đã nhận đơn</option>
+                        <option value="2">Đang giao</option>
+                        <option value="3">Đã giao</option>
+                        <option value="4">Đã hủy</option>
                         @elseif($don_hang->Trang_Thai==1)
-                        <option value="0" >Chưa hoàn thành</option>
-                        <option value="1" selected>Đã boàn thành</option>
+                        <option value="0">Chờ nhận đơn</option>
+                        <option value="1" selected>Đã nhận đơn</option>
+                        <option value="2">Đang giao</option>
+                        <option value="3">Đã giao</option>
+                        <option value="4">Đã hủy</option>
+                        @elseif($don_hang->Trang_Thai==2)
+                        <option value="0">Chờ nhận đơn</option>
+                        <option value="1">Đã nhận đơn</option>
+                        <option value="2" selected>Đang giao</option>
+                        <option value="3">Đã giao</option>
+                        <option value="4">Đã hủy</option>
+                        @elseif($don_hang->Trang_Thai==3)
+                        <option value="0">Chờ nhận đơn</option>
+                        <option value="1">Đã nhận đơn</option>
+                        <option value="2">Đang giao</option>
+                        <option value="3" selected>Đã giao</option>
+                        <option value="4">Đã hủy</option>
+                        @else
+                        <option value="0">Chờ nhận đơn</option>
+                        <option value="1">Đã nhận đơn</option>
+                        <option value="2">Đang giao</option>
+                        <option value="3">Đã giao</option>
+                        <option value="4" selected>Đã hủy</option>
                         @endif
                     </select>  
                 </div>

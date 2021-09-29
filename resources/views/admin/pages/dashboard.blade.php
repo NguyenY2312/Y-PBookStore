@@ -88,7 +88,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title mb-2 fs-30">Danh sách sản phẩm bán chạy trong tháng</p>
+                  <p class="card-title mb-2 fs-30">Danh sách sản phẩm bán chạy</p>
                   <div class="table-responsive" style="margin-top:20px">
                     <table class="table table-striped table-borderless">
                       <thead>

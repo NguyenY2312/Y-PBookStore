@@ -144,10 +144,10 @@ td, th {
 <div class="modal fade" id="exampleSuccessModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #28a745;">
+      <div class="modal-header" style="background-color: #28a745; margin: -1px -1px 0 0;">
         <h5 class="modal-title" id="exampleModalLongTitle" style="color:white; font-size:120%; padding-left:130px"></h5>
       </div>
-	  <div class="modal-body" style="background-color: #28a745; height:150px">
+	  <div class="modal-body" style="background-color: #28a745; height:150px; margin: -1px -1px 0 0;">
 	  	<i class="fas fa-check-circle" style="color:white; font-size:400%; padding-left: 215px;"></i>
 	  	<h3 style="color:white; font-size:120%; text-align:center; padding-top:30px"> ĐẶT HÀNG THÀNH CÔNG! </h3>
       </div>
