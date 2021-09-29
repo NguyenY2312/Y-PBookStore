@@ -42,8 +42,8 @@
               <span class="menu-title">Khuyến mãi</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item" id="active_indexui">
+            <a class="nav-link" href="{{ route('indexui.index') }}">
               <i class="fas fa-palette menu-icon"></i>
               <span class="menu-title">Giao diện trang chủ</span>
             </a>

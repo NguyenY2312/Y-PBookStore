@@ -235,7 +235,7 @@
 							<!--/tab_two-->
 							<div class="tab2">
 					
-										<div class="single_page">
+										<div class="single_page" style="width:1100px">
 										<h5>MÔ TẢ SẢN PHẨM</h5>
 										<p>{{$Mo_Ta}}
 										</p>

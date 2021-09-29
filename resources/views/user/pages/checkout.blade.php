@@ -107,17 +107,20 @@ td, th {
 					<div style="text-align:right; margin-top: 5px; font-size:90%; font-weight:bold; color: #888"> Phí giao hàng: 15,000 VNĐ</div>
 					<hr style="margin-top:10px; margin-bottom:-15px" />
 					<div style="text-align:right; margin-top: 20px; font-size:120%; font-weight:bold; color: #888"> Tổng cộng: <input style="width:130px; border:none; color:red; text-align:right" id="total" readonly/></div>
-					<div class="container-fluid" style="border:1px solid; margin-top:15px">	
+					<div class="container-fluid" style="border:1px solid; margin-top:15px;">	
 					<h4>Phương thức thanh toán</h4>
-						<div class="col-lg-12" style="display: flex;">
+						<div class="col-lg-12" style="display: flex; margin-bottom: 15px">
 							<div class="col-lg-4">
-								<input type="radio" name="Hinh_Thuc" value="0" checked/> COD
+								<input type="radio" name="Hinh_Thuc" value="0" style="cursor: pointer" checked/> COD <br/>
+								<img src="{{asset('user/images/ship-cod.jpg')}}" style="width:140px; height:90px" />
 							</div>
 							<div class="col-lg-4">
-								<input type="radio" name="Hinh_Thuc" value="1" /> VNPAY
+								<input type="radio" name="Hinh_Thuc" value="1" style="cursor: pointer" /> VNPAY <br/>
+								<img src="{{asset('user/images/vnpay.jpg')}}" style="width:140px; height:90px" />
 							</div>
 							<div class="col-lg-4">
-								<input type="radio" name="Hinh_Thuc" value="2" /> E-Banking
+								<input type="radio" name="Hinh_Thuc" value="2" style="cursor: pointer" /> E-Banking <br/>
+								<img src="{{asset('user/images/e-banking.jpg')}}" style="width:140px; height:90px" />
 							</div>
 						</div>
 					</div>
@@ -127,7 +130,7 @@ td, th {
 					</div>
 					@else
 					<div class="checkout-right-basket">
-						<a style="color:white; cursor:pointer" onclick="PaymentCart()">Đặt hàng </a>
+						<a id="payment" style="color:white; cursor:pointer" onclick="PaymentCart()">Đặt hàng </a>
 					</div>
 					@endif
 				</div>
@@ -175,6 +178,7 @@ td, th {
 			total.forEach(element => money = parseInt(money) + parseInt(element));
 			document.getElementById('order-total').value = money.format() + " VNĐ";
 			var total = parseInt(money) + parseInt(15000);
+			if (money === 0) document.getElementById('payment').hidden = true;
 			document.getElementById('total').value = total.format() + " VNĐ";
 			document.getElementById('total').title = total;
 		}

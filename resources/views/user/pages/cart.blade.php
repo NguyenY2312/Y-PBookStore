@@ -73,16 +73,19 @@
 							</tr>
 							
 						</form>
-						@endforeach
+						@endforeach						
 						</tbody>
 					</table>
+					@if ($gio_hang->count() == 0)
+						<h4 style="text-align: center;">Chưa có sản phẩm nào trong giỏ hàng.</h4>
+					@endif
 					<div class="col-md-4 checkout-right-basket">
 						<ul>				
 							<li style="font-size:120%; font-weight:600">Tổng tiền: &nbsp;	
 								<input id="money-total" style="border: none; color: #f40017; text-align:right" readonly/>
 							</li>
 						</ul>
-						<a href="{{ route('account.paymentcart') }}" class="btn">THANH TOÁN</a>
+						<a id="btn-pay" href="{{ route('account.paymentcart') }}" class="btn">THANH TOÁN</a>
 						<a href="{{ route('user.shop',0) }}" class="btn">TIẾP TỤC MUA SẮM</a>
 					</div>
 					<div class="clearfix"> </div>
@@ -104,6 +107,10 @@
 			var money = 0;
 			total.forEach(element => money = parseInt(money) + parseInt(element));
 			document.getElementById('money-total').value = money.format() + " VNĐ";
+			if (money === 0)
+			{
+				document.getElementById('btn-pay').hidden = true;
+			}
 		}
 	</script>
 	<!--footer -->

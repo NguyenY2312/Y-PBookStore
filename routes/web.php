@@ -56,6 +56,7 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/dashboard',admin\DashboardController::class);
+    Route::resource('admin/indexui',admin\IndexUIController::class);
     Route::resource('admin/book',admin\BookController::class);
         Route::post('/admin/book/create','admin\BookController@store')->name('book.store');
         Route::post('/admin/book/addimage','admin\BookController@addimage')->name('book.addimage');

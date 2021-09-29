@@ -90,7 +90,7 @@
 						</li>
 						<!-- Tin tức -->
 						<li class="nav-item">
-							<a class="nav-link" href="about.html">Tin Tức</a>
+							<a class="nav-link" href="#">Tin Tức</a>
 						</li>
 						<!-- Thông tin & liên hệ -->
 						<li class="nav-item">
