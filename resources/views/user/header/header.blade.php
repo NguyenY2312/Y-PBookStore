@@ -131,11 +131,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('user.accountpass') }}" method="POST" enctype="multipart/form-data" onsubmit="return CheckPass();">
+      <form action="" method="" enctype="multipart/form-data" onsubmit="return CheckPass();">
       @csrf
       <div class="modal-body" style="margin-top:10px; padding-left:10px; padding-right:10px">
         <div class="row">
 			<div class="col-lg-12">
+				<label>Mật khẩu cũ</label>
+				<input type="password" class="form-control" name="Mat_Khau_Cu" id="Mat_Khau_Cu">
+			</div>
+			<div class="col-lg-12" style="margin-top:15px;">
 				<label>Mật khẩu mới</label>
 				<input type="password" class="form-control" name="Mat_Khau" id="Mat_Khau">
 			</div>
@@ -157,6 +161,7 @@
 	function CheckPass(){
 		var x = document.getElementById('Mat_Khau').value;
 		var y = document.getElementById('Xac_Thuc').value;
+		var z = document.getElementById('Mat_Khau_Cu').value;
 		if(x != y){
 			alert('Xác thực mật khẩu không khớp!');
 			return false;
@@ -165,9 +170,16 @@
 		{
 			alert('Mật khẩu phải từ 6 - 18 ký tự!');
 			return false;
-		}
-		alert('Cập nhật thành công!');
-		return true;
+		}		
+		$.ajax({
+			url: "{{ route('user.accountpass') }}",
+			type:'POST',
+			data: {Pass_Old: z, Pass_New: x, _token: '{{ csrf_token() }}' },
+			success: function(data) {
+				alert(data);
+				return true;
+			}
+		});
 	}
 </script>
 <!-- End Modal -->

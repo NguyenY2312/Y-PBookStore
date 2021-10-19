@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -56,7 +57,7 @@ class AccountController extends Controller
         if ($account->count() == 0 || $is_deleted == 1) {
             $tai_khoan=Account::create([
                 'Email'=>$request['Email'],
-                'Mat_Khau'=>$request['Mat_Khau'],
+                'Mat_Khau'=>Hash::make($request['Mat_Khau']),
                 'Ho_Ten'=>$request['Ho_Ten'],
                 'Anh_Dai_Dien'=>$anh_dai_dien,
                 'Ngay_Sinh'=>$request['Ngay_Sinh'],
@@ -118,7 +119,9 @@ class AccountController extends Controller
         else $anh_dai_dien=$tai_khoan->Anh_Dai_Dien;
       
         $tai_khoan->Email=$request['Email'];
-        $tai_khoan->Mat_Khau=$request['Mat_Khau'];
+        if ($tai_khoan->Mat_Khau == $request['Mat_Khau'])
+        $tai_khoan->Mat_Khau = $request['Mat_Khau'];
+        else $tai_khoan->Mat_Khau= Hash::make($request['Mat_Khau']);
         $tai_khoan->Ho_Ten=$request['Ho_Ten'];
         $tai_khoan->Ngay_Sinh=$request['Ngay_Sinh'];
         $tai_khoan->Anh_Dai_Dien=$anh_dai_dien;

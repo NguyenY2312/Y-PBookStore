@@ -79,7 +79,7 @@
               <div class="card position-relative">
                 <p class="card-title mb-2 fs-30" style="padding-left:30px; padding-top:10px"> Tổng doanh thu của tháng: <input id="total" style="border:none; font-size:20px" disabled/> </p>
                 <div class="card-body">
-                  <canvas id="myChart" style="width:100%; padding-left:100px; padding-right:100px; height:500px"></canvas>
+                  <!-- <canvas id="myChart" style="width:100%; padding-left:100px; padding-right:100px; height:500px"></canvas> -->
                 </div>
               </div>
             </div>

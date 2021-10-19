@@ -8,6 +8,7 @@ use DB;
 use Cookie;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     //
@@ -33,7 +34,7 @@ class LoginController extends Controller
                 $tt = $item->Trang_Thai;
                 $is_deleted = $item->is_deleted;
             }
-            if ( $pass == $mk && $loaitk == 0 && $is_deleted == 0)
+            if (Hash::check($pass, $mk) && $loaitk == 0 && $is_deleted == 0)
             {
                 if ($tt != 0)
                 {
@@ -45,7 +46,7 @@ class LoginController extends Controller
                     return redirect()->route('dashboard.index');
                 }
             }
-            else if ( $pass == $mk && $loaitk == 1 && $is_deleted == 0)
+            else if (Hash::check($pass, $mk) && $loaitk == 1 && $is_deleted == 0)
             {
                 if ($tt != 0)
                 {
@@ -79,7 +80,7 @@ class LoginController extends Controller
         {
             $tai_khoan = Account::create([
                 'Email'=> $email,
-                'Mat_Khau'=> $pass,
+                'Mat_Khau'=> Hash::make($pass),
                 'Loai_TK'=> 1,
                 'Trang_Thai'=> 0
             ]);

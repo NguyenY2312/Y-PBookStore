@@ -52,7 +52,7 @@
                   @foreach($tai_khoan as $account)
                   <tr>
                     <td>{{$account->Email}}</td>
-                    <td class="hidetext">{{$account->Mat_Khau}}</td>
+                    <td class="hidetext" style="max-width:80px; text-overflow: clip; overflow: hidden;">{{$account->Mat_Khau}}</td>
                     <td>{{$account->Ho_Ten}}</td>
                     <td>
                     @if($account->Gioi_Tinh == 0) {{"Nam"}}

@@ -9,25 +9,25 @@
           <li class="nav-item" id="active_book">
             <a class="nav-link" href="{{ route('book.index')}}">
               <i class="icon-book menu-icon"></i>
-              <span class="menu-title">Quản lý sách</span>
+              <span class="menu-title">Sách</span>
             </a>
           </li>
           <li class="nav-item" id="active_account">
             <a class="nav-link" href="{{ route('account.index')}}">
               <i class="icon-head menu-icon"></i>
-              <span class="menu-title">Quản lý tài khoản</span>
+              <span class="menu-title">Tài khoản</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-don-hang">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Quản lý đơn hàng</span>
+              <span class="menu-title">Đơn hàng</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/admin/quan-ly-binh-luan">
               <i class="fas fa-comments menu-icon"></i>
-              <span class="menu-title">Quản lý bình luận</span>
+              <span class="menu-title">Bình luận</span>
             </a>
           </li>
           <li class="nav-item">

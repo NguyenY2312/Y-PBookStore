@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Book;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Cookie;
 use Mail;
 use App\Mail\MailContact;
@@ -79,13 +80,15 @@ class AccountController extends Controller
     //đổi mật khẩu
     public function changepass(Request $request)
     {
-        $mk = $request['Mat_Khau'];
+        $mk = $request['Pass_New'];
+        $mk_cu = $request['Pass_Old'];
         $tai_khoan = Account::find(Cookie::get('UserId'));
+        if(Hash::check($mk_cu, $tai_khoan->Mat_Khau) == false) return response()->json("Mật khẩu cũ không đúng!");
         if($tai_khoan != null){
-            $tai_khoan->Mat_Khau = $mk;
+            $tai_khoan->Mat_Khau = Hash::make($mk);
         }
         $tai_khoan->save();      
-        return redirect()->back();
+        return response()->json("Cập nhật thành công!");
     }
 
     ///mail liên hệ
