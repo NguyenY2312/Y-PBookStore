@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IndexUI extends Model
+class News extends Model
 {
     use HasFactory;
-    protected $table='gd_trang_chu';
+    protected $table='tin-tuc';
     protected $primaryKey = 'Id';
     protected $fillable = [
+        'Tieu_De',
+        'Chu_De',
         'Hinh_Anh',
-        'Iframe_YT',
-        'Banner_TT',
+        'Noi_Dung',
+        'Trang_Thai',
     ];
 }

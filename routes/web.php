@@ -42,9 +42,11 @@ Route::post("/dang-ky","LoginController@register")->name("register");
 Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/","UserController@Index")->name("user.index");
     Route::get("/cua-hang/{Id?}","UserController@Shop")->name("user.shop");
-    Route::get("contact","UserController@Contact")->name("user.contact");
+    Route::get("/lien-he","UserController@Contact")->name("user.contact");
     Route::get("/chi-tiet-san-pham/{book_id?}","UserController@Single")->name("user.single");
-    Route::get("about","UserController@About")->name("user.about");
+    Route::get("/ve-chung-toi","UserController@About")->name("user.about");
+    Route::get("/tin-tuc","UserController@News")->name("user.news");
+    Route::get("/chi-tiet-tin-tuc/{Id?}","UserController@NewsDetail")->name("user.newsdetail");
     //thanh toán
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
@@ -56,7 +58,6 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
 
 Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/dashboard',admin\DashboardController::class);
-    Route::resource('admin/indexui',admin\IndexUIController::class);
     Route::resource('admin/book',admin\BookController::class);
         Route::post('/admin/book/create','admin\BookController@store')->name('book.store');
         Route::post('/admin/book/addimage','admin\BookController@addimage')->name('book.addimage');
@@ -86,4 +87,9 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/promotion/addpromotiondetail','admin\PromotionController@addpromotiondetail')->name('promotion.addpromotiondetail');
         Route::post('/admin/promotion/editpromotiondetail','admin\PromotionController@editpromotiondetail')->name('promotion.editpromotiondetail');
         Route::get('/admin/promotion/{id}/delpromotiondetail','admin\PromotionController@delpromotiondetail')->name('promotion.delpromotiondetail');      
+    Route::resource('admin/news',admin\NewsController::class);
+        Route::post('/admin/news/create','admin\NewsController@store')->name('news.store');
+        Route::post('/admin/news/{id}/update','admin\NewsController@update')->name('news.update');
+        Route::get('/admin/news/{id}/delete','admin\NewsController@delete')->name('news.delete');
+        Route::post('/admin/news','admin\NewsController@search')->name('news.search');
 });

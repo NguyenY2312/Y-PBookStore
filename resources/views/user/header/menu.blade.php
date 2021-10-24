@@ -90,7 +90,7 @@
 						</li>
 						<!-- Tin tức -->
 						<li class="nav-item">
-							<a class="nav-link" href="#">Tin Tức</a>
+							<a class="nav-link" id="nav-news" href="{{ route('user.news')}}">Tin Tức</a>
 						</li>
 						<!-- Thông tin & liên hệ -->
 						<li class="nav-item">

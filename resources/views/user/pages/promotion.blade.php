@@ -102,7 +102,7 @@
                         <div style="padding-top: 15px;padding-left: 30px;letter-spacing: 1px;font-size: 0.9em;line-height: 1.9em;color: #959596;">
                             {!!html_entity_decode($Noi_Dung)!!}
                         </div>
-                        <p style="padding-top:15px"><i class="fas fa-gift" style="color:red"></i> Cùng với nhiều ưu đãi hấp dẫn khác <a href="{{$Link_Chi_Tiet}}">Xem chi tiết</a></p>
+                        <p style="padding-top:15px"><i class="fas fa-gift" style="color:red"></i> Cùng với nhiều ưu đãi hấp dẫn khác <a href="{{$Link_Chi_Tiet}}" target="_blank">Xem chi tiết</a></p>
 
                     </div>
                     <!-- //content -->

@@ -8,6 +8,7 @@ use App\Models\PublishingHouse;
 use App\Models\Promotion;
 use App\Models\Comment;
 use App\Models\DetailPromotion;
+use App\Models\News;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
@@ -28,11 +29,12 @@ class UserController extends Controller
         $this->viewnamespace='user/';
     }
     public function Index(){
-        $sach_moi = Book::orderBy('Id', 'desc')->take(8)->get();
+        $sach_moi = Book::orderBy('created_at', 'desc')->take(8)->get();
         $ngay = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $ngaybd = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
         $don_hang = Order::where([['Ngay_Lap', '>=', $ngaybd], ['Trang_Thai', '<>', 4]])->get();
         $id_sach = OrderDetail::where('Trang_Thai', 0);
+        $tin_tuc = News::orderBy('created_at', 'desc')->take(6)->get();
         foreach ($don_hang as $order)
         {
             $id_sach = $id_sach->orwhere('Id_DH', $order->Id);
@@ -57,7 +59,7 @@ class UserController extends Controller
         }
         $sach_ban_chay = $sach_ban_chay->get();
         //return dd($sach_ban_chay);
-        return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay]);
+        return view($this->viewprefix."index", ['sach_moi'=>$sach_moi, 'sach_ban_chay'=>$sach_ban_chay, 'tin_tuc'=>$tin_tuc]);
     }
     public function Shop(Request $request, $id){
         $sortMoney = "";
@@ -344,6 +346,17 @@ class UserController extends Controller
     public function About(){
         return view($this->viewprefix.'about');
     }
+
+    public function News(){
+        $tin_tuc = News::where('Id', '<>', 0)->orderBy('created_at', 'desc')->paginate(6);
+        return view($this->viewprefix.'news', ['tin_tuc' => $tin_tuc]);
+    }
+
+    public function NewsDetail($id){
+        $tin_tuc = News::find($id);
+        return view($this->viewprefix.'newsdetail', $tin_tuc);
+    }
+
     public function showCart(){
         if(Cookie::get('UserId') != null){
             $gio_hang = Cart::where('Id_TK', Cookie::get('UserId'))->get();

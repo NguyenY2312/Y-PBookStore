@@ -210,7 +210,49 @@
 						</div>
 						@endforeach
 					</div>
-				</div>			
+				</div>	
+				<div class="inner-sec-shop px-lg-4 px-3" style="padding-top:30px;">
+ 					<div class="col-lg-12" style="background-image: url(user/images/banner_tin_tuc.jpg); height: 420px; width:100%; object-fit: cover">
+					</div>
+				</div>	
+				<div class="inner-sec-shop px-lg-4 px-3">
+					<h3 class="tittle-w3layouts my-lg-4 my-4">Tin Tức </h3>
+					<div class="row">
+					@foreach ($tin_tuc as $news)
+					<div class="col-md-4" style="padding: 0 50px 30px 50px;">
+						<div class="product-googles-info googles" style="background-color: #f6f5f5; border: solid 2px blue">
+							<div class="men-pro-item">
+								<!-- Hình ảnh -->
+								<div class="men-thumb-item">
+									<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">
+									<img src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" style="width:300px; height: 300px; object-fit: cover; border: solid 1px yellow">
+									</a>
+									@if ($news->Chu_De == 0)
+									<span class="product-new-top" style="background-color: green;">Hoạt động</span>
+									@elseif ($news->Chu_De == 1)
+									<span class="product-new-top" style="background-color: blue;">Sự kiện</span>
+									@else
+									<span class="product-new-top" style="background-color: #FFC107;">Khuyến mãi</span>
+									@endif
+								</div>
+								<div class="item-info-product">
+									<div class="info-product-price">
+										<div class="grid_meta" style="padding-left:20px; height:100px">
+											<div class="">
+												<h4 style="padding-top:20px; color: #959596;">
+													<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">{{ $news->Tieu_De }}</a>
+												</h4>
+											</div>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>					
+					</div>
+					@endforeach
+					</div>
+				</div>	
 		</div>
 	</section>
 	<script>

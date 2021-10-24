@@ -42,10 +42,10 @@
               <span class="menu-title">Khuyến mãi</span>
             </a>
           </li>
-          <li class="nav-item" id="active_indexui">
-            <a class="nav-link" href="{{ route('indexui.index') }}">
+          <li class="nav-item" id="active_news">
+            <a class="nav-link" href="{{ route('news.index') }}">
               <i class="fas fa-palette menu-icon"></i>
-              <span class="menu-title">Giao diện trang chủ</span>
+              <span class="menu-title">Tin tức</span>
             </a>
           </li>
           <li class="nav-item">

@@ -18,7 +18,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $sach = Book::where('is_deleted', 0)->paginate(5); // Phân trang
+        $sach = Book::where('is_deleted', 0)->orderBy('created_at', 'desc')->paginate(5); // Phân trang
         return View('admin.pages.Book.book', ['sach'=>$sach]);
     }
 
