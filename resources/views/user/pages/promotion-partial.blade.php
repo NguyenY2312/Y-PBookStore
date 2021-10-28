@@ -41,7 +41,7 @@
                             </button>								
                         </form>
                         </div>
-                        <div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+                        <div class="googles single-item hvr-outline-out" style="">
                             <form>
                             {{ csrf_field() }}
                                 <button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">

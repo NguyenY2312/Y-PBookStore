@@ -31,14 +31,13 @@
 						<div class="side-bar col-lg-3">
 							<div class="search-hotel">
 								<h3 class="agileits-sear-head">Tìm kiếm</h3>
-								<form action="{{route('tim-kiem')}}" method="POST">
-									@csrf
-										<input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
-										<button class="btn1">
-												<i class="fas fa-search"></i>
-										</button>
-										<div class="clearfix"> </div>
-									</form>
+								<form action="{{route('tim-kiem')}}" method="GET">
+                                <input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
+                                <button class="btn1" style="padding: 15px;">
+                                        <i class="fas fa-search"></i>
+                                </button>
+                                <div class="clearfix"> </div>
+                        		</form>
 							</div>
 							<!-- price range -->
 							<div class="range">
@@ -135,7 +134,7 @@
 															</button>								
 														</form>
 														</div>
-														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+														<div class="googles single-item hvr-outline-out" style="">
 															<form>
 															{{ csrf_field() }}
 																<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
