@@ -198,7 +198,7 @@
 														</div>
 														<div class="col-md-10">
 															<p style="color:green">@ {{$com->TaiKhoan->Ho_Ten}} </p>
-															<p>{{$com->Thoi_Gian}}</p>
+															<p>{{date("d-m-Y H:i:s", strtotime($com->Thoi_Gian))}}</p>
 															<p>{{$com->Noi_Dung}}
 															</p>
 														</div>

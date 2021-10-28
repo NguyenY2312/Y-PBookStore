@@ -52,10 +52,6 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -108,6 +104,13 @@ class OrderController extends Controller
        
         
     }
+    public function show($id)
+    {
+        $don_hang=Order::find($id);
+        // return $order;
+        return view($this->viewprefix.'show')->with('don_hang', $don_hang);
+    }
+
     public function search(Request $request)
     {
         $don_hang = Order::where('Dia_Chi_Giao_Hang','like','%'.$request->NhapTimKiem.'%')->paginate(5);

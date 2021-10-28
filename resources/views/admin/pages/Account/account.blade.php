@@ -37,7 +37,6 @@
                   <thead>
                   <tr>
                     <th>Email</th>
-                    <th>Mật khẩu</th>
                     <th>Họ tên</th>
                     <th>Giới tính</th>
                     <th>Ngày sinh</th>
@@ -52,7 +51,7 @@
                   @foreach($tai_khoan as $account)
                   <tr>
                     <td>{{$account->Email}}</td>
-                    <td class="hidetext" style="max-width:80px; text-overflow: clip; overflow: hidden;">{{$account->Mat_Khau}}</td>
+                    <!--<td class="hidetext" style="max-width:80px; text-overflow: clip; overflow: hidden;">{{$account->Mat_Khau}}</td>-->
                     <td>{{$account->Ho_Ten}}</td>
                     <td>
                     @if($account->Gioi_Tinh == 0) {{"Nam"}}
@@ -73,8 +72,8 @@
                     <td style="text-align:center"><input type="checkbox" disabled="disabled"/></td>
                     @endif
                     <td>
-                        <a href="{{ route('account.edit', [$account->Id]) }}" class="btn btn-warning" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a onclick="return ComfirmDelete();" href="{{ route('account.delete', [$account->Id]) }}" class="btn btn-danger" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('account.edit', [$account->Id]) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a onclick="return ComfirmDelete();" href="{{ route('account.delete', [$account->Id]) }}" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach

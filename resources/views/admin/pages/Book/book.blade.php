@@ -65,7 +65,7 @@
                     @else {{"Bìa mềm"}}
                     @endif
                     </td>
-                    <td>{{$book->Gia_Tien}} VNĐ</td>
+                    <td>{{number_format($book->Gia_Tien)}} VNĐ</td>
                     <td>{{$book->So_Luong}}</td>
                     <td>
                     @if($book->Trang_Thai == 0) {{"Ngừng bán"}}
@@ -74,8 +74,8 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('book.edit', [$book->Id]) }}" class="btn btn-warning" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a onclick="return ComfirmDelete();" href="{{ route('book.delete', [$book->Id]) }}" class="btn btn-danger" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('book.edit', [$book->Id]) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a onclick="return ComfirmDelete();" href="{{ route('book.delete', [$book->Id]) }}" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach

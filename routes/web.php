@@ -71,14 +71,16 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/account','admin\AccountController@search')->name('account.search');
         Route::post('/admin/account/{id}/update','admin\AccountController@update')->name('account.update');
         Route::get('/admin/account/{id}/delete','admin\AccountController@delete')->name('account.delete');
+    //Quản lý đơn hàng
     Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
-        Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
+    Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
+    //Quản lý bình luận
     Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
-        Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
-    Route::resource('admin/publish',admin\PublishingHouseController::class);
-        Route::post('/admin/publish/create','admin\PublishingHouseController@store')->name('publish.store');
-        Route::post('/admin/publish','admin\PublishingHouseController@search')->name('publish.search'); 
-    Route::resource('admin/quan-ly-chi-tiet-hoa-don',admin\BillController::class);
+    Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
+    //Quản lý nhà xuất bản
+    Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingController::class);
+    Route::post('/admin/quan-ly-nha-xuat-ban','admin\PublishingController@search')->name('quan-ly-nha-xuat-ban.search');
+    //
     Route::resource('admin/promotion',admin\PromotionController::class);
         Route::post('/admin/promotion/create','admin\PromotionController@store')->name('promotion.store');
         Route::post('/admin/promotion/{id}/update','admin\PromotionController@update')->name('promotion.update');

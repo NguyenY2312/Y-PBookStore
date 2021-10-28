@@ -10253,6 +10253,10 @@ pre code {
 .table-hover .table-success:hover > th {
   background-color: #bee3be;
 }
+.table tbody tr td {
+  max-width: 180px; text-overflow: ellipsis; overflow: hidden;
+
+}
 
 .table-info,
 .table-info > th,

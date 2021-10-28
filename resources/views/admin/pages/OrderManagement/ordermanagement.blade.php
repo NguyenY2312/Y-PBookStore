@@ -52,9 +52,9 @@
                     <td class="or-cancel">{{$order->Id}}</td>
                     <td class="or-cancel">{{$order->Account->Ho_Ten}}</td>
                     <td class="or-cancel">{{$order->Account->So_Dien_Thoai}}</td>
-                    <td class="or-cancel">{{$order->Ngay_Lap}}</td>
-                    <td class="or-cancel">{{$order->Dia_Chi_Giao_Hang}}</td>
-                    <td class="or-cancel">{{$order->Tong_Tien}} VNĐ</td>
+                    <td class="or-cancel" >{{date("d-m-Y", strtotime($order->Ngay_Lap))}}</td>
+                    <td class="or-cancel" >{{$order->Dia_Chi_Giao_Hang}}</td>
+                    <td class="or-cancel">{{number_format($order->Tong_Tien).' '. 'VNĐ'}}</td>
                     <td class="or-cancel">
                         @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}
                         @elseif (($order->Trang_Thai == 1)) {{"Đã nhận đơn"}}
@@ -69,9 +69,10 @@
                     <td>{{$order->Id}}</td>
                     <td>{{$order->Account->Ho_Ten}}</td>
                     <td>{{$order->Account->So_Dien_Thoai}}</td>
-                    <td>{{$order->Ngay_Lap}}</td>
+                    <td>{{date("d-m-Y", strtotime($order->Ngay_Lap))}}
+                    </td>
                     <td>{{$order->Dia_Chi_Giao_Hang}}</td>
-                    <td>{{$order->Tong_Tien}} VNĐ</td>
+                    <td>{{number_format($order->Tong_Tien).' '. 'VNĐ'}}</td>
                     <td>
                         @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}
                         @elseif (($order->Trang_Thai == 1)) {{"Đã nhận đơn"}}
@@ -82,11 +83,12 @@
                     </td>                  
                     <td>
                     <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
-                    <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                    <a href="{{ route('quan-ly-don-hang.show', $order->Id) }}" class="btn btn-success" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-eye' style='font-size:15px'></i></a>
+                    <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                     @endif                       
                           @csrf
                           @method('DELETE')                        
-                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
 
                         </form>
                         

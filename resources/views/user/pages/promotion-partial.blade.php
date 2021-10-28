@@ -16,14 +16,14 @@
                 </div>
                 <div class="item-info-product">
                     <div class="info-product-price">
-                        <div class="grid_meta" style="padding-top: 10px;">
+                        <div class="grid_meta" style="padding-top: 15px;">
                             <div class="product_price">
                                 <h4 class= "hidden"> 
                                     <a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
                                 </h4>
                                 @if($books->Gia_Khuyen_Mai != 0)
                                 <div class="grid-price mt-2">
-                                    <span class="money gia-tien">{{number_format($books->Gia_Khuyen_Mai)}} VNĐ <i style="color:gray; font-size:70%; text-decoration-line:line-through;"> {{number_format($books->Gia_Tien).' '. 'VNĐ'}} </i></span>
+                                    <span class="money gia-tien">{{number_format($books->Gia_Khuyen_Mai)}} VNĐ <br><i style="color:gray; font-size:60%; text-decoration-line:line-through;"> {{number_format($books->Gia_Tien).' '. 'VNĐ'}} </i></span>
                                 </div>
                                 @else
                                 <div class="grid-price mt-2">

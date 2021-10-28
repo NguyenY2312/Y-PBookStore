@@ -31,7 +31,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('publish.index')}}">
+            <a class="nav-link" href="{{ route('quan-ly-nha-xuat-ban.index')}}">
               <i class="fas fa-building menu-icon"></i>
               <span class="menu-title">Nhà xuất bản</span>
             </a>

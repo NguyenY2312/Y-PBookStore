@@ -5,15 +5,13 @@ use App\Models\PublishingHouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
-
-class PublishingHouseController extends Controller
+class PublishingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function __construct()
     {
         $this->viewprefix='admin.pages.PublishingHouse.';
@@ -46,7 +44,6 @@ class PublishingHouseController extends Controller
     public function store(Request $request)
     {
         //
-
         $nha_xuat_ban= new PublishingHouse();
         $this->validate($request, [
             'Ten_NXB'=>'required',
@@ -68,7 +65,7 @@ class PublishingHouseController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('publish.index');
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
 
     /**
@@ -105,7 +102,6 @@ class PublishingHouseController extends Controller
     public function update(Request $request, $id)
     {
         //
-
         $nha_xuat_ban = PublishingHouse::find($id);
         $data= $request->validate([
             'Ten_NXB'=>'required',
@@ -122,7 +118,7 @@ class PublishingHouseController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('publish.index');
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
 
     /**
@@ -145,11 +141,13 @@ class PublishingHouseController extends Controller
             Session::flash('message', 'successfully!');
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('publish.index');
+        return redirect()->route('quan-ly-nha-xuat-ban.index');
     }
+       
     public function search(Request $request)
     {
         $nha_xuat_ban = PublishingHouse::where('Ten_NXB','like','%'.$request->NhapTimKiem.'%')->paginate(5);
         return View($this->viewprefix.'publishinghouse', ['nha_xuat_ban'=>$nha_xuat_ban]);
     }
 }
+
