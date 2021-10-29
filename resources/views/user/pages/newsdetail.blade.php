@@ -2,7 +2,7 @@
 @section('content')
 <style>
  img{
-    object-fit: cover
+    max-width: 50%;
  }
 </style>
 <div class="container" style="padding: 100px 30px 30px 30px; ">

@@ -35,13 +35,13 @@
 				<h2 class="tittle-w3layouts my-lg-4 my-4"></h2>
 				<div class="row">
 					@foreach ($tin_tuc as $news)
-					<div class="col-md-4" style="padding: 0 50px 30px 50px;max-width:1200px">
+					<div class="col-md-4" style="padding: 0 50px 30px 50px">
 						<div class="product-googles-info googles" style="height:400px">
 							<div class="men-pro-item" >
 								<!-- Hình ảnh -->
-								<div class="men-thumb-item">
+								<div class="men-thumb-item" >
 									<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">
-									<img src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" style="width:100%; object-fit: cover; border: solid 2px black;border-radius: 10px;">
+									<img  style=" width: fit-content;height:200px;object-fit: contain" src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" >
 									</a>
 									@if ($news->Chu_De == 0)
 									<span class="product-new-top" style="background-color: green;">Hoạt động</span>

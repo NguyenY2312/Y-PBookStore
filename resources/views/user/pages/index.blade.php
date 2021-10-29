@@ -220,12 +220,12 @@
 					<div class="row">
 					@foreach ($tin_tuc as $news)
 					<div class="col-md-4" style="padding: 0 50px 30px 50px;">
-						<div class="product-googles-info googles" style="background-color: #f6f5f5; border: solid 2px blue">
+						<div class="product-googles-info googles" style="">
 							<div class="men-pro-item">
 								<!-- Hình ảnh -->
 								<div class="men-thumb-item">
 									<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">
-									<img src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" style="width:300px; height: 300px; object-fit: cover; border: solid 1px yellow">
+									<img  style=" width: fit-content;height:200px;object-fit: contain" src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" >
 									</a>
 									@if ($news->Chu_De == 0)
 									<span class="product-new-top" style="background-color: green;">Hoạt động</span>
@@ -239,9 +239,9 @@
 									<div class="info-product-price">
 										<div class="grid_meta" style="padding-left:20px; height:100px">
 											<div class="">
-												<h4 style="padding-top:20px; color: #959596;">
+												<h6 style="padding-top:20px; color: #959596;">
 													<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">{{ $news->Tieu_De }}</a>
-												</h4>
+												</h6>
 											</div>
 										</div>
 									</div>
