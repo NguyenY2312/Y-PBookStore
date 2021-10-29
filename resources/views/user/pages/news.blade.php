@@ -13,19 +13,35 @@
    margin: -10px; 
  }
 </style>
-	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
-		<div class="container-fluid">
-			<div class="inner-sec-shop px-lg-4 px-3">
-				<h2 class="tittle-w3layouts my-lg-4 my-4">Tin tức</h2>
+<!-- banner -->
+<div class="banner_inner">
+    <div class="services-breadcrumb">
+        <div class="inner_breadcrumb">
+
+            <ul class="short">
+                <li>
+                    <a href="{{route('user.index')}}">Trang Chủ</a>
+                    <i>|</i>
+                </li>
+                <li>Tin tức</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--//banner -->
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3" style="background-color: #002200;">
+		<div class="container-fluid" >
+			<div class="inner-sec-shop px-lg-4 px-3" style="background-color: #ffffff;">
+				<h2 class="tittle-w3layouts my-lg-4 my-4"></h2>
 				<div class="row">
 					@foreach ($tin_tuc as $news)
-					<div class="col-md-4" style="padding: 0 50px 30px 50px;">
-						<div class="product-googles-info googles" style="background-color: #f6f5f5; border: solid 2px blue">
-							<div class="men-pro-item">
+					<div class="col-md-4" style="padding: 0 50px 30px 50px;max-width:1200px">
+						<div class="product-googles-info googles" style="height:400px">
+							<div class="men-pro-item" >
 								<!-- Hình ảnh -->
 								<div class="men-thumb-item">
 									<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">
-									<img src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" style="width:300px; height: 300px; object-fit: cover; border: solid 1px yellow">
+									<img src="admin/{!! $news->Hinh_Anh !!}" class="img-fluid" alt="" style="width:100%; object-fit: cover; border: solid 2px black;border-radius: 10px;">
 									</a>
 									@if ($news->Chu_De == 0)
 									<span class="product-new-top" style="background-color: green;">Hoạt động</span>
@@ -39,9 +55,9 @@
 									<div class="info-product-price">
 										<div class="grid_meta" style="padding-left:20px; height:100px">
 											<div class="">
-												<h4 style="padding-top:20px; color: #959596;">
+												<h6 style="padding-top:20px; color: #959596;">
 													<a href="{{ route('user.newsdetail', [$news->Id]) }}" target="_blank">{{ $news->Tieu_De }}</a>
-												</h4>
+												</h6>
 											</div>
 										</div>
 									</div>
@@ -54,7 +70,7 @@
 				</div>
 				<div class="row">
 				<div class="col-md-4"></div>
-				<div class="col-md-4" style="padding-left:100px">{{ $tin_tuc->links() }}</div>
+				<div class="col-md-4" style="padding-left:100px">{{ $tin_tuc->links() }} <br></div>
 				<div class="col-md-4"></div>
 				</div>
 			</div>					
