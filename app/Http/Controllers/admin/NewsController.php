@@ -79,7 +79,6 @@ class NewsController extends Controller
         $tin_tuc = News::find($id);
         return View('admin.pages.News.edit', $tin_tuc);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -105,7 +104,7 @@ class NewsController extends Controller
         $tin_tuc->Noi_Dung = $request['Noi_Dung'];
         $tin_tuc->Trang_Thai = $request['Trang_Thai'];
         $tin_tuc->save();
-        return redirect()->back();
+        return redirect()->route('news.index');
     }
 
     /**
