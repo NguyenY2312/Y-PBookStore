@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="container">
-            <form method="POST" action="{{route('statistical.result')}}">
+            <form method="POST" action="{{route('statistical.result')}}" onsubmit="return CheckSubmit()">
                 @csrf
                 <div class="row">
                     <div class="col-lg-5">
@@ -171,6 +171,24 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    function CheckSubmit(){
+      var strday = document.getElementById("StartDay").value;
+      var endday = document.getElementById("EndDay").value;
+      var today = new Date();
+      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      if (strday == "" || endday == "")
+      {
+        alert("Vui lòng chọn ngày để xem thống kê!");
+        return false;
+      }
+      else if (strday > endday)
+      {
+        alert("Ngày bắt đầu không lớn hơn ngày kết thúc!");
+        return false;
+      }  
+      else return true;
+    }
+
     function Active(){
       var element = document.getElementById("active_statistical");
       element.classList.add("active");
