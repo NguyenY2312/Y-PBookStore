@@ -21,4 +21,7 @@ class OrderDetail extends Model
     public function NhaXuatBan(){
         return $this->belongsTo('App\Models\PublishingHouse', 'Nha_Xuat_Ban', 'Id');
     }
+    public function DonHang(){
+        return $this->belongsTo('App\Models\Order', 'Id_DH', 'Id');
+    }
 }

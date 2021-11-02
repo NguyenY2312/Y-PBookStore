@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 use App\Models\Order;
-
+use App\Models\OrderDetail;
+use App\Models\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Cookie;
 use Session;
 class OrderController extends Controller
 {
@@ -22,6 +24,7 @@ class OrderController extends Controller
     {
         //
         $don_hang=Order::all();
+        
         return view($this->viewprefix.'ordermanagement',compact('don_hang'));
     }
 
@@ -106,9 +109,12 @@ class OrderController extends Controller
     }
     public function show($id)
     {
+
         $don_hang=Order::find($id);
+        $kh = Account::where('Id', Cookie::get('UserId'))->get();
+        $ct= OrderDetail::where('Id_DH', $id)->get();
         // return $order;
-        return view($this->viewprefix.'show')->with('don_hang', $don_hang);
+        return view($this->viewprefix.'show',compact('don_hang','kh','ct'));
     }
 
     public function search(Request $request)
