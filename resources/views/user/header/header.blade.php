@@ -71,7 +71,7 @@
 				<div class="col-md-3 top-info text-left mt-lg-4">
 					<h6>Y&P BookStore</h6>
 					<ul>
-						<li>LOGO</li>
+						<li><a class="navbar-brand brand-logo-mini" href="/"><img src="{!! asset('admin/images/logo-mini.svg')!!}" alt="logo"/></a></li>
 					</ul>
 				</div>
 				<!-- BANNER của trang web -->

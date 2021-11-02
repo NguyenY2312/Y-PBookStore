@@ -2,7 +2,6 @@
 <script src="{!! asset('admin/vendors/js/vendor.bundle.base.js ')!!}"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="{!! asset('admin/vendors/datatables.net/jquery.dataTables.js ')!!}"></script>
   <script src="{!! asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js ')!!}"></script>
   <script src="{!! asset('admin/js/dataTables.select.min.js ')!!}"></script>
@@ -17,5 +16,4 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{!! asset('admin/js/dashboard.js ')!!}"></script>
-  <script src="{!! asset('admin/js/Chart.roundedBarCharts.js ')!!}"></script>
   <!-- End custom js for this page-->

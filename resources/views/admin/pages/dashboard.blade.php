@@ -130,7 +130,7 @@
     <input type="hidden" id="tuan3" value="{{ $tuan3 }}"/>
     <input type="hidden" id="tuan4" value="{{ $tuan4 }}"/>
   </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 Number.prototype.format = function(n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
@@ -156,14 +156,24 @@ new Chart("myChart", {
     labels: xValues,
     datasets: [{
       backgroundColor: barColors,
+      fill: false,
+      legend: false,
       data: yValues
     }]
   },
   options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    },
     legend: {display: false},
-    title: {
-      display: true,
-      text: "BIỂU ĐỒ DOANH THU"
+    plugins: {
+        title: {
+            display: true,
+            text: 'Biểu đồ doanh thu',
+            fullSize: true
+        }
     }
   }
 });

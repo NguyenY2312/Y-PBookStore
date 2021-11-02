@@ -22115,6 +22115,14 @@ code {
   background: #f6bd09;
 }
 
+.card.card-light-statistical {
+  background: #e6e9ed;
+}
+
+.card.card-light-statistical:hover {
+  background: #e6e9ed;
+}
+
 .card.card-light-danger {
   background: #F3797E;
   color: #ffffff;

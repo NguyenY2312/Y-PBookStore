@@ -44,7 +44,7 @@
                   @foreach($tin_tuc as $news)
                   <tr >
                     <td>{{$news->Tieu_De}}</td>
-                    <td><img src="{{$news->Hinh_Anh}}" style="width:80px; height:80px; border-radius:0%"></td>
+                    <td><img src="{{$news->Hinh_Anh}}" style="width:80px; height:80px; border-radius:0%; object-fit:cover"></td>
                     <td>
                     @if ($news->Chu_De == 0) Hoạt động 
                     @elseif ($news->Chu_De == 1) Sự kiện

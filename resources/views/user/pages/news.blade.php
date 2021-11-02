@@ -29,7 +29,7 @@
     </div>
 </div>
 <!--//banner -->
-	<section class="banner-bottom-wthreelayouts py-lg-5 py-3" style="background-color: #002200;">
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
 		<div class="container-fluid" >
 			<div class="inner-sec-shop px-lg-4 px-3" style="background-color: #ffffff;">
 				<h2 class="tittle-w3layouts my-lg-4 my-4"></h2>

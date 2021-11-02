@@ -6,6 +6,12 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+          <li class="nav-item" id="active_statistical">
+            <a class="nav-link" href="/admin/statistical">
+              <i class="fas fa-chart-bar menu-icon"></i>
+              <span class="menu-title">Thống kê</span>
+            </a>
+          </li>
           <li class="nav-item" id="active_book">
             <a class="nav-link" href="{{ route('book.index')}}">
               <i class="icon-book menu-icon"></i>
@@ -44,7 +50,7 @@
           </li>
           <li class="nav-item" id="active_news">
             <a class="nav-link" href="{{ route('news.index') }}">
-              <i class="fas fa-palette menu-icon"></i>
+              <i class="fas fa-newspaper menu-icon"></i>
               <span class="menu-title">Tin tức</span>
             </a>
           </li>
