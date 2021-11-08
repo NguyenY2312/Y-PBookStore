@@ -65,7 +65,7 @@ class PublishingController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publishing.index');
     }
 
     /**
@@ -118,7 +118,7 @@ class PublishingController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publishing.index');
     }
 
     /**
@@ -132,7 +132,7 @@ class PublishingController extends Controller
         //
         $nha_xuat_ban=PublishingHouse::find($id);
         $nha_xuat_ban->delete();
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publishing.index');
     }
        
     public function search(Request $request)

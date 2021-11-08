@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="{{route('quan-ly-nha-xuat-ban.store')}}" method="POST" >
+                <form action="{{route('publishing.store')}}" method="POST" >
                 @csrf
                 @method('POST')
                 <div class="row">

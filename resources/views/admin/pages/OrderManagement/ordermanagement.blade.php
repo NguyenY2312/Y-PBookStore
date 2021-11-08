@@ -64,7 +64,7 @@
                         @endif
                     </td>
                     <td>
-                    <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
+                    <form action="{{ route('order.destroy',$order->Id) }}" method="POST">
                     @else
                     <td>{{$order->Id}}</td>
                     <td>{{$order->Account->Ho_Ten}}</td>
@@ -82,9 +82,9 @@
                         @endif
                     </td>                  
                     <td>
-                    <form action="{{ route('quan-ly-don-hang.destroy',$order->Id) }}" method="POST">
-                    <a href="{{ route('quan-ly-don-hang.show', $order->Id) }}" class="btn btn-success" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-eye' style='font-size:15px'></i></a>
-                    <a href="{{ route('quan-ly-don-hang.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                    <form action="{{ route('order.destroy',$order->Id) }}" method="POST">
+                    <a href="{{ route('order.show', $order->Id) }}" class="btn btn-success" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-eye' style='font-size:15px'></i></a>
+                    <a href="{{ route('order.edit', $order->Id) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
                     @endif                       
                           @csrf
                           @method('DELETE')                        

@@ -89,7 +89,7 @@ class OrderController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-don-hang.index');
+        return redirect()->route('order.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class OrderController extends Controller
         //
         $order=Order::find($id);
         $order->delete();
-        return redirect()->route('quan-ly-don-hang.index');
+        return redirect()->route('order.index');
        
         
     }

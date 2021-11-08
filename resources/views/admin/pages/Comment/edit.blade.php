@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-            <form action="{{route('quan-ly-binh-luan.update',$binh_luan->Id)}}" method="POST">
+            <form action="{{route('comment.update',$binh_luan->Id)}}" method="POST">
               @csrf
               @method('PATCH')
               <div class="form-group">
