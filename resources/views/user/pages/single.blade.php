@@ -40,12 +40,11 @@
 												<li data-thumb="{{$Anh_Bia}}">
 													<div class="thumb-image"> <img src="{{$Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{{$Anh_Bia}}">
-													<div class="thumb-image"> <img src="{{$Anh_Bia}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+												@foreach ($anh_sach as $image)
+												<li data-thumb="{{$image->Anh_Sach}}">
+													<div class="thumb-image"> <img src="{{$image->Anh_Sach}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
 												</li>
-												<li data-thumb="{{$Anh_Bia}}">
-													<div class="thumb-image"> <img src="{{$Anh_Bia }}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
-												</li>
+												@endforeach
 											</ul>
 											<div class="clearfix"></div>
 										</div>
@@ -114,6 +113,7 @@
   										</div>
 									<br>
 									@if($bk->So_Luong > 0)
+									@if(Cookie::get('UserId') != null)
 									<form action="{{ route('account.payment') }}" method="POST">
 									{{csrf_field()}}
 										<label class="control-label">Số Lượng: </label>
@@ -137,6 +137,28 @@
 											</div>
 										</div>
 									</form>
+									@else
+									<label class="control-label">Số Lượng: </label>
+										<div class="form-group quantity-box" style="display: inline-flex;align-items: baseline;justify-content: space-evenly;">                                
+											<input class="form-control col-sm-3" id="So_Luong_SP" name="So_Luong" value="1" min="1" max="{{$bk->So_Luong}}" type="number" style="width:150px"> (Còn {{$bk->So_Luong}} sản phẩm)
+											<input type="hidden" name="Id" value="{{ $bk->Id }}"/>
+										</div>
+										<br>
+							
+										<div class="occasion-cart" style="display: inline-flex; padding-top:15px">
+											<div class="googles single-item singlepage">
+												<button type="button" onclick="returnLogin()" class="link-product-add-cart">
+													Mua ngay
+												</button>														
+											</div>
+											<div class="vertical-line" style="height: 40px; margin-left:10px"></div>
+											<div class="googles single-item singlepage" style="margin-left:10px">
+												<button type="button" onclick="returnLogin()" class="link-product-add-cart">
+													Thêm giỏ hàng
+												</button>														
+											</div>
+										</div>
+									@endif
 									@else
 										<h4 style="color:gray">(Hết hàng)</h4>
 									@endif

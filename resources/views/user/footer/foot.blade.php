@@ -34,6 +34,9 @@
 	</script>
 	<!-- //cart-js -->
 	<script>
+		function returnLogin(){
+			window.location.href = "/dang-nhap";
+		}
 		function Favorite(e){
                 $.ajax({
                     url: "{{ route('user.accountheart') }}",

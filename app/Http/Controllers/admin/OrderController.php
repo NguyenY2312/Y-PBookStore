@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $don_hang=Order::all();
+        $don_hang=Order::orderBy('Id', 'desc')->get();
         
         return view($this->viewprefix.'ordermanagement',compact('don_hang'));
     }

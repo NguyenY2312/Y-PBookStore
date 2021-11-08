@@ -339,8 +339,9 @@ class UserController extends Controller
         //sách liên quan
         $sach_tuong_tu = Book::where('The_Loai', $sach->The_Loai)->where('Trang_Thai',2)->whereNotIn('Id',[$book_id])->get();
         $comments=Comment::where('Id_Sach',$book_id)->where('Trang_Thai',1)->get();
-       
-        return view($this->viewprefix.'single', $sach, ['thong_tin_sach'=>$thong_tin_sach, 'sach_tuong_tu'=>$sach_tuong_tu,'comments'=>$comments]);
+        //lấy danh sách ảnh
+        $anh_sach = ImageBook::where([ ['Id_Sach', '=', $book_id], ['Trang_Thai', '=', 0] ])->get();
+        return view($this->viewprefix.'single', $sach, ['thong_tin_sach'=>$thong_tin_sach, 'sach_tuong_tu'=>$sach_tuong_tu,'comments'=>$comments, 'anh_sach' => $anh_sach]);
         //return view($this->user."single");
     }
     public function About(){
