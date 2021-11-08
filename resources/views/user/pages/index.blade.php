@@ -86,7 +86,7 @@
 									<img src="{!! $newbook->Anh_Bia !!}" class="img-fluid" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="{{ route('user.single', $newbook->Id)}}" class="link-product-add-cart">Xem Chi Tiết</a>
+											<a href="{{ route('user.single', $newbook->Id)}}" class="link-product-add-cart">Xem ngay</a>
 										</div>
 									</div>
 									<span class="product-new-top" style="background-color: green;">Mới</span>
@@ -97,7 +97,7 @@
 										<div class="grid_meta" style="padding-left:20px">
 											<div class="product_price">
 												<h4 style="padding-top:20px; color: #959596; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
-													<a href="{{ route('user.single')}}">{{ $newbook->Ten_Sach }}</a>
+													<a href="{{ route('user.single', $newbook->Id)}}">{{ $newbook->Ten_Sach }}</a>
 												</h4>
 												@if ($newbook->Gia_Khuyen_Mai == 0)
 												<div class="grid-price mt-2">
@@ -159,7 +159,7 @@
 										<img src="{!! $hotbook->Anh_Bia !!}" class="img-fluid" alt="">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="{{ route('user.single', $hotbook->Id)}}" class="link-product-add-cart">Xem Chi Tiết</a>
+												<a href="{{ route('user.single', $hotbook->Id)}}" class="link-product-add-cart">Xem Ngay</a>
 											</div>
 										</div>
 										<span class="product-new-top" style="background-color: red;">Bán chạy</span>
@@ -170,7 +170,7 @@
 											<div class="grid_meta" style="padding-left:20px">
 												<div class="product_price">
 												<h4 style="padding-top:20px; color: #959596; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
-														<a href="{{ route('user.single')}}">{{ $hotbook->Ten_Sach }}</a>
+														<a href="{{ route('user.single', $hotbook->Id)}}">{{ $hotbook->Ten_Sach }}</a>
 													</h4>
 													@if ($hotbook->Gia_Khuyen_Mai == 0)
 													<div class="grid-price mt-2">

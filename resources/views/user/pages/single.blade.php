@@ -15,7 +15,7 @@
 
 					<ul class="short">
 						<li>
-							<a href="#">Trang chủ</a>
+							<a href="{{route('user.index')}}">Trang chủ</a>
 							<i>|</i>
 						</li>
 						<li>Chi tiết sản phẩm</li>
@@ -300,7 +300,7 @@
 															<div class="grid_meta" style="padding-top: 25px;">
 																<div class="product_price">
 																	<h4 class="hidden">
-																		<a href="{{ route('user.single'), $tuong_tu->Id}}">{{$tuong_tu->Ten_Sach}} </a>
+																		<a href="{{ route('user.single',$tuong_tu->Id)}}">{{$tuong_tu->Ten_Sach}} </a>
 																	</h4>
 																	@if($tuong_tu->Gia_Khuyen_Mai != 0)
 																	<div class="grid-price mt-2">

@@ -102,7 +102,7 @@
 													<img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Chi Tiết</a>
+															<a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Xem ngay</a>
 														</div>
 													</div>
 													<span class="product-new-top">Mới</span>

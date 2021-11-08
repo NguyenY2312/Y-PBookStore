@@ -51,7 +51,7 @@ Route::group(['prefix' => '', 'namespace' => 'user'], function() {
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
     Route::get("/khuyen-mai","UserController@Promotion")->name("user.promotion");
     //tìm kiếm
-    Route::post("/tim-kiem","UserController@bookSearch")->name("tim-kiem");
+    Route::get("/tim-kiem","UserController@bookSearch")->name("tim-kiem");
     //bình luận 
     Route::post('/chi-tiet-san-pham/{id}','UserController@postComment');
 });
