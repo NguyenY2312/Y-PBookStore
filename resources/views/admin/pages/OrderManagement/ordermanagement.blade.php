@@ -88,7 +88,7 @@
                     @endif                       
                           @csrf
                           @method('DELETE')                        
-                          <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+                          <button  onclick="return ComfirmDelete();" type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
 
                         </form>
                         
@@ -107,4 +107,13 @@
         </div>
     </div>
 </div>
+<script>
+  function ComfirmDelete() {
+  var txt;
+  if (confirm("Bạn có muốn xóa đơn hàng đã chọn?")) {
+    return true;
+  }
+  return false;
+}
+</script>
 @stop

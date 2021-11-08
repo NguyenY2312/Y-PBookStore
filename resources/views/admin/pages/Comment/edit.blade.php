@@ -29,7 +29,7 @@
               </div>
               <div class="form-group">
                 <label for="review">Nội Dung</label>
-              <textarea name="Noi_Dung" id="" cols="20" rows="10" class="form-control">{{$binh_luan->Noi_Dung}}</textarea>
+              <textarea name="Noi_Dung" disabled id="" cols="20" rows="10" class="form-control">{{$binh_luan->Noi_Dung}}</textarea>
               </div>
               <div class="form-group">
                 <label for="status">Trạng Thái</label>

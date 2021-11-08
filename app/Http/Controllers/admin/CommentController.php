@@ -83,7 +83,6 @@ class CommentController extends Controller
         //
         $binh_luan = Comment::find($id);
         $data= $request->validate([
-            'Noi_Dung' => 'required',
             'Trang_Thai' => 'required',
         ]);
        
