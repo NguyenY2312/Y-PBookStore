@@ -31,7 +31,7 @@
 						<div class="side-bar col-lg-3">
 							<div class="search-hotel">
 								<h3 class="agileits-sear-head">Tìm kiếm</h3>
-								<form action="{{route('tim-kiem')}}" method="GET">
+								<form action="{{route('user.shop', $id)}}" method="GET">
                                 <input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
                                 <button class="btn1" style="padding: 15px;">
                                         <i class="fas fa-search"></i>

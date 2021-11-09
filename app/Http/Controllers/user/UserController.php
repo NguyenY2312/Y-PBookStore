@@ -174,7 +174,8 @@ class UserController extends Controller
         else
             $show_book=$show_book->where('is_deleted', 0)->groupby('Id')->paginate(12);
             
-        return view($this->viewprefix.'shop',compact('show_book'));    
+        $cate = ['id' => $id];
+        return view($this->viewprefix.'shop',compact('show_book'), $cate);    
         //return response()->json('Thành công');
     }
 

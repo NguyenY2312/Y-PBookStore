@@ -95,5 +95,15 @@
 					</div>
 			</div>
 		</section>
+		<script>
+    		window.onload = function(){
+	
+			}
+
+			function saveSearch(){
+				$('#form-search').submit();
+				localStorage.mysearch = location.href;
+			}
+		</script>
         @stop
 		
