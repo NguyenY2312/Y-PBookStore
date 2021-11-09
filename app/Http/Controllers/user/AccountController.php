@@ -55,7 +55,7 @@ class AccountController extends Controller
     public function addfavoritebook(Request $request)
     {
         $sach = $request['Id_Sach'];
-        $check = FavoriteBook::where('Id_Sach', $sach)->first();
+        $check = FavoriteBook::where([ ['Id_Sach', '=', $sach], ['Id_TK', '=', Cookie::get('UserId')] ])->first();
         if($check == null){
             $sach_yeu_thich=FavoriteBook::create([
                 'Id_Sach'=>$sach,
@@ -116,7 +116,7 @@ class AccountController extends Controller
         if($request['So_Luong']){
             $soluong = $request['So_Luong'];
         }
-        $check = Cart::where('Id_Sach', $sach)->first();
+        $check = Cart::where([ ['Id_Sach', '=', $sach], ['Id_TK', '=', Cookie::get('UserId')] ])->first();
         if($check == null){
             $gio_hang=Cart::create([
                 'Id_Sach'=>$sach,
