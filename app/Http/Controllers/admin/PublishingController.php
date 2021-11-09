@@ -65,7 +65,7 @@ class PublishingController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publishing.index');
     }
 
     /**
@@ -118,7 +118,7 @@ class PublishingController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        return redirect()->route('publishing.index');
     }
 
     /**
@@ -131,22 +131,14 @@ class PublishingController extends Controller
     {
         //
         $nha_xuat_ban=PublishingHouse::find($id);
-        if( $nha_xuat_ban->Trang_Thai==0){
-            $nha_xuat_ban->Trang_Thai=1;
-        }else {
-            $nha_xuat_ban->Trang_Thai=0;
-        }
-    
-        if($nha_xuat_ban->update())
-            Session::flash('message', 'successfully!');
-        else
-            Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-nha-xuat-ban.index');
+        $nha_xuat_ban->delete();
+        return redirect()->route('publishing.index');
     }
        
     public function search(Request $request)
     {
-        $nha_xuat_ban = PublishingHouse::where('Ten_NXB','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        $nha_xuat_ban = PublishingHouse::where('Ten_NXB','like','%'.$request->NhapTimKiem.'%')
+        ->paginate(5);
         return View($this->viewprefix.'publishinghouse', ['nha_xuat_ban'=>$nha_xuat_ban]);
     }
 }

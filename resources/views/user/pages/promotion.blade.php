@@ -115,17 +115,19 @@
                 <!--/product right-->
                 <div class="left-ads-display col-lg-9">
                     <div class="" style="padding-left:20px">
+                    <div class="wrapper_top_shop">
                         <div class="row">
                             <div class="col-md-12">
                                 <img src="{!! $Banner !!}" alt="" style="width:100%; height: 70px; object-fit:cover;">												
                             </div>					
                         </div>						
-                        <div class="row">
+                        
                             <!-- /womens -->
                             @include('user.pages.promotion-partial')
-                        </div>
+                        
                         <br>
                         {!! $book->links() !!}	
+</div>
                 </div>
                 <!--//product right-->
             </div>

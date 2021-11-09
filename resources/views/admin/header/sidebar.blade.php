@@ -25,19 +25,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/quan-ly-don-hang">
+            <a class="nav-link" href="{{ route('order.index')}}">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Đơn hàng</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/quan-ly-binh-luan">
+            <a class="nav-link" href="{{ route('comment.index')}}">
               <i class="fas fa-comments menu-icon"></i>
               <span class="menu-title">Bình luận</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('quan-ly-nha-xuat-ban.index')}}">
+            <a class="nav-link" href="{{ route('publishing.index')}}">
               <i class="fas fa-building menu-icon"></i>
               <span class="menu-title">Nhà xuất bản</span>
             </a>

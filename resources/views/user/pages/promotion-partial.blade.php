@@ -1,3 +1,4 @@
+
 <div class="row">
     <!-- /womens -->
     @if($book->count() > 1)
@@ -9,7 +10,7 @@
                     <img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
                     <div class="men-cart-pro">
                         <div class="inner-men-cart-pro">
-                            <a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Chi Tiết</a>
+                            <a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Xem ngay</a>
                         </div>
                     </div>
                     <span class="product-new-top" style="background: #F60B0E;">@if ($books->Gia_Khuyen_Mai != 0) - {{(1 - ($books->Gia_Khuyen_Mai / $books->Gia_Tien))*100}}%  @endif</span>

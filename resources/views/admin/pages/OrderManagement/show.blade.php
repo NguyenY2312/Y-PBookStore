@@ -80,7 +80,7 @@
                     </div>
                     <div class="row" style="float: right; padding-top: 15px; margin-bottom:50px; font-size: 130%">Tổng tiền: &nbsp; <b style="color:red">{{ number_format($don_hang->Tong_Tien) }} VNĐ</b></div>
                     <div class="row" style="float:left; padding-top: 15px; margin-bottom:50px" >
-                    <a  href="{{route('quan-ly-don-hang.index')}}"><i class="fa fa-arrow-left" style="font-size:160%;color:black"></i></a>
+                    <a  href="{{route('order.index')}}"><i class="fa fa-arrow-left" style="font-size:160%;color:black"></i></a>
                     </div>
               
         </div>

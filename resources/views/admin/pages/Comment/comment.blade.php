@@ -47,16 +47,16 @@
                     <td>{{$comment->Noi_Dung}}</td>
                     <td>{{date("d-m-Y", strtotime($comment->Thoi_Gian))}}</td>
                     <td>   
-                        @if($comment->Trang_Thai == 0) {{"Không hoạt động"}}
+                        @if($comment->Trang_Thai == 0) {{"Ngừng hoạt động"}}
                         @else {{"Hoạt động"}}
                         @endif
                     </td>
                     <td>
-                    <form action="{{ route('quan-ly-binh-luan.destroy',$comment->Id) }}" method="POST">
+                    <form action="{{ route('comment.destroy',$comment->Id) }}" method="POST">
                       @csrf
                       @method('DELETE')
-                      <a href="{{route('quan-ly-binh-luan.edit',$comment->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                      <button type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
+                      <a href="{{route('comment.edit',$comment->Id)}}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                      <button onclick="return ComfirmDelete();" type="submit" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></button>
                     </form>
                     </td>
                   </tr>
@@ -73,4 +73,13 @@
         </div>
     </div>
 </div>
+<script>
+  function ComfirmDelete() {
+  var txt;
+  if (confirm("Bạn có muốn xóa bình luận đã chọn?")) {
+    return true;
+  }
+  return false;
+}
+</script>
 @stop

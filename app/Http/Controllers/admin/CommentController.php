@@ -83,7 +83,6 @@ class CommentController extends Controller
         //
         $binh_luan = Comment::find($id);
         $data= $request->validate([
-            'Noi_Dung' => 'required',
             'Trang_Thai' => 'required',
         ]);
        
@@ -93,7 +92,7 @@ class CommentController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-binh-luan.index');
+        return redirect()->route('comment.index');
     }
     public function search(Request $request)
     {
@@ -111,7 +110,7 @@ class CommentController extends Controller
         //
         $binh_luan=Comment::find($id);
         $binh_luan->delete();
-        return redirect()->route('quan-ly-binh-luan.index');
+        return redirect()->route('comment.index');
     }
   
 }

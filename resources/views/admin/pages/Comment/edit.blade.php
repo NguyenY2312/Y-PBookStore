@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-            <form action="{{route('quan-ly-binh-luan.update',$binh_luan->Id)}}" method="POST">
+            <form action="{{route('comment.update',$binh_luan->Id)}}" method="POST">
               @csrf
               @method('PATCH')
               <div class="form-group">
@@ -29,7 +29,7 @@
               </div>
               <div class="form-group">
                 <label for="review">Nội Dung</label>
-              <textarea name="Noi_Dung" id="" cols="20" rows="10" class="form-control">{{$binh_luan->Noi_Dung}}</textarea>
+              <textarea name="Noi_Dung" disabled id="" cols="20" rows="10" class="form-control">{{$binh_luan->Noi_Dung}}</textarea>
               </div>
               <div class="form-group">
                 <label for="status">Trạng Thái</label>

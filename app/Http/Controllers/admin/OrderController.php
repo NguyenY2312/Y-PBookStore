@@ -89,7 +89,7 @@ class OrderController extends Controller
         }
         else
             Session::flash('message', 'Failure!');
-        return redirect()->route('quan-ly-don-hang.index');
+        return redirect()->route('order.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class OrderController extends Controller
         //
         $order=Order::find($id);
         $order->delete();
-        return redirect()->route('quan-ly-don-hang.index');
+        return redirect()->route('order.index');
        
         
     }
@@ -119,7 +119,9 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {
-        $don_hang = Order::where('Dia_Chi_Giao_Hang','like','%'.$request->NhapTimKiem.'%')->paginate(5);
+        $don_hang = Order::where('Dia_Chi_Giao_Hang','like','%'.$request->NhapTimKiem.'%')
+                            ->orwhere('Id','like','%'.$request->NhapTimKiem.'%')
+                            ->paginate(5);
         return View($this->viewprefix.'ordermanagement', ['don_hang'=>$don_hang]);
     }
 }

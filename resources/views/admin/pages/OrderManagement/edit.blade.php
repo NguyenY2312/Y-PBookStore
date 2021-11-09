@@ -16,7 +16,7 @@
         </div>
         <div class="container">
             <!-- form start -->
-                <form action="{{route('quan-ly-don-hang.update',$don_hang->Id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('order.update',$don_hang->Id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                @method('PUT')
                 <div class="row">

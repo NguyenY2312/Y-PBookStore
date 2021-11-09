@@ -62,12 +62,12 @@
 														<div class="googles single-item hvr-outline-out">
 															<form action="" method="POST">
 																{{csrf_field()}}
-																<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $sbook->Id }})" style="padding-top: 15px;">
+																<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $sbook->Id }})" style="">
 																	<i class="fas fa-cart-plus"></i>
 																</button>								
 															</form>
 														</div>
-														<div class="googles single-item hvr-outline-out" style="margin-top:-15px">
+														<div class="googles single-item hvr-outline-out" style="">
 															<form>
 															{{ csrf_field() }}
 																<button type="button" class="googles-heart" onclick="Favorite({{ $sbook->Id }})">

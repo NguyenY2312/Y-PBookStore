@@ -40,12 +40,18 @@ Route::get("/dang-xuat","LoginController@logoutUser")->name("logoutUser");
 Route::get("/dang-nhap","LoginController@index")->name("loginview");
 Route::post("/dang-ky","LoginController@register")->name("register");
 Route::group(['prefix' => '', 'namespace' => 'user'], function() {
+    //Trang chủ
     Route::get("/","UserController@Index")->name("user.index");
+    //Cửa hàng
     Route::get("/cua-hang/{Id?}","UserController@Shop")->name("user.shop");
+    //Liên hệ
     Route::get("/lien-he","UserController@Contact")->name("user.contact");
+    //Chi tiết sản phẩm
     Route::get("/chi-tiet-san-pham/{book_id?}","UserController@Single")->name("user.single");
     Route::get("/ve-chung-toi","UserController@About")->name("user.about");
+    //Tin tức
     Route::get("/tin-tuc","UserController@News")->name("user.news");
+    //Chi tiết tin tức
     Route::get("/chi-tiet-tin-tuc/{Id?}","UserController@NewsDetail")->name("user.newsdetail");
     //thanh toán
     Route::get("/thanh-toan","UserController@checkout")->name("thanh-toan");
@@ -60,6 +66,7 @@ Route::group(['middleware' => ['checklogin']], function () {
     Route::resource('admin/dashboard',admin\DashboardController::class);
     Route::resource('admin/statistical',admin\StatisticalController::class);
         Route::post('/admin/statistical/result','admin\StatisticalController@result')->name('statistical.result');
+    //Quản lý sách
     Route::resource('admin/book',admin\BookController::class);
         Route::post('/admin/book/create','admin\BookController@store')->name('book.store');
         Route::post('/admin/book/addimage','admin\BookController@addimage')->name('book.addimage');
@@ -68,21 +75,22 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/book','admin\BookController@search')->name('book.search');
         Route::get('/admin/book/{id}/delete','admin\BookController@delete')->name('book.delete');
         Route::get('/admin/book/{id}/deleteimage','admin\BookController@deleteimage')->name('book.deleteimage');
+    //Quản lý tài khoản
     Route::resource('admin/account',admin\AccountController::class);
         Route::post('/admin/account/create','admin\AccountController@store')->name('account.store');
         Route::post('/admin/account','admin\AccountController@search')->name('account.search');
         Route::post('/admin/account/{id}/update','admin\AccountController@update')->name('account.update');
         Route::get('/admin/account/{id}/delete','admin\AccountController@delete')->name('account.delete');
     //Quản lý đơn hàng
-    Route::resource('admin/quan-ly-don-hang',admin\OrderController::class);
-    Route::post('/admin/quan-ly-don-hang','admin\OrderController@search')->name('order.search');
+    Route::resource('admin/order',admin\OrderController::class);
+    Route::post('/admin/order/search','admin\OrderController@search')->name('order.search');
     //Quản lý bình luận
-    Route::resource('admin/quan-ly-binh-luan',admin\CommentController::class);
-    Route::post('/admin/quan-ly-binh-luan','admin\CommentController@search')->name('comment.search');
+    Route::resource('admin/comment',admin\CommentController::class);
+    Route::post('/admin/comment/search','admin\CommentController@search')->name('comment.search');
     //Quản lý nhà xuất bản
-    Route::resource('admin/quan-ly-nha-xuat-ban',admin\PublishingController::class);
-    Route::post('/admin/quan-ly-nha-xuat-ban','admin\PublishingController@search')->name('quan-ly-nha-xuat-ban.search');
-    //
+    Route::resource('admin/publishing',admin\PublishingController::class);
+    Route::post('/admin/publishing/search','admin\PublishingController@search')->name('publishing.search');
+    //Quản lý khuyến mãi
     Route::resource('admin/promotion',admin\PromotionController::class);
         Route::post('/admin/promotion/create','admin\PromotionController@store')->name('promotion.store');
         Route::post('/admin/promotion/{id}/update','admin\PromotionController@update')->name('promotion.update');
@@ -91,7 +99,8 @@ Route::group(['middleware' => ['checklogin']], function () {
         Route::post('/admin/promotion/addpromotiondetail','admin\PromotionController@addpromotiondetail')->name('promotion.addpromotiondetail');
         Route::post('/admin/promotion/editpromotiondetail','admin\PromotionController@editpromotiondetail')->name('promotion.editpromotiondetail');
         Route::get('/admin/promotion/{id}/delpromotiondetail','admin\PromotionController@delpromotiondetail')->name('promotion.delpromotiondetail');      
-    Route::resource('admin/news',admin\NewsController::class);
+    //Quản lý trang tin tức
+        Route::resource('admin/news',admin\NewsController::class);
         Route::post('/admin/news/create','admin\NewsController@store')->name('news.store');
         Route::post('/admin/news/{id}/update','admin\NewsController@update')->name('news.update');
         Route::get('/admin/news/{id}/delete','admin\NewsController@delete')->name('news.delete');
