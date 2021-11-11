@@ -97,12 +97,26 @@
 		</section>
 		<script>
     		window.onload = function(){
-				
+				var x = localStorage.getItem("mysearch");
+				var y = location.href;
+				var vt = y.indexOf("search");
+				if (vt != -1)
+				{
+					var attr = y.slice(vt);
+					localStorage.mysearch = attr;
+				}
+				if (y.search("page") != -1){
+					if (x != null){		
+						x = localStorage.getItem("mysearch");
+						var url = y + "&" + x;										
+						window.location.href = url;	
+						localStorage.removeItem("mysearch");				
+					}
+				}
 			}
 
 			function saveSearch(){
-				$('#form-search').submit();
-				localStorage.mysearch = location.href;
+				$('#form-search').submit();				
 			}
 		</script>
         @stop

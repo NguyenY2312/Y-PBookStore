@@ -196,6 +196,22 @@
             }
             localStorage.removeItem("mycate");
         }
+
+        var p = localStorage.getItem("mysearch");
+		var vt = z.indexOf("search");
+		if (vt != -1)
+		{
+			var searchString = z.slice(vt);
+			localStorage.mysearch = searchString;
+		}
+		if (z.search("page") != -1){
+			if (p != null){		
+				p = localStorage.getItem("mysearch");
+				var nowurl = z + "&" + p;										
+				window.location.href = nowurl;	
+				localStorage.removeItem("mysearch");				
+			}
+		}
     }
     function onChanged(){
         $('#form-order').submit();
