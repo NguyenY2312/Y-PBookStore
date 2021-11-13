@@ -140,7 +140,7 @@
                     <tr>
                         <td>{{ $order->Account->Ho_Ten }}</td>
                         <td>{{ $order->Dia_Chi_Giao_Hang }}</td>
-                        <td><!-- {{ date('d-m-Y', strtotime($order->Ngay_Lap)) }} -->{{ $order->Ngay_Lap }}</td>
+                        <td>{{date("d-m-Y H:i:s", strtotime($order->Ngay_Lap))}}</td>
                         <td>{{ number_format($order->Tong_Tien) }} VNĐ</td>
                         <td>
                             @if($order->Trang_Thai == 0) {{"Chờ nhận đơn"}}

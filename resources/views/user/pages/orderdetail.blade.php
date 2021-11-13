@@ -43,7 +43,7 @@ td, th {
                     </div>
                     @endforeach
                     <div class="col-lg-4">
-                        Ngày lập đơn: <b style="color:red">{{ $Ngay_Lap }}</b>
+                        Ngày lập đơn: <b style="color:red">{{date("d-m-Y H:i:s", strtotime($Ngay_Lap))}}</b>
                     </div>
                 </div>
             </div>

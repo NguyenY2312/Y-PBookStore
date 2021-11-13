@@ -57,8 +57,8 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('promotion.edit', [$promotion->Id]) }}" class="btn btn-warning" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
-                        <a onclick="return ComfirmDelete()" href="{{ route('promotion.delete', [$promotion->Id]) }}" class="btn btn-danger" style="padding: 0.7rem 1.5rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
+                        <a href="{{ route('promotion.edit', [$promotion->Id]) }}" class="btn btn-warning" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-edit' style='font-size:15px'></i></a>
+                        <a onclick="return ComfirmDelete()" href="{{ route('promotion.delete', [$promotion->Id]) }}" class="btn btn-danger" style="padding: 0.5rem 1rem; border-radius: 10px;"><i class='fas fa-trash-alt' style='font-size:15px'></i></a>
                     </td>
                   </tr>
                   @endforeach

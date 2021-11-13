@@ -38,8 +38,6 @@
                     <th>Thể loại</th>
                     <th>Tác giả</th>
                     <th>Nhà xuất bản</th>
-                    <th>Phiên bản</th>
-                    <th>Loại bìa</th>
                     <th>Giá tiền</th>
                     <th>Số lượng</th>
                     <th>Trạng thái</th>
@@ -54,17 +52,6 @@
                     <td>{{$book->TheLoai->The_Loai}}</td>
                     <td style="max-width: 180px; text-overflow: ellipsis; overflow: hidden">{{$book->Tac_Gia}}</td>
                     <td style="max-width: 150px; text-overflow: ellipsis; overflow: hidden">{{$book->NhaXuatBan->Ten_NXB}}</td>
-                    <td>
-                    @if($book->Phien_Ban == 0) {{"Bản thường"}}
-                    @else {{"Bản đặc biệt"}}
-                    @endif
-                    </td>
-                    <td>
-                    @if($book->Loai_Bia == 0) {{"Bìa cứng"}}
-                    @elseif (($book->Loai_Bia == 1)) {{"M-market Paperback"}}
-                    @else {{"Bìa mềm"}}
-                    @endif
-                    </td>
                     <td>{{number_format($book->Gia_Tien)}} VNĐ</td>
                     <td>{{$book->So_Luong}}</td>
                     <td>
