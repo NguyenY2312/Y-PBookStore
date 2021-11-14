@@ -29,7 +29,7 @@ class UserController extends Controller
         $this->viewnamespace='user/';
     }
     public function Index(){
-        $sach_moi = Book::orderBy('created_at', 'desc')->take(8)->get();
+        $sach_moi = Book::where('is_deleted', 0)->orderBy('created_at', 'desc')->take(8)->get();
         $ngay = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $ngaybd = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
         $don_hang = Order::where([['Ngay_Lap', '>=', $ngaybd], ['Trang_Thai', '<>', 4]])->get();
