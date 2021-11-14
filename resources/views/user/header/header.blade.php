@@ -15,6 +15,13 @@
   font-size: 17px;
 }
 
+.count {
+    border-radius: 100%;
+    border: 2px solid red;
+	background-color: red;
+	color: white;
+}
+
 #snackbar.show {
   visibility: visible;
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
@@ -109,6 +116,8 @@
 						<!-- Giỏ hàng -->
 						<li>
 								<span class="fas fa-cart-plus" aria-hidden="true" style="color: rgb(35, 175, 156)"></span><a href="{{route('user.cart')}}" class="hover-nut"> Giỏ Hàng </a>
+								@if (Cookie::get('UserId') != null)<span class="count"></span>
+								@endif
 							<!-- <form action="#" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">

@@ -23,6 +23,7 @@ Route::post('/gui-lien-he',"user\AccountController@mailcontact")->name("user.mai
 //Giỏ hàng
 Route::post('/them-gio-hang',"user\AccountController@addcart")->name("account.addcart");
 Route::get("/gio-hang","user\UserController@showCart")->name("user.cart");
+Route::get("/cart","user\UserController@countCart")->name("user.cartcount");
 Route::get('/xoa-gio-hang/{Id?}',"user\AccountController@deletecart")->name("account.cartdelete");
 Route::post('/cap-nhat-gio-hang',"user\AccountController@updatecart")->name("account.updatecart");
 //Thanh toán

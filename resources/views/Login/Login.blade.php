@@ -12,6 +12,11 @@
 				<strong class="text-danger" style="color:red">{{ $errors->first('login') }}</strong>
 			</p>
 			@endif
+			@if($errors->has('loginsuccess'))
+			<p class="login-box-msg">
+				<strong class="text-danger" style="color:green">{{ $errors->first('loginsuccess') }}</strong>
+			</p>
+			@endif
 			<form class="sign-in-htm" style="padding-top:30px" action="{{ route('login') }}" method="post" onsubmit="return checkLogin();">
 			{{ csrf_field() }}
 				<div class="group">

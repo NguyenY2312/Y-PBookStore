@@ -128,8 +128,18 @@ class AccountController extends Controller
         {
             $check->So_Luong = $check->So_Luong + $soluong;
             $check->save();
-        }           
-        return response()->json('Đã thêm vào giỏ hàng!');
+        }      
+        
+        // Lấy số lượng sp trong giỏ hàng
+        $g_hang = Cart::where('Id_TK', Cookie::get('UserId'))->get();
+        $s_luong = 0;
+        if ($g_hang != null){
+            foreach ($g_hang as $cart)
+            {
+                $s_luong = $s_luong + $cart->So_Luong;
+            }
+        }
+        return response()->json($s_luong);
     }
 
     public function deletecart($id)

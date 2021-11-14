@@ -412,6 +412,16 @@ class UserController extends Controller
         return view($this->viewprefix.'search',compact('search_book'));
     }
     
-
+    public function countCart(){
+        $gio_hang = Cart::where('Id_TK', Cookie::get('UserId'))->get();
+        $so_luong = 0;
+        if ($gio_hang != null){
+            foreach ($gio_hang as $cart)
+            {
+                $so_luong = $so_luong + $cart->So_Luong;
+            }
+        }
+        return response()->json($so_luong);
+    }
 }
 

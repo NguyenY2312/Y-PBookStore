@@ -61,6 +61,7 @@
                     data: {Id_Sach: e, So_Luong: num, _token: '{{ csrf_token() }}' },
                     success: function(data) {
 						ShowMessageCart(data);
+						$(".count").html(data);
                     }
                 });
 		}
@@ -239,6 +240,16 @@
 				$('.flexslider1').flexslider({
 					animation: "slide",
 					controlNav: "thumbnails"
+				});
+
+				$.ajax({
+						url: "{{ route('user.cartcount') }}",
+						type:'GET',
+						data: {},
+						success: function(data) {
+							//alert(data);
+							$(".count").html(data);
+					}
 				});
 			});
 		</script>

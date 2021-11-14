@@ -75,7 +75,7 @@ class LoginController extends Controller
     public function register(Request $request){
         $email = $request->regEmail;
         $pass = $request->regPassword;
-        $account = Account::where('Email', $email)->get();
+        $account = Account::where([ ['Email', '=', $email], ['is_deleted', '=', 0] ])->get();
         if ($account->count() == 0)
         {
             $tai_khoan = Account::create([
@@ -84,7 +84,8 @@ class LoginController extends Controller
                 'Loai_TK'=> 1,
                 'Trang_Thai'=> 0
             ]);
-            return redirect()->route('loginview');
+            $errors = new MessageBag(['loginsuccess' => ["Đăng ký thành công!"]]);
+            return redirect()->route('loginview')->withErrors($errors);
         }
         else 
         {
