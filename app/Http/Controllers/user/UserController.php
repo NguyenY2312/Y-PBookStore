@@ -405,9 +405,9 @@ class UserController extends Controller
     public function bookSearch(Request $request){
         $tim_kiem=$request->search;
         
-        $search_book=Book::where('is_deleted', 0)
-                    
-                    ->where('Ten_Sach','like','%'.$tim_kiem.'%')
+        $search_book=Book::where([['Ten_Sach','like','%'.$tim_kiem.'%'],['is_deleted', '=','0']])
+                    ->orwhere([['Tac_Gia','like','%'.$tim_kiem.'%'],['is_deleted', '=','0']])
+                    ->orwhere([['Gia_Tien','like','%'.$tim_kiem.'%'],['is_deleted','=','0']])
                     ->paginate('12');
         return view($this->viewprefix.'search',compact('search_book'));
     }
