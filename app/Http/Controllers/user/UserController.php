@@ -29,7 +29,7 @@ class UserController extends Controller
         $this->viewnamespace='user/';
     }
     public function Index(){
-        $sach_moi = Book::orderBy('created_at', 'desc')->take(8)->get();
+        $sach_moi = Book::where('is_deleted', 0)->orderBy('created_at', 'desc')->take(8)->get();
         $ngay = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $ngaybd = Carbon::now('Asia/Ho_Chi_Minh')->startOfMonth()->toDateString();
         $don_hang = Order::where([['Ngay_Lap', '>=', $ngaybd], ['Trang_Thai', '<>', 4]])->get();
@@ -405,9 +405,9 @@ class UserController extends Controller
     public function bookSearch(Request $request){
         $tim_kiem=$request->search;
         
-        $search_book=Book::where('is_deleted', 0)
-                    
-                    ->where('Ten_Sach','like','%'.$tim_kiem.'%')
+        $search_book=Book::where([['Ten_Sach','like','%'.$tim_kiem.'%'],['is_deleted', '=','0']])
+                    ->orwhere([['Tac_Gia','like','%'.$tim_kiem.'%'],['is_deleted', '=','0']])
+                    ->orwhere([['Gia_Tien','like','%'.$tim_kiem.'%'],['is_deleted','=','0']])
                     ->paginate('12');
         return view($this->viewprefix.'search',compact('search_book'));
     }
