@@ -87,6 +87,28 @@
 			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
 			open = false;
 		});
+		$(".miniview-btn").on('click', function () {
+			$.ajax({
+                    url: "{{ route('user.getsuggestion') }}",
+                    type:'GET',
+                    data: { },
+                    success: function(result) {
+						var codeHtml = "";
+						$.each (result, function (key, item){
+							codeHtml = codeHtml + "<div class='row'>";
+							codeHtml = codeHtml + "<div class='col-md-4'> <img src='" + item['Anh_Bia'] + "' style='width:60px; height:60px; padding-top:10px'> </div>";
+							codeHtml = codeHtml + "<div class='col-md-8' style='font-size:14px; color:#959596; padding-top:10px'><a href='/chi-tiet-san-pham/"+ item['Id'] +"'>"+ item['Ten_Sach'] + "</a></div>";
+							codeHtml = codeHtml + "</div>";
+                        });
+						$('#goi-y').html(codeHtml);									
+                    }
+                });
+
+        	$(".miniview-inner-content").addClass('show')
+		});
+		$(".miniview-btn-close").on('click', function () {
+        	$(".miniview-inner-content").removeClass('show')
+		});
 	</script>
 	<script>
 	function ShowMessage(e) {

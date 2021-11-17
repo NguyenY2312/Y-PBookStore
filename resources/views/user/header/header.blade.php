@@ -69,6 +69,96 @@
   from {bottom: 70px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+.setting-sidebar {
+    position: fixed;
+    top: 239px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0px 0px 5px 0px rgb(154 154 154 / 54%);
+    transition: all 0.5s ease;
+    z-index: 9;
+}
+
+.d-lg-block {
+    display: block!important;
+	background: #cdc9d8;
+}
+
+.fa-eye{
+    padding: 12px 10px;
+	color: black;
+	cursor: pointer;
+}
+
+.fa-eye:hover{
+	color: #ff4e00;
+}
+
+.miniview-inner .miniview-inner-content {
+    position: fixed;
+    top: 369px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    width: 250px;
+    height: 300px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0px 0px 5px 0px rgb(154 154 154 / 54%);
+    transition: all 0.5s ease;
+    z-index: 9;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.miniview-inner-content.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.miniview-content-box {
+    overflow: auto;
+    height: 97%;
+}
+
+.fa-times{
+	font-size:20px;	
+	display: block;
+	padding-top:10px;
+	color: black;
+	cursor: pointer;
+}
+.fa-times:hover{
+	color: #ff4e00;
+}
+
+.miniview-inner .miniview-close {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #cdc9d8;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    top: 0;
+    right: 250px;
+    position: absolute;
+	border-radius: 10%;
+}
 </style>
 <div class="banner-top container-fluid" id="home">
 		<!-- header -->
@@ -166,6 +256,28 @@
     </div>
   </div>
 </div>
+<!-- offview mini view start -->
+@if (Cookie::get('UserId') != null)
+<div class="setting-sidebar d-none d-lg-block">
+    <a class="miniview-btn"><i class="fas fa-eye"></i></a>
+</div>
+<div class="offview-miniview-wrapper d-none d-lg-block">
+    <div class="miniview-inner">
+        <div class="miniview-inner-content">
+            <div class="miniview-close">
+			<a class="miniview-btn-close"><i class="fas fa-times"></i></a>
+            </div>
+            <div class="miniview-content-box">
+                <div class="sidebar-back text-center" style="color: #828284; font-size: 16px; letter-spacing: 2px; font-weight:bold">Gợi ý cho bạn</div>
+				<div class="container" id="goi-y">
+
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+@endif
+<!-- end miniview -->
 <script>
 	function CheckPass(){
 		var x = document.getElementById('Mat_Khau').value;

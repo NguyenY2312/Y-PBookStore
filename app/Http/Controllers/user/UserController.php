@@ -423,5 +423,23 @@ class UserController extends Controller
         }
         return response()->json($so_luong);
     }
+
+    public function getSuggestion(){
+        $don_hang = Order::where('Id_KH', Cookie::get('UserId'))->orderBy('Ngay_Lap', 'desc')->having('Trang_Thai', '<>', 4)->first();
+        if ($don_hang != null){
+            $ct_dh = OrderDetail::where('Id_DH', $don_hang->Id)->get();
+            $goi_y_sach = Book::where('Id', 0);
+            foreach($ct_dh as $ct){
+                $sach = Book::find($ct->Id_Sach);
+                $goi_y_sach = $goi_y_sach->orwhere('The_Loai', '=', $sach->The_Loai);
+            }
+            $goi_y_sach = $goi_y_sach->groupby('Id')->having('is_deleted', 0)->take(10)->get();
+            return response()->json($goi_y_sach->toArray());
+        }
+        else {
+            $goi_y_sach = Book::where('is_deleted', 0)->orderBy('created_at', 'desc')->take(10)->get();
+            return response()->json($goi_y_sach->toArray());
+        }
+    }
 }
 
