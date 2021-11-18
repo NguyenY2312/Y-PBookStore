@@ -216,7 +216,7 @@
 													<div class="row">
 														<div class="col-md-2">
 															
-															<img src="{!! asset($com->TaiKhoan->Anh_Dai_Dien)!!}" class="img-fluid">
+															<img src="{!! asset($com->TaiKhoan->Anh_Dai_Dien)!!}" class="img-fluid" style="width:100px; height:100px; object-fit:cover">
 														</div>
 														<div class="col-md-10">
 															<p style="color:green">@ {{$com->TaiKhoan->Ho_Ten}} </p>

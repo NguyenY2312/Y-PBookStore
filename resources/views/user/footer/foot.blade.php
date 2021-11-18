@@ -273,8 +273,6 @@
 							$(".count").html(data);
 					}
 				});
-
-				$(".miniview-btn").click();
 			});			
 		</script>
 		<!-- //FlexSlider-->

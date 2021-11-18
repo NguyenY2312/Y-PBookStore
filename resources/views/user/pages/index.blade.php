@@ -259,6 +259,8 @@
 	window.onload = function(){
 	var element = document.getElementById("nav-home");
 	element.classList.add("active");
+
+	$(".miniview-btn").click();
 	}
 	</script>
 	<!-- about -->

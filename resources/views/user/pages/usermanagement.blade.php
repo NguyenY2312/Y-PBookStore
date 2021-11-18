@@ -181,8 +181,7 @@
               <div class="col-lg-12">
                 <label for="exampleInputTopic">Ảnh đại diện</label>
                 <div class="custom-file">
-                    <input accept="image/*" title="" type="file" class="form-control custom-file-input" name="Anh_Dai_Dien" id="Anh_Dai_Dien" placeholder="Chọn ảnh" />
-                    <label class="custom-file-label" for="Anh_Dai_Dien">{{$Anh_Dai_Dien}}</label>
+                    <input accept="image/*" title="" type="file" class="form-control" name="Anh_Dai_Dien" id="Anh_Dai_Dien" placeholder="Chọn ảnh" />
                </div>
               </div>
               <div class="col-lg-12" style="margin-top:20px">
