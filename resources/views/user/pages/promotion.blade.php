@@ -197,7 +197,7 @@
             localStorage.removeItem("mycate");
         }
 
-        var p = localStorage.getItem("mysearch");
+        var p = localStorage.getItem("mysearchpromotion");
 		var vt = z.indexOf("search");
 		if (vt != -1)
 		{
@@ -206,10 +206,10 @@
 		}
 		if (z.search("page") != -1){
 			if (p != null){		
-				p = localStorage.getItem("mysearch");
+				p = localStorage.getItem("mysearchpromotion");
 				var nowurl = z + "&" + p;										
 				window.location.href = nowurl;	
-				localStorage.removeItem("mysearch");				
+				localStorage.removeItem("mysearchpromotion");				
 			}
 		}
     }
