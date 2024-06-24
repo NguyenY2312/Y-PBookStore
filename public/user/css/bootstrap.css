@@ -161,7 +161,7 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color:black;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -203,9 +203,12 @@ pre {
 
 figure {
   margin: 0 0 1rem;
+  text-align: center;
 }
 
 img {
+ 
+  height: 100%;
   vertical-align: middle;
   border-style: none;
 }

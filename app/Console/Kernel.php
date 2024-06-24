@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        'App\Console\Commands\UpdatePromotionDaily'
     ];
 
     /**
@@ -25,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('UpdatePromotionDaily')->everyMinute();
+        $schedule->command('UpdatePricePromotion')->everyMinute();
     }
 
     /**

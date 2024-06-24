@@ -1,3 +1,9 @@
+<style>
+	.time-dialog{
+		width:60px;
+		height:30px
+	}
+</style>
 <!--jQuery-->
 <script src="{{ asset('user/js/jquery-2.2.3.min.js') }}"></script>
 	<script>
@@ -6,7 +12,6 @@
 		});
 	</script>
 	<!-- // modal -->
-
 	<!--search jQuery-->
 	<script src="{{ asset('user/js/modernizr-2.6.2.min.js') }}"></script>
 	<script src="{{ asset('user/js/classie-search.js') }}"></script>
@@ -29,6 +34,48 @@
 	</script>
 	<!-- //cart-js -->
 	<script>
+		function returnLogin(){
+			window.location.href = "/dang-nhap";
+		}
+		function Favorite(e){
+                $.ajax({
+                    url: "{{ route('user.accountheart') }}",
+                    type:'POST',
+                    data: {Id_Sach: e, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+						ShowMessage(data);
+                    }
+                });
+		}
+		function AddCart(e){
+			var soluong = document.getElementById('So_Luong_SP');
+			if(soluong != null){
+				var num = soluong.value;
+			}
+			else{
+				var num = 1;
+			}
+                $.ajax({
+                    url: "{{ route('account.addcart') }}",
+                    type:'POST',
+                    data: {Id_Sach: e, So_Luong: num, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+						ShowMessageCart(data);
+						$(".count").html(data);
+                    }
+                });
+		}
+		function DeleteFavorite(e){
+			var tablefavorite = document.getElementById("favorite-book");
+                $.ajax({
+                    url: "{{ route('user.deleteheart') }}",
+                    type:'POST',
+                    data: {Id: e, _token: '{{ csrf_token() }}' },
+                    success: function(data) {
+						location.reload();
+                    }
+                });
+		}
 		$(document).ready(function () {
 			$(".button-log a").click(function () {
 				$(".overlay-login").fadeToggle(200);
@@ -40,8 +87,41 @@
 			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
 			open = false;
 		});
+		$(".miniview-btn").on('click', function () {
+			$.ajax({
+                    url: "{{ route('user.getsuggestion') }}",
+                    type:'GET',
+                    data: { },
+                    success: function(result) {
+						var codeHtml = "";
+						$.each (result, function (key, item){
+							codeHtml = codeHtml + "<div class='row'>";
+							codeHtml = codeHtml + "<div class='col-md-4'> <img src='" + item['Anh_Bia'] + "' style='width:60px; height:60px; padding-top:10px'> </div>";
+							codeHtml = codeHtml + "<div class='col-md-8' style='font-size:14px; color:#959596; padding-top:10px'><a href='/chi-tiet-san-pham/"+ item['Id'] +"'>"+ item['Ten_Sach'] + "</a></div>";
+							codeHtml = codeHtml + "</div>";
+                        });
+						$('#goi-y').html(codeHtml);									
+                    }
+                });
+
+        	$(".miniview-inner-content").addClass('show')
+		});
+		$(".miniview-btn-close").on('click', function () {
+        	$(".miniview-inner-content").removeClass('show')
+		});
 	</script>
-	>
+	<script>
+	function ShowMessage(e) {
+	var x = document.getElementById("snackbar");
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+	function ShowMessageCart(e) {
+	var x = document.getElementById("addcart");
+	x.className = "show";
+	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+	</script>
 	<!--quantity-->
 	<script>
 		$('.value-plus').on('click', function () {
@@ -83,6 +163,9 @@
 					$('.rem3').remove();
 				});
 			});
+			$('.page-link').on('click', function(e){
+				localStorage.myurl = location.href;
+			});
 		});
 	</script>
 	<!--//close-->
@@ -90,20 +173,26 @@
 	<!-- price range (top products) -->
 	<script src="{!! asset('user/js/jquery-ui.js') !!}"></script>
 		<script>
-			//<![CDATA[ 
-			$(window).load(function () {
-				$("#slider-range").slider({
-					range: true,
-					min: 0,
-					max: 700000,
-					values: [0, 150000],
-					slide: function (event, ui) {
-						$("#amount").val( ui.values[0] +"đ" + " - " + ui.values[1]+ "đ");
-					}
-				});
-				$("#amount").val( $("#slider-range").slider("values", 0)+"đ" + " - " + $("#slider-range").slider("values", 1)+"đ" );
-
-			}); //]]>
+			$("#slider-range").slider({
+				range: true,
+				min: 0,
+				step: 10000,
+				max: 700000,
+				values: [0, 700000],
+				slide: function (event, ui) {
+					$("#amount").val( ui.values[0] +"đ" + " - " + ui.values[1]+ "đ");
+					var x = ui.values[0];
+					var y = ui.values[1];
+					$.ajax({
+						url: "{{ route('user.shopquery', 0) }}",
+						type:'POST',
+						data: {Min: x, Max: y, _token: '{{ csrf_token() }}' },
+						success: function(data) {
+						}
+					});
+				}
+			});
+			$("#amount").val( $("#slider-range").slider("values", 0)+"đ" + " - " + $("#slider-range").slider("values", 1)+"đ" );
 		</script>
 	<!--// Count-down -->
 	<script src="{{ asset('user/js/owl.carousel.js') }}"></script>
@@ -174,7 +263,17 @@
 					animation: "slide",
 					controlNav: "thumbnails"
 				});
-			});
+
+				$.ajax({
+						url: "{{ route('user.cartcount') }}",
+						type:'GET',
+						data: {},
+						success: function(data) {
+							//alert(data);
+							$(".count").html(data);
+					}
+				});
+			});			
 		</script>
 		<!-- //FlexSlider-->
 

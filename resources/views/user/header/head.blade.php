@@ -29,4 +29,5 @@
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 	    rel="stylesheet">
+	<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
 </head>

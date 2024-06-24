@@ -48,12 +48,13 @@ table.timetable_sub {
     color: #868282;
 }
 
-.timetable_sub td {
+.timetable_sub tr td {
 	border: 1px solid #CDCDCD;
 }
 
+
 td.invert-image a img {
-	width: 30%;
+	width: 50%;
 	margin: 0 auto;
 }
 
@@ -172,7 +173,7 @@ td.invert-image a img {
 	margin: 2em 0 0;
 }
 
-.checkout-left-basket ul li {
+.checkout-right-basket ul li {
 	list-style-type: none;
 	margin-bottom: 1em;
 	font-size: 14px;
@@ -186,32 +187,45 @@ td.invert-image a img {
 
 .checkout-right-basket {
 	float: right;
-	margin: 3em 0em;
+	margin: 1.5em 0em;
 }
 
-.checkout-left-basket ul li span {
+.checkout-right-basket ul li span {
 	float: right;
 }
 
-.checkout-left-basket ul li:nth-child(5) {
+.checkout-right-basket ul li:nth-child(1) {
 	font-size: 1em;
 	color: #212121;
 	font-weight: 600;
-	padding: 1em 0;
+	
 	border-top: 1px solid #DDD;
-	border-bottom: 1px solid #DDD;
-	margin: 2em 0 0;
+	
+
+	
 }
+.checkout-right-basket ul li {
+	padding: 5px;
+	font-size: 1em;
+	color: #212121;
+	font-weight: 600;
+
+}
+
 
 .checkout-right-basket a {
 	padding: 10px 20px;
 	color: #fff;
 	font-size: 1em;
+	width: 100%;
+	text-align: center;
 	background: #212121;
 	text-decoration: none;
+	margin-top: 10px;
 }
 
 .checkout-right-basket a:hover {
+	color: white;
 	background: #ff4e00;
 }
 

@@ -1,5 +1,10 @@
 @extends('user.layout')
 @section('content')
+<style>
+    .dropdown-menu6 .price-active{
+        color: #ff4e00;
+    }
+</style>
 		<!-- banner -->
 		<div class="banner_inner">
 			<div class="services-breadcrumb">
@@ -26,172 +31,50 @@
 						<div class="side-bar col-lg-3">
 							<div class="search-hotel">
 								<h3 class="agileits-sear-head">Tìm kiếm</h3>
-								<form action="#" method="post">
-										<input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
-										<button class="btn1">
-												<i class="fas fa-search"></i>
-										</button>
-										<div class="clearfix"> </div>
-									</form>
+								<form action="{{route('user.shop', $id)}}" method="GET">
+                                <input class="form-control" type="search" name="search" placeholder="Tìm kiếm" required="">
+                                <button class="btn1" style="padding: 15px;">
+                                        <i class="fas fa-search"></i>
+                                </button>
+                                <div class="clearfix"> </div>
+                        		</form>
 							</div>
 							<!-- price range -->
 							<div class="range">
-								<h3 class="agileits-sear-head">Giá khoảng</h3>
+								<h3 class="agileits-sear-head">Khoảng giá</h3>
 								<ul class="dropdown-menu6">
 									<li>
-
-										<div id="slider-range"></div>
-										<input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+										<a class="{{ Request::get('price') == 1 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 1])}}" style="border:solid 1px; padding:5px">0 - 100000 VNĐ</a> 
+									</li>
+									<li  style="padding-top:20px"> 
+										<a class="{{ Request::get('price') == 2 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 2])}}" style="border:solid 1px; padding:5px">100000 - 200000 VNĐ</a>
+									</li>
+									<li style="padding-top:20px">
+										<a class="{{ Request::get('price') == 3 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 3])}}" style="border:solid 1px; padding:5px">200000 - 300000 VNĐ</a> 
+									</li>
+									<li  style="padding-top:20px">	
+										<a class="{{ Request::get('price') == 4 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 4])}}" style="border:solid 1px; padding:5px">Trên 300000 VNĐ</a>
+									</li>
+									<li style="padding-top:20px">
+										<a class="{{ Request::get('price') == 0 ? 'price-active' : '' }}" href="{{ request()->fullUrlWithQuery(['price' => 0])}}" style="border:solid 1px; padding:5px">Tất cả</a> 
 									</li>
 								</ul>
 							</div>
 							<!-- //price range -->
 							<!--preference -->
-							<div class="left-side">
-								<h3 class="agileits-sear-head">Ngôn ngữ</h3>
-								<ul>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Tiếng Việt</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Song Ngữ Anh - Việt</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Tiếng Anh</span>
-									</li>
-
-								</ul>
+							<div class="range" style="margin-top:15px">
+								<h3 class="agileits-sear-head">Sắp xếp theo</h3>
+								<form method="GET" id="form-order"> 
+								<select name="orderby" class="orderby" style="padding:5px; width:150px" onchange="onChanged()">
+									<option value="def" {{ Request::get('orderby') == 'def' || '' ? 'selected' : '' }}> Mặc định </option>
+									<option value="new" {{ Request::get('orderby') == 'new' ? 'selected' : '' }}> Mới nhất </option>
+									<option value="old" {{ Request::get('orderby') == 'old' ? 'selected' : '' }}> Cũ nhất </option>
+									<option value="asc" {{ Request::get('orderby') == 'asc' ? 'selected' : '' }}> Giá tăng dần </option>
+									<option value="des" {{ Request::get('orderby') == 'des' ? 'selected' : '' }}> Giá giảm dần </option>
+								</select>
+								</form>
 							</div>
 							<!-- // preference -->
-							<!-- discounts -->
-							<div class="left-side">
-								<h3 class="agileits-sear-head">Hình thức</h3>
-								<ul>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Bìa Mềm</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Bìa Cứng</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Bộ Hộp</span>
-									</li>
-									<li>
-										<input type="checkbox" class="checked">
-										<span class="span">Sách Kèm Đĩa</span>
-									</li>
-			
-								</ul>
-							</div>
-							<!-- //discounts -->
-							<!-- reviews -->
-							<div class="customer-rev left-side">
-								<h3 class="agileits-sear-head">Đánh giá</h3>
-								<ul>
-									<li>
-										<a href="#">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<span>5.0</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<span>4.0</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-half-o" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<span>3.5</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<span>3.0</span>
-										</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star" aria-hidden="true"></i>
-											<i class="fa fa-star-half-o" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<i class="fa fa-star-o" aria-hidden="true"></i>
-											<span>2.5</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<!-- //reviews -->
-							<!-- deals -->
-							<div class="deal-leftmk left-side">
-								<h3 class="agileits-sear-head">Khám phá thêm</h3>
-								<div class="special-sec1">
-									<div class="img-deals">
-										<img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Bao Giờ Đi Ăn Một Mình (Tái Bản)\DD.png') !!}" alt="">
-									</div>
-									<div class="img-deal1">
-										<h3>Đừng Bao Giờ Đi Ăn Một Mình (Tái Bản)</h3>
-										<a href="{{ route('user.single')}}">73.700 ₫</a>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="special-sec1">
-									<div class="col-xs-4 img-deals">
-										<img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\HDD.png') !!}" alt="">
-									</div>
-									<div class="col-xs-8 img-deal1">
-										<h3>Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng Hiệu Quả Và Chống Thất Thoát</h3>
-										<a href="{{ route('user.single')}}">149.000 ₫</a>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="special-sec1">
-										<div class="col-xs-4 img-deals">
-											<img src="{!! asset('user\images\Book\SACH_KINH_TE\How Money Works - Hiểu Hết Về Tiền\DD.png') !!}" alt="">
-										</div>
-										<div class="col-xs-8 img-deal1">
-											<h3>How Money Works - Hiểu Hết Về Tiền</h3>
-											<a href="{{ route('user.single')}}">223.700 ₫</a>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-									<div class="special-sec1">
-											<div class="col-xs-4 img-deals">
-												<img src="{!! asset('user\images\Book\SACH_KINH_TE\Nghệ Thuật đầu tư Dhandho - The Dhandho\HDD.png') !!}" alt="">
-											</div>
-											<div class="col-xs-8 img-deal1">
-												<h3>Nghệ Thuật đầu tư Dhandho - The Dhandho</h3>
-												<a href="{{ route('user.single')}}">238.000 ₫</a>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-							</div>
-							<!-- //deals -->
 						</div>
 						<!-- //product left -->
 						<!--/product right-->
@@ -199,1324 +82,173 @@
 							<div class="wrapper_top_shop">
 								<div class="row">
 										<div class="col-md-6 shop_left">
-												<img src="{!! asset('user\images\Book\SACH_KINH_TE\banner_Sach_kinh_te1.png') !!}" alt="">
+												<img src="{!! asset('user\images\banner-sach-kinh-te.png') !!}" alt="">
 												
 										</div>
 										<div class="col-md-6 shop_right">
-												<img src="{!! asset('user\images\Book\SACH_KINH_TE\banner_Sach_kinh_te1.png') !!}" alt="">
+												<img src="{!! asset('user\images\banner-sach-kinh-te.png') !!}" alt="">
 									
 											</div>
 						
 								</div>
+								
 								<div class="row">
 									<!-- /womens -->
+									@foreach($show_book as $books)
 									<div class="col-md-3 product-men women_two shop-gd">
 										<div class="product-googles-info googles">
 											<div class="men-pro-item">
 												<div class="men-thumb-item">
-													<img src="{!! asset('user\images\Book\SACH_KINH_TE\Nhà Đầu Tư Thông Minh (Tái Bản 2020)\HDD.png') !!}" class="img-fluid" alt="">
+													<img src="{!! asset($books->Anh_Bia) !!}" class="img-fluid anh-bia" alt="">
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
+															<a href="{{ route('user.single',$books->Id)}}" class="link-product-add-cart">Xem ngay</a>
 														</div>
 													</div>
-													<span class="product-new-top">New</span>
+													<span class="product-new-top">Mới</span>
 												</div>
 												<div class="item-info-product">
 													<div class="info-product-price">
-														<div class="grid_meta">
+														<div class="grid_meta" style="padding-top: 15px;">
 															<div class="product_price">
-																<h4>
-																	<a href="{{ route('user.single')}}">Nhà Đầu Tư Thông Minh (Tái Bản 2020)</a>
+																<h4 class= "hidden"> 
+																	<a class="ten-sach" href="{{ route('user.single',$books->Id)}}">{{$books->Ten_Sach}}</a>
 																</h4>
+																@if($books->Gia_Khuyen_Mai != 0)
 																<div class="grid-price mt-2">
-																	<span class="money ">149.200 ₫</span>
+																	<span class="money gia-tien">{{number_format($books->Gia_Khuyen_Mai)}} VNĐ <br><i style="color:gray; font-size:60%; text-decoration-line:line-through;"> {{number_format($books->Gia_Tien).' '. 'VNĐ'}} </i></span>
 																</div>
+																
+																@else
+																
+																<div class="grid-price mt-2">
+																	<span class="money gia-tien">{{number_format($books->Gia_Tien).' '. 'VNĐ'}}</span>
+																	
+																</div>
+																
+																@endif
+																
 															</div>
-															<ul class="stars">
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-															</ul>
 														</div>
+														@if (Cookie::get('UserId') != null)
 														<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Farenheit">
-																<input type="hidden" name="amount" value="575.00">
-																<button type="submit" class="googles-cart pgoogles-cart">
-																	<i class="fas fa-cart-plus"></i>
-																</button>
-															</form>
-
+														<form action="" method="POST">
+															{{csrf_field()}}
+															<button type="button" class="googles-cart pgoogles-cart" onclick="AddCart({{ $books->Id }})">
+																<i class="fas fa-cart-plus"></i>
+															</button>								
+														</form>
 														</div>
+														<div class="googles single-item hvr-outline-out" style="">
+															<form>
+															{{ csrf_field() }}
+																<button type="button" class="googles-heart" onclick="Favorite({{ $books->Id }})">
+																	<i class="fas fa-heart"></i>
+																</button>	
+															</form>
+														</div>
+														@endif
 													</div>
 													<div class="clearfix"></div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="col-md-3 product-men women_two shop-gd">
-										<div class="product-googles-info googles">
-											<div class="men-pro-item">
-												<div class="men-thumb-item">
-													<img src="{!! asset('user\images\Book\SACH_KINH_TE\Phân Tích Chứng Khoán\DD.png') !!}" class="img-fluid" alt="">
-													<div class="men-cart-pro">
-														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-														</div>
-													</div>
-													<span class="product-new-top">New</span>
-												</div>
-												<div class="item-info-product">
-
-													<div class="info-product-price">
-														<div class="grid_meta">
-															<div class="product_price">
-																<h4>
-																	<a href="{{ route('user.single')}}">Phân Tích Chứng Khoán</a>
-																</h4>
-																<div class="grid-price mt-2">
-																	<span class="money ">334.200 ₫</span>
-																</div>
-															</div>
-															<ul class="stars">
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-															</ul>
-														</div>
-														<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Opium (Grey)">
-																<input type="hidden" name="amount" value="325.00">
-																<button type="submit" class="googles-cart pgoogles-cart">
-																	<i class="fas fa-cart-plus"></i>
-																</button>
-
-															</form>
-
-														</div>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3 product-men women_two shop-gd">
-										<div class="product-googles-info googles">
-											<div class="men-pro-item">
-												<div class="men-thumb-item">
-													<img src="{!! asset('user\images\Book\SACH_KINH_TE\Phương pháp VPA - Kỹ thuật nhận diện Dòng\HDD.png') !!}" class="img-fluid" alt="">
-													<div class="men-cart-pro">
-														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-														</div>
-													</div>
-													<span class="product-new-top">New</span>
-												</div>
-												<div class="item-info-product">
-
-													<div class="info-product-price">
-														<div class="grid_meta">
-															<div class="product_price">
-																<h4>
-																	<a href="{{ route('user.single')}}">Phương pháp VPA - Kỹ thuật nhận diện Dòng Tiền Thông Minh bằng Hành Động Giá kết hợp Khối Lượng Giao Dịch</a>
-																</h4>
-																<div class="grid-price mt-2">
-																	<span class="money ">357.000 ₫</span>
-																</div>
-															</div>
-															<ul class="stars">
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-															</ul>
-														</div>
-														<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Kenneth Cole">
-																<input type="hidden" name="amount" value="575.00">
-																<button type="submit" class="googles-cart pgoogles-cart">
-																	<i class="fas fa-cart-plus"></i>
-																</button>
-															</form>
-
-														</div>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-3 product-men women_two shop-gd">
-										<div class="product-googles-info googles">
-											<div class="men-pro-item">
-												<div class="men-thumb-item">
-													<img src="{!! asset('user\images\Book\SACH_KINH_TE\Siêu Cò – How To Be A Power Connector\DD.png') !!}" class="img-fluid" alt="">
-													<div class="men-cart-pro">
-														<div class="inner-men-cart-pro">
-															<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-														</div>
-													</div>
-													<span class="product-new-top">New</span>
-												</div>
-												<div class="item-info-product">
-
-													<div class="info-product-price">
-														<div class="grid_meta">
-															<div class="product_price">
-																<h4>
-																	<a href="{{ route('user.single')}}">Siêu Cò – How To Be A Power Connector </a>
-																</h4>
-																<div class="grid-price mt-2">
-																	<span class="money ">249.000 ₫</span>
-																</div>
-															</div>
-															<ul class="stars">
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		<i class="fa fa-star-o" aria-hidden="true"></i>
-																	</a>
-																</li>
-															</ul>
-														</div>
-														<div class="googles single-item hvr-outline-out">
-															<form action="#" method="post">
-																<input type="hidden" name="cmd" value="_cart">
-																<input type="hidden" name="add" value="1">
-																<input type="hidden" name="googles_item" value="Farenheit Oval">
-																<input type="hidden" name="amount" value="325.00">
-																<button type="submit" class="googles-cart pgoogles-cart">
-																	<i class="fas fa-cart-plus"></i>
-																</button>
-															</form>
-
-														</div>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-											</div>
-										</div>
-									</div>
+									@endforeach
 								</div>
-								<div class="row my-lg-3 my-0">
-										<!-- /womens -->
-										<div class="col-md-3 product-men women_two shop-gd">
-											<div class="product-googles-info googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Storytelling With Data - Kể Chuyện Thông Qua Dữ Liệu (Cuốn Cẩm Nang Hướng Dẫn Trực Quan Hóa Dữ Liệu)\HinhDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-					
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Storytelling With Data - Kể Chuyện Thông Qua Dữ Liệu (Cuốn Cẩm Nang Hướng Dẫn Trực Quan Hóa Dữ Liệu) </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">270.900 ₫</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Aislin Wayfarer">
-																	<input type="hidden" name="amount" value="775.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-					
-															</div>
-														</div>
-														<div class="clearfix"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3 product-men women_two shop-gd">
-											<div class="product-googles-info googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\SuMenhKhoiNghiep\HinhDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-					
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Sứ Mệnh Khởi Nghiệp </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">399.000 ₫</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Azmani Round">
-																	<input type="hidden" name="amount" value="725.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-															</div>
-														</div>
-														<div class="clearfix"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3 product-men women_two shop-gd">
-											<div class="product-googles-info googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Tư Duy Nhanh Và Chậm\DD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-					
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Tư Duy Nhanh Và Chậm (Tái Bản 2019)</a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">239.000 ₫</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Farenheit Wayfarer">
-																	<input type="hidden" name="amount" value="475.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-					
-															</div>
-														</div>
-														<div class="clearfix"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3 product-men women_two shop-gd">
-											<div class="product-googles-info googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\SuMenhKhoiNghiep\HinhDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-					
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Sứ Mệnh Khởi Nghiệp </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$825.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Fossil Wayfarer">
-																	<input type="hidden" name="amount" value="825.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-					
-															</div>
-														</div>
-														<div class="clearfix"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!-- /mens -->
-									</div>
-									<div class="row">
-											<!-- /womens -->
-											<div class="col-md-3 product-men women_two shop-gd">
-												<div class="product-googles-info googles">
-													<div class="men-pro-item">
-														<div class="men-thumb-item">
-															<img src="{!! asset('user\images\Book\SACH_KINH_TE\Nhà Đầu Tư Thông Minh (Tái Bản 2020)\HDD.png') !!}" class="img-fluid" alt="">
-															<div class="men-cart-pro">
-																<div class="inner-men-cart-pro">
-																	<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-																</div>
-															</div>
-															<span class="product-new-top">New</span>
-														</div>
-														<div class="item-info-product">
-															<div class="info-product-price">
-																<div class="grid_meta">
-																	<div class="product_price">
-																		<h4>
-																			<a href="{{ route('user.single')}}">Nhà Đầu Tư Thông Minh (Tái Bản 2020)</a>
-																		</h4>
-																		<div class="grid-price mt-2">
-																			<span class="money ">$575.00</span>
-																		</div>
-																	</div>
-																	<ul class="stars">
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-																<div class="googles single-item hvr-outline-out">
-																	<form action="#" method="post">
-																		<input type="hidden" name="cmd" value="_cart">
-																		<input type="hidden" name="add" value="1">
-																		<input type="hidden" name="googles_item" value="Farenheit">
-																		<input type="hidden" name="amount" value="575.00">
-																		<button type="submit" class="googles-cart pgoogles-cart">
-																			<i class="fas fa-cart-plus"></i>
-																		</button>
-																	</form>
-		
-																</div>
-															</div>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3 product-men women_two shop-gd">
-												<div class="product-googles-info googles">
-													<div class="men-pro-item">
-														<div class="men-thumb-item">
-															<img src="{!! asset('user\images\Book\SACH_KINH_TE\Phương pháp VPA - Kỹ thuật nhận diện Dòng\HDD.png') !!}" class="img-fluid" alt="">
-															<div class="men-cart-pro">
-																<div class="inner-men-cart-pro">
-																	<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-																</div>
-															</div>
-															<span class="product-new-top">New</span>
-														</div>
-														<div class="item-info-product">
-		
-															<div class="info-product-price">
-																<div class="grid_meta">
-																	<div class="product_price">
-																		<h4>
-																			<a href="{{ route('user.single')}}">Phương pháp VPA - Kỹ thuật nhận diện Dòng Tiền Thông Minh bằng Hành Động Giá kết hợp Khối Lượng Giao Dịch</a>
-																		</h4>
-																		<div class="grid-price mt-2">
-																			<span class="money ">357.000 ₫</span>
-																		</div>
-																	</div>
-																	<ul class="stars">
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-																<div class="googles single-item hvr-outline-out">
-																	<form action="#" method="post">
-																		<input type="hidden" name="cmd" value="_cart">
-																		<input type="hidden" name="add" value="1">
-																		<input type="hidden" name="googles_item" value="Opium (Grey)">
-																		<input type="hidden" name="amount" value="325.00">
-																		<button type="submit" class="googles-cart pgoogles-cart">
-																			<i class="fas fa-cart-plus"></i>
-																		</button>
-																	</form>
-		
-																</div>
-															</div>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3 product-men women_two shop-gd">
-												<div class="product-googles-info googles">
-													<div class="men-pro-item">
-														<div class="men-thumb-item">
-															<img src="{!! asset('user\images\Book\SACH_KINH_TE\Tư Duy Nhanh Và Chậm\DD.png') !!}" class="img-fluid" alt="">
-															<div class="men-cart-pro">
-																<div class="inner-men-cart-pro">
-																	<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-																</div>
-															</div>
-															<span class="product-new-top">New</span>
-														</div>
-														<div class="item-info-product">
-		
-															<div class="info-product-price">
-																<div class="grid_meta">
-																	<div class="product_price">
-																		<h4>
-																			<a href="{{ route('user.single')}}">Tư Duy Nhanh Và Chậm (Tái Bản 2019)</a>
-																		</h4>
-																		<div class="grid-price mt-2">
-																			<span class="money ">$575.00</span>
-																		</div>
-																	</div>
-																	<ul class="stars">
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-																<div class="googles single-item hvr-outline-out">
-																	<form action="#" method="post">
-																		<input type="hidden" name="cmd" value="_cart">
-																		<input type="hidden" name="add" value="1">
-																		<input type="hidden" name="googles_item" value="Kenneth Cole">
-																		<input type="hidden" name="amount" value="575.00">
-																		<button type="submit" class="googles-cart pgoogles-cart">
-																			<i class="fas fa-cart-plus"></i>
-																		</button>
-																	</form>
-		
-																</div>
-															</div>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-3 product-men women_two shop-gd">
-												<div class="product-googles-info googles">
-													<div class="men-pro-item">
-														<div class="men-thumb-item">
-															<img src="{!! asset('user\images\Book\SACH_KINH_TE\Nghệ Thuật đầu tư Dhandho - The Dhandho\HDD.png') !!}" class="img-fluid" alt="">
-															<div class="men-cart-pro">
-																<div class="inner-men-cart-pro">
-																	<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-																</div>
-															</div>
-															<span class="product-new-top">New</span>
-														</div>
-														<div class="item-info-product">
-		
-															<div class="info-product-price">
-																<div class="grid_meta">
-																	<div class="product_price">
-																		<h4>
-																			<a href="{{ route('user.single')}}">Nghệ Thuật đầu tư Dhandho - The Dhandho</a>
-																		</h4>
-																		<div class="grid-price mt-2">
-																			<span class="money ">$325.00</span>
-																		</div>
-																	</div>
-																	<ul class="stars">
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																		<li>
-																			<a href="#">
-																				<i class="fa fa-star-o" aria-hidden="true"></i>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-																<div class="googles single-item hvr-outline-out">
-																	<form action="#" method="post">
-																		<input type="hidden" name="cmd" value="_cart">
-																		<input type="hidden" name="add" value="1">
-																		<input type="hidden" name="googles_item" value="Farenheit Oval">
-																		<input type="hidden" name="amount" value="325.00">
-																		<button type="submit" class="googles-cart pgoogles-cart">
-																			<i class="fas fa-cart-plus"></i>
-																		</button>
-																	</form>
-		
-																</div>
-															</div>
-															<div class="clearfix"></div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-							</div>
+								<br>
+								{{ $show_book->links() }}
+								
+						
+								
 						</div>
 						<!--//product right-->
 					</div>
-					<!--/slide-->
-				<div class="slider-img mid-sec mt-lg-5 mt-2">
-						<!--//banner-sec-->
-						<h4 class="tittle-w3layouts text-center my-lg-4 my-3">SẢN PHẨM NỔI BẬT</h4>
-						<div class="mid-slider">
-							<div class="owl-carousel owl-theme row">
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Tư Duy Nhanh Và Chậm\DD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Tư Duy Nhanh Và Chậm (Tái Bản 2019) </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$325.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Fastrack Aviator">
-																	<input type="hidden" name="amount" value="325.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\SuMenhKhoiNghiep\HinhDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Sứ Mệnh Khởi Nghiệp </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$425.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="MARTIN Aviator">
-																	<input type="hidden" name="amount" value="425.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Storytelling With Data - Kể Chuyện Thông Qua Dữ Liệu (Cuốn Cẩm Nang Hướng Dẫn Trực Quan Hóa Dữ Liệu)\HinhDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Storytelling With Data - Kể Chuyện Thông Qua Dữ Liệu (Cuốn Cẩm Nang Hướng Dẫn Trực Quan Hóa Dữ Liệu) </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$425.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Royal Son Aviator">
-																	<input type="hidden" name="amount" value="425.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Siêu Cò – How To Be A Power Connector\DD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Siêu Cò – How To Be A Power Connector </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$281.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Irayz Butterfly">
-																	<input type="hidden" name="amount" value="281.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Bao Giờ Đi Ăn Một Mình (Tái Bản)\DD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Đừng Bao Giờ Đi Ăn Một Mình (Tái Bản) </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$525.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Jerry Rectangular ">
-																	<input type="hidden" name="amount" value="525.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="gd-box-info text-center">
-										<div class="product-men women_two bot-gd">
-											<div class="product-googles-info slide-img googles">
-												<div class="men-pro-item">
-													<div class="men-thumb-item">
-														<img src="{!! asset('user\images\Book\SACH_KINH_TE\Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng\HDD.png') !!}" class="img-fluid" alt="">
-														<div class="men-cart-pro">
-															<div class="inner-men-cart-pro">
-																<a href="{{ route('user.single')}}" class="link-product-add-cart">Quick View</a>
-															</div>
-														</div>
-														<span class="product-new-top">New</span>
-													</div>
-													<div class="item-info-product">
-	
-														<div class="info-product-price">
-															<div class="grid_meta">
-																<div class="product_price">
-																	<h4>
-																		<a href="{{ route('user.single')}}">Đừng Để Mất Bò - 7 Bước Quản Lý Cửa Hàng </a>
-																	</h4>
-																	<div class="grid-price mt-2">
-																		<span class="money ">$325.00</span>
-																	</div>
-																</div>
-																<ul class="stars">
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-half-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																	<li>
-																		<a href="#">
-																			<i class="fa fa-star-o" aria-hidden="true"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-															<div class="googles single-item hvr-outline-out">
-																<form action="#" method="post">
-																	<input type="hidden" name="cmd" value="_cart">
-																	<input type="hidden" name="add" value="1">
-																	<input type="hidden" name="googles_item" value="Herdy Wayfarer">
-																	<input type="hidden" name="amount" value="325.00">
-																	<button type="submit" class="googles-cart pgoogles-cart">
-																		<i class="fas fa-cart-plus"></i>
-																	</button>
-																</form>
-	
-															</div>
-														</div>
-	
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--//slider-->
-				</div>
 			</div>
 		</section>
-        @stop
+		@stop
+<script>
+	window.onload = function(){
+	var element = document.getElementById("nav-cuahang");
+	element.classList.add("active");
+
+		var x = localStorage.getItem("mytime");
+        var y = localStorage.getItem("myurl");
+        var n = localStorage.getItem("mycate");
+        var z = location.href;
+        var attrs = z.substr(z.indexOf("page"), 6);
+        if(y != null){
+            if(y.search("page") === -1 && y.search("price") === -1 && y.search("orderby") === -1 && y.search("category") === -1)
+            {
+
+            }
+            else if(y.search("page") === -1){
+                var url = y + '&' + attrs;
+                window.location.href = url;
+            }
+            else{
+                var attrurl = y.substr(y.indexOf("page"), 6);
+                var newurl = y.replace(attrurl, attrs);
+                window.location.href = newurl;
+            }
+            localStorage.removeItem("myurl");
+        }
+
+        var attrr = z.substr(z.indexOf("orderby"), 11);
+        if(x != null){
+            if(x.search("page") === -1 && x.search("price") === -1 && x.search("orderby") === -1 && x.search("category") === -1)
+            {
+
+            }
+            else if(x.search("orderby") === -1){
+                var url1 = x + '&' + attrr;
+                window.location.href = url1;
+            }
+            else{
+                var attrurl1 = x.substr(x.indexOf("orderby"), 11);
+                var newurl1 = x.replace(attrurl1, attrr);
+                window.location.href = newurl1;
+            }
+            localStorage.removeItem("mytime");
+        }
+
+        var attrrs = z.substr(z.indexOf("category"), 11);
+        if(n != null){
+            if(n.search("page") === -1 && n.search("price") === -1 && n.search("orderby") === -1 && n.search("category") === -1)
+            {
+
+            }
+            else if(n.search("category") === -1){
+                var url2 = n + '&' + attrrs;
+                window.location.href = url2;
+            }
+            else{
+                var attrurl2 = n.substr(n.indexOf("category"), 11);
+                var newurl2 = n.replace(attrurl2, attrrs);
+                window.location.href = newurl2;
+            }
+            localStorage.removeItem("mycate");
+        }
+
+		var p = localStorage.getItem("mysearchshop");
+		var vt = z.indexOf("search");
+		if (vt != -1)
+		{
+			var searchString = z.slice(vt);
+			localStorage.mysearch = searchString;
+		}
+		if (z.search("page") != -1){
+			if (p != null){		
+				p = localStorage.getItem("mysearchshop");
+				var nowurl = z + "&" + p;										
+				window.location.href = nowurl;	
+				localStorage.removeItem("mysearchshop");				
+			}
+		}
+    }
+    function onChanged(){
+        $('#form-order').submit();
+        localStorage.mytime = location.href;
+    }
+</script>
 		

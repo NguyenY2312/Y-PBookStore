@@ -1679,7 +1679,7 @@ ul.links li a:hover {
 }
 .owl-item.active {
     padding: 15px;
-    
+    border: 1px solid #e4e4e4;
 }
 
 /*--social-icons--*/
@@ -1700,6 +1700,9 @@ ul.links li a:hover {
     color: #ff4e00;
 }
 
+.cart-hover a:hover {
+    color: #ff4e00;
+}
 /*--//footer--*/
 /*-- to-top --*/
 
@@ -1707,7 +1710,7 @@ ul.links li a:hover {
     display: none;
     text-decoration: none;
     position: fixed;
-    bottom: 55px;
+    bottom: 100px;
     right: 2%;
     overflow: hidden;
     z-index: 999;
@@ -1948,6 +1951,7 @@ ul.links li a:hover {
     }
     .owl-item.active {
        padding:0px;
+       border: 1px solid #e4e4e4;
     }
  
 }

@@ -54,7 +54,7 @@
 								<p><span style="font-weight: 400;">Chỉ với thao tác đăng ký đơn giản, hãy trở thành thành viên của Y&B Books ngay hôm nay!</span></p>
 								</div>
 
-							<a href="{{ route('user.shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Mua Ngay</a>
+							<a href="/dang-nhap" class="btn btn-sm animated-button gibson-three mt-4">Đăng ký</a>
 
 						</div>
 					</div>
@@ -65,4 +65,97 @@
 			</div>
 		</div>
 	</section>
+	<!-- top Products -->
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3" style="margin-top: -80px;">
+		<div class="container">
+			<h3 class="tittle-w3layouts text-center my-lg-4 my-4">Liên Hệ</h3>
+			<div class="inner_sec">
+				<p class="sub text-center mb-lg-5 mb-3">Chúng tôi luôn mong chờ những đóng góp của bạn.</p>
+				<div class="address row">
+
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-3 address-left text-center">
+								<i class="far fa-map"></i>
+							</div>
+							<div class="col-md-9 address-right text-left">
+								<h6>Địa Chỉ</h6>
+								<p>700 Nguyễn Văn Linh, Quận 7, TP.Hồ Chí Minh.
+
+								</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-3 address-left text-center">
+								<i class="far fa-envelope"></i>
+							</div>
+							<div class="col-md-9 address-right text-left">
+								<h6>Email</h6>
+								<p>
+									<a href="mailto:ypbookstore2018@gmail.com" style="color:#2a8490;line-height: 1.9em;"> ypbookstore2018@gmail.com</a>
+									<a href="mailto:ypsupport@gmail.com" style="color:#2a8490;line-height: 1.9em;"> ypsupport@gmail.com</a>
+								</p>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-4 address-grid">
+						<div class="row address-info">
+							<div class="col-md-3 address-left text-center">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<div class="col-md-9 address-right text-left">
+								<h6>Phone</h6>
+								<p>(+84) 779850572</p>
+								<p>(+84) 933809731</p>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="contact_grid_right">
+					<form action="{{ route('user.mailcontact') }}" method="POST">
+					@csrf
+						<div class="row contact_left_grid">
+							<div class="col-md-6 con-left">
+								<div class="form-group">
+									<label class="my-2">Họ và tên</label>
+									<input class="form-control" type="text" name="Name" placeholder="" required="">
+								</div>
+								<div class="form-group">
+									<label>Email</label>
+									<input class="form-control" type="email" name="Email" placeholder="" required="">
+								</div>
+								<div class="form-group">
+									<label class="my-2">Số điện thoại</label>
+									<input class="form-control" type="text" name="Phone" placeholder="" required="">
+								</div>
+							</div>
+							<div class="col-md-6 con-right">
+								<div class="form-group">
+									<label>Nội dung</label>
+									<textarea id="textarea" name="Content" placeholder="" required=""></textarea>
+								</div>
+								<input class="form-control" type="submit" value="Gửi liên hệ">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="contact-map">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.032857835738!2d106.71862951388769!3d10.731949162949908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f8866d147ed%3A0xfc7d0020b71307e0!2zNzAwIE5ndXnhu4VuIFbEg24gTGluaCwgVMOibiBQaMO6LCBRdeG6rW4gNywgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1619296334875!5m2!1svi!2s" 
+		    class="map" style="border:0" allowfullscreen=""></iframe>
+	</div>
+	<script>
+	window.onload = function(){
+	var element = document.getElementById("nav-contact");
+	element.classList.add("active");
+	}
+	</script>
 @stop
